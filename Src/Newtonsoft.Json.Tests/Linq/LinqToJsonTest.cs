@@ -1,4 +1,4 @@
-ï»¿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,13 +34,13 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Tests.Serialization;
 using Newtonsoft.Json.Tests.TestObjects;
 using Newtonsoft.Json.Tests.TestObjects.Organization;
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
@@ -686,7 +686,7 @@ keyword such as type of business.""
         [Test]
         public void JTokenToStringTypes()
         {
-            string json = @"{""Color"":2,""Establised"":new Date(1264118400000),""Width"":1.1,""Employees"":999,""RoomsPerFloor"":[1,2,3,4,5,6,7,8,9],""Open"":false,""Symbol"":""@"",""Mottos"":[""Hello World"",""Ã¶Ã¤Ã¼Ã–Ã„Ãœ\\'{new Date(12345);}[222]_Âµ@Â²Â³~"",null,"" ""],""Cost"":100980.1,""Escape"":""\r\n\t\f\b?{\\r\\n\""'"",""product"":[{""Name"":""Rocket"",""ExpiryDate"":new Date(949532490000),""Price"":0},{""Name"":""Alien"",""ExpiryDate"":new Date(-62135596800000),""Price"":0}]}";
+            string json = @"{""Color"":2,""Establised"":new Date(1264118400000),""Width"":1.1,""Employees"":999,""RoomsPerFloor"":[1,2,3,4,5,6,7,8,9],""Open"":false,""Symbol"":""@"",""Mottos"":[""Hello World"",""öäüÖÄÜ\\'{new Date(12345);}[222]_µ@²³~"",null,"" ""],""Cost"":100980.1,""Escape"":""\r\n\t\f\b?{\\r\\n\""'"",""product"":[{""Name"":""Rocket"",""ExpiryDate"":new Date(949532490000),""Price"":0},{""Name"":""Alien"",""ExpiryDate"":new Date(-62135596800000),""Price"":0}]}";
 
             JObject o = JObject.Parse(json);
 
@@ -813,7 +813,7 @@ keyword such as type of business.""
                 Categories = new[] { "LINQ to JSON" }
             };
 
-            // serialize Post to JSON then parse JSON â€“ SLOW!
+            // serialize Post to JSON then parse JSON – SLOW!
             //JObject o = JObject.Parse(JsonConvert.SerializeObject(p));
 
             // create JObject directly from the Post

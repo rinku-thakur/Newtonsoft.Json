@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -31,10 +31,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.Xml;
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if !NET20
 using System.Xml.Linq;
 #endif

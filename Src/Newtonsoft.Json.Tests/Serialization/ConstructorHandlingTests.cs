@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,17 +27,23 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
 using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Newtonsoft.Json.Tests.TestObjects;
+
 #else
 using NUnit.Framework;
+using Autodesk.DataExchange.Newtonsoft.Json;
+using Newtonsoft.Json.Tests.TestObjects;
+
+
 #endif
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 

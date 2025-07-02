@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -24,8 +24,8 @@
 #endregion
 
 #if !(DNXCORE50 || PORTABLE40) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Linq.JsonPath;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq.JsonPath;
 using System;
 using System.Collections.Generic;
 using System.Xml;

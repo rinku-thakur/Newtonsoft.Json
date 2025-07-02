@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
@@ -9,7 +9,7 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 using NUnit.Framework;
 #endif
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 

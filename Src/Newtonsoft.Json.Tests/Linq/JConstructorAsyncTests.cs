@@ -25,7 +25,7 @@
 
 #if !(NET20 || NET35 || NET40 || PORTABLE40)
 
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;

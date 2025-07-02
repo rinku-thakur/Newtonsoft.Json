@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,7 +26,7 @@
 #if !(PORTABLE || PORTABLE40 || DNXCORE50)
 using NUnit.Framework;
 using System.Web.UI;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
 namespace Newtonsoft.Json.Tests.Linq.ComponentModel
 {

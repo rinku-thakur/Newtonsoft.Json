@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2022 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.Globalization;
 using Newtonsoft.Json.Tests.Documentation.Samples.Linq;
 

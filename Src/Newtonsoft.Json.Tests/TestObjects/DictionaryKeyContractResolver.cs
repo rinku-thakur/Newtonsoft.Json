@@ -24,7 +24,7 @@
 #endregion
 
 using System.Globalization;
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Tests.TestObjects
 {

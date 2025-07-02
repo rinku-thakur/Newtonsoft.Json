@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -24,7 +24,7 @@
 #endregion
 
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
@@ -40,8 +40,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization.Formatters;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Tests.TestObjects;
 using Newtonsoft.Json.Tests.TestObjects.Organization;
 #if DNXCORE50
@@ -51,7 +51,7 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 using System.Net;
 using System.Runtime.Serialization;
 using System.IO;
@@ -795,7 +795,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 ""$type"": """ + typeName + @""",
 ""RequestData"": {
 ""$type"": ""System.Collections.Generic.Dictionary`2[[System.String, mscorlib,Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"",
-""Id"": ""siedemnaście"",
+""Id"": ""siedemnascie"",
 ""X"": ""323""
 },
 ""Method"": ""GET"",
@@ -817,7 +817,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             SendHttpRequest request = (SendHttpRequest)message;
             Assert.AreEqual("xyz", request.CorrelationId);
             Assert.AreEqual(2, request.RequestData.Count);
-            Assert.AreEqual("siedemnaście", request.RequestData["Id"]);
+            Assert.AreEqual("siedemnascie", request.RequestData["Id"]);
         }
 
         [Test]

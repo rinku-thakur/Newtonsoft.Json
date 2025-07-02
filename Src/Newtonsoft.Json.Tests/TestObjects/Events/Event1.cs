@@ -25,7 +25,7 @@
 
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 
 namespace Newtonsoft.Json.Tests.TestObjects.Events
 {

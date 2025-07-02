@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if !(NET20 || NET35 || PORTABLE40 || PORTABLE) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
 using System.Numerics;
 #endif
@@ -39,20 +39,20 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
 using System.Xml;
 using Newtonsoft.Json.Tests.JsonTextReaderTests;
 using Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests;
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
 
 namespace Newtonsoft.Json.Tests.JsonTextReaderTests

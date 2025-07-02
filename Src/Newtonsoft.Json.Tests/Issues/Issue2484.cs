@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,11 +32,11 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 using NUnit.Framework;
 #endif
 using System.Collections.Generic;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using System.Collections;
 using System;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
 namespace Newtonsoft.Json.Tests.Issues
 {

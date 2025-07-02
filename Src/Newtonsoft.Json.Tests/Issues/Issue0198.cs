@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,8 +32,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;

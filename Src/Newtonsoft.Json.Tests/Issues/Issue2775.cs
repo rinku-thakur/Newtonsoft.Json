@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Newtonsoft.Json.Linq;
+using System.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;

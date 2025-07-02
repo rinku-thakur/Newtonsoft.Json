@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
@@ -42,14 +42,14 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json;
 using System.IO;
 using System.Reflection;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Tests.TestObjects;
 using Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests;
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
 namespace Newtonsoft.Json.Tests
 {

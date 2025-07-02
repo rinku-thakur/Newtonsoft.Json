@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,7 +26,7 @@
 using System;
 using System.Diagnostics;
 using BenchmarkDotNet.Running;
-using Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json;
 using Newtonsoft.Json.Tests.Benchmarks;
 using System.Reflection;
 

@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,7 +26,7 @@
 #if !(DNXCORE50 || PORTABLE40) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
 using System.Globalization;
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
@@ -42,12 +42,12 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json;
 using System.IO;
 using System.Xml;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Utilities;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if !NET20
 using System.Xml.Linq;
 
@@ -2443,7 +2443,7 @@ namespace Newtonsoft.Json.Tests.Converters
 
             string xmlString = System.Text.Encoding.UTF8.GetString(xml.ToArray());
 
-            Assert.AreEqual(@"﻿<?xml version=""1.0"" encoding=""utf-8""?><root booleanType=""true"" />", xmlString);
+            Assert.AreEqual(@"?<?xml version=""1.0"" encoding=""utf-8""?><root booleanType=""true"" />", xmlString);
         }
 
 #if !(NETSTANDARD1_0 || NETSTANDARD1_3)

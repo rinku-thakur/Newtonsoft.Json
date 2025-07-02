@@ -52,20 +52,20 @@ using TestCase = Xunit.InlineDataAttribute;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json;
+using Autodesk.DataExchange.Newtonsoft.Json;
 using System.IO;
 using System.Collections;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using Newtonsoft.Json.Bson;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Bson;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 #if !(NET20 || NET35)
 using System.Runtime.Serialization.Json;
 #endif
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Tests.Linq;
 using Newtonsoft.Json.Tests.TestObjects;
 using Newtonsoft.Json.Tests.TestObjects.Events;
@@ -73,7 +73,7 @@ using Newtonsoft.Json.Tests.TestObjects.GeoCoding;
 using Newtonsoft.Json.Tests.TestObjects.Organization;
 using System.Runtime.Serialization;
 using System.Globalization;
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 using System.Reflection;
 #if !NET20
 using System.Xml.Linq;
@@ -84,7 +84,7 @@ using System.Linq.Expressions;
 using System.Dynamic;
 #endif
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 using Action = Newtonsoft.Json.Serialization.Action;
 #else
 using System.Linq;

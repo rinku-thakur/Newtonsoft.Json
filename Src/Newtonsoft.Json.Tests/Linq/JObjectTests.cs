@@ -30,7 +30,7 @@ using System.ComponentModel;
 #if !(NET20 || NET35 || PORTABLE)
 using System.Numerics;
 #endif
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Tests.TestObjects;
 using Newtonsoft.Json.Tests.TestObjects.Organization;
 #if DNXCORE50
@@ -40,18 +40,18 @@ using Assert = Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.IO;
 using System.Collections;
 #if !(DNXCORE50)
 using System.Web.UI;
 #endif
 #if NET20
-using Newtonsoft.Json.Utilities.LinqBridge;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
 namespace Newtonsoft.Json.Tests.Linq
 {

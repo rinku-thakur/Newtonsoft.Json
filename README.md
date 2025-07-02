@@ -1,12 +1,15 @@
-# ![Logo](Doc/icons/logo.jpg) Json.NET
+# ![Logo](Doc/icons/logo.jpg) Autodesk DataExchange Json.NET
 
-[![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Newtonsoft.Json.svg?style=flat-square)](https://www.nuget.org/packages/Newtonsoft.Json/)
-[![Build status](https://dev.azure.com/jamesnk/Public/_apis/build/status/JamesNK.Newtonsoft.Json?branchName=master)](https://dev.azure.com/jamesnk/Public/_build/latest?definitionId=8)
+[![NuGet version (Autodesk.DataExchange.Newtonsoft.Json)](https://img.shields.io/nuget/v/Autodesk.DataExchange.Newtonsoft.Json.svg?style=flat-square)](https://www.nuget.org/packages/Autodesk.DataExchange.Newtonsoft.Json/)
 
-- [Homepage](https://www.newtonsoft.com/json)
-- [Documentation](https://www.newtonsoft.com/json/help)
-- [NuGet Package](https://www.nuget.org/packages/Newtonsoft.Json)
-- [Release Notes](https://github.com/JamesNK/Newtonsoft.Json/releases)
+This is an Autodesk DataExchange fork of Json.NET - a popular high-performance JSON framework for .NET.
+
+## Links
+- [Original Json.NET Homepage](https://www.newtonsoft.com/json)
+- [Original Json.NET Documentation](https://www.newtonsoft.com/json/help)
+- [Original Json.NET GitHub](https://github.com/JamesNK/Newtonsoft.Json)
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [License](LICENSE.md)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/json.net)
+
+## Changes from Original
+This fork maintains compatibility with the original Json.NET while being packaged as `Autodesk.DataExchange.Newtonsoft.Json` for use in Autodesk DataExchange projects.

@@ -24,8 +24,8 @@
 #endregion
 
 using System.Reflection;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Converters;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
 namespace Newtonsoft.Json.Tests.TestObjects
 {

@@ -24,7 +24,7 @@
 #endregion
 
 using System;
-using Newtonsoft.Json.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
 namespace Newtonsoft.Json.Tests.TestObjects
 {

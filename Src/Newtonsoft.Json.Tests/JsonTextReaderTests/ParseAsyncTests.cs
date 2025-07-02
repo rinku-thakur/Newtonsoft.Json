@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -37,7 +37,7 @@ using NUnit.Framework;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests;
-using Newtonsoft.Json.Utilities;
+using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
 namespace Newtonsoft.Json.Tests.JsonTextReaderTests
 {

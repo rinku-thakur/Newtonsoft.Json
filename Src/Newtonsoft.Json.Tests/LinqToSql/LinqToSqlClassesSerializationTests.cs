@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,7 +33,7 @@ using Newtonsoft.Json.Tests.LinqToSql;
 using NUnit.Framework;
 using System.Reflection;
 using System.ComponentModel;
-using Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using System.Data.Linq.Mapping;
 
 namespace Newtonsoft.Json.Tests.LinqToSql

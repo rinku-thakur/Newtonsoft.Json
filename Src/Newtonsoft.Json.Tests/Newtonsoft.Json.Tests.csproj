@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks Condition="'$(TestFrameworks)'==''">net46;net40;net35;net20;net5.0;net6.0;netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TestFrameworks)'==''">net46;net5.0;net6.0;netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(TestFrameworks)'!=''">$(TestFrameworks)</TargetFrameworks>
     <LangVersion>9.0</LangVersion>
     <VersionPrefix>1.0</VersionPrefix>
@@ -40,7 +40,7 @@
     <None Include="PoisonText.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.csproj" />
+    <ProjectReference Include="..\Autodesk.DataExchange.Newtonsoft.Json\Autodesk.DataExchange.Newtonsoft.Json.csproj" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)'=='net46'">
