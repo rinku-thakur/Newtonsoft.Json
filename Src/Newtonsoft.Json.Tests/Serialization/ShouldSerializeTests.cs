@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -39,13 +39,13 @@ using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class ShouldSerializeTests : TestFixtureBase
@@ -315,7 +315,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             public string Name { get; set; }
             public int NumberOfChildren { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public bool NumberOfChildrenSpecified { get; set; }
         }
 
@@ -414,7 +414,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(true, c.HasName);
             Assert.AreEqual("Name!", c.Name);
 
-            Assert.IsTrue(traceWriter.GetTraceMessages().Any(m => m.EndsWith("Verbose ShouldDeserialize result for property 'Name' on Newtonsoft.Json.Tests.Serialization.ShouldDeserializeTestClass: True. Path 'Name'.")));
+            Assert.IsTrue(traceWriter.GetTraceMessages().Any(m => m.EndsWith("Verbose ShouldDeserialize result for property 'Name' on Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ShouldDeserializeTestClass: True. Path 'Name'.")));
         }
 
         [Test]
@@ -434,7 +434,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(false, c.HasName);
             Assert.AreEqual(null, c.Name);
 
-            Assert.IsTrue(traceWriter.GetTraceMessages().Any(m => m.EndsWith("Verbose ShouldDeserialize result for property 'Name' on Newtonsoft.Json.Tests.Serialization.ShouldDeserializeTestClass: False. Path 'Name'.")));
+            Assert.IsTrue(traceWriter.GetTraceMessages().Any(m => m.EndsWith("Verbose ShouldDeserialize result for property 'Name' on Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ShouldDeserializeTestClass: False. Path 'Name'.")));
         }
 
         public class Employee
@@ -488,24 +488,24 @@ namespace Newtonsoft.Json.Tests.Serialization
         public int FavoriteNumber { get; set; }
 
         // dummy. should never be used because it isn't of type bool
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public long AgeSpecified { get; set; }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public bool NameSpecified
         {
             get { return _nameSpecified; }
             set { _nameSpecified = value; }
         }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public bool WeightSpecified;
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public bool HeightSpecified;
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public bool FavoriteNumberSpecified
         {
             // get only example
@@ -544,7 +544,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class Bar2
     {
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public bool ShouldSerializemyBazCalled { get; set; }
 
         private Baz1[] myBazField;
@@ -641,7 +641,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class ShouldDeserializeTestClass
     {
-        [JsonExtensionData]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
         public IDictionary<string, JToken> ExtensionData { get; set; }
 
         public bool HasName { get; set; }
@@ -653,3 +653,4 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+

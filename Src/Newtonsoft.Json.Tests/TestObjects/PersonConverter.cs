@@ -30,9 +30,9 @@ using System.Collections.Specialized;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PersonConverter : CustomCreationConverter<IPerson>
     {

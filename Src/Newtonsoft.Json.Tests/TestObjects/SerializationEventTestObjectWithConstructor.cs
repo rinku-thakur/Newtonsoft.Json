@@ -27,7 +27,7 @@ using System;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class SerializationEventTestObjectWithConstructor
     {
@@ -40,7 +40,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
 
         // This field is not serialized. The OnDeserializedAttribute 
         // is used to set the member value after serialization.
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public string Member3 { get; private set; }
 
         // This field is set to null, but populated after deserialization.

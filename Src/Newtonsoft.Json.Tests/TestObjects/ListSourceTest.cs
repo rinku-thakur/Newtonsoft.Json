@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ListSourceTest : IListSource
     {
@@ -39,7 +39,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             set { str = value; }
         }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public bool ContainsListCollection
         {
             get { return false; }

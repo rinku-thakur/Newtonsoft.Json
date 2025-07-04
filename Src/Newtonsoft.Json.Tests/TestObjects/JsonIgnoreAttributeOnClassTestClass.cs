@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -23,18 +23,18 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(MemberSerialization.OptIn)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
     public class JsonIgnoreAttributeOnClassTestClass
     {
         private int _property = 21;
         private int _ignoredProperty = 12;
 
-        [JsonProperty("TheField")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("TheField")]
         public int Field;
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public int Property
         {
             get { return _property; }
@@ -42,8 +42,8 @@ namespace Newtonsoft.Json.Tests.TestObjects
 
         public int IgnoredField;
 
-        [JsonProperty]
-        [JsonIgnore] // JsonIgnore should take priority
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore] // Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore should take priority
         public int IgnoredProperty
         {
             get { return _ignoredProperty; }

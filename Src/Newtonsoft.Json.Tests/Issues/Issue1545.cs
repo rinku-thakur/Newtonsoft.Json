@@ -28,12 +28,12 @@ using System;
 using System.Reflection;
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1545 : TestFixtureBase
@@ -92,11 +92,11 @@ namespace Newtonsoft.Json.Tests.Issues
 
     public class Simple
     {
-        [JsonProperty(Required = Required.Always)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
         public SimpleObject[] Array { get; set; }
     }
 
-    [JsonConverter(typeof(LineInfoConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(LineInfoConverter))]
     public class SimpleObject : JsonLineInfo
     {
         public string Value { get; set; }
@@ -104,14 +104,14 @@ namespace Newtonsoft.Json.Tests.Issues
 
     public class JsonLineInfo
     {
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public int? LineNumber { get; set; }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public int? LinePosition { get; set; }
     }
 
-    public class LineInfoConverter : JsonConverter
+    public class LineInfoConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public override bool CanWrite
         {
@@ -153,3 +153,5 @@ namespace Newtonsoft.Json.Tests.Issues
         }
     }
 }
+
+

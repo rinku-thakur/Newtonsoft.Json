@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -40,12 +40,12 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1752 : TestFixtureBase
@@ -53,7 +53,7 @@ namespace Newtonsoft.Json.Tests.Issues
         [Test]
         public void Test_EmptyString()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
+            JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto };
 
             string s1 = JsonConvert.SerializeObject(new TestObject() { Obj = new byte[] { } }, settings);
 
@@ -82,3 +82,4 @@ namespace Newtonsoft.Json.Tests.Issues
         }
     }
 }
+

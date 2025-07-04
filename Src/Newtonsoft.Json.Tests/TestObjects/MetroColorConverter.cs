@@ -28,10 +28,10 @@ using System;
 using System.Drawing;
 #endif
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50)
-    public class MetroColorConverter : JsonConverter
+    public class MetroColorConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

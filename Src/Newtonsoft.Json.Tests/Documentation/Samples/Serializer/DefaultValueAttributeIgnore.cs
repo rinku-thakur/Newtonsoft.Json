@@ -30,13 +30,13 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class DefaultValueAttributeIgnore : TestFixtureBase
@@ -72,7 +72,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 
             string jsonIgnoreDefaultValues = JsonConvert.SerializeObject(customer, Formatting.Indented, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Ignore
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore
             });
 
             Console.WriteLine(jsonIgnoreDefaultValues);
@@ -83,3 +83,4 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -43,20 +43,20 @@ using Autodesk.DataExchange.Newtonsoft.Json;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
 {
     [TestFixture]
     public class JsonConvertTest : TestFixtureBase
@@ -177,7 +177,7 @@ namespace Newtonsoft.Json.Tests
             public string Value { get; set; }
         }
 
-        public class NameTableTestClassConverter : JsonConverter
+        public class NameTableTestClassConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -443,7 +443,7 @@ namespace Newtonsoft.Json.Tests
             }
         }
 
-        public class IntConverter : JsonConverter
+        public class IntConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -1005,7 +1005,7 @@ namespace Newtonsoft.Json.Tests
             return date.Trim('"');
         }
 
-        private static void TestDateTimeFormat<T>(T value, JsonConverter converter)
+        private static void TestDateTimeFormat<T>(T value, Autodesk.DataExchange.Newtonsoft.Json.JsonConverter converter)
         {
             string date = Write(value, converter);
 
@@ -1034,7 +1034,7 @@ namespace Newtonsoft.Json.Tests
             return (value is DateTime) ? ((DateTime)value).Ticks : ((DateTimeOffset)value).Ticks;
         }
 
-        public static string Write(object value, JsonConverter converter)
+        public static string Write(object value, Autodesk.DataExchange.Newtonsoft.Json.JsonConverter converter)
         {
             StringWriter sw = new StringWriter();
             JsonTextWriter writer = new JsonTextWriter(sw);
@@ -1044,7 +1044,7 @@ namespace Newtonsoft.Json.Tests
             return sw.ToString();
         }
 
-        public static T Read<T>(string text, JsonConverter converter)
+        public static T Read<T>(string text, Autodesk.DataExchange.Newtonsoft.Json.JsonConverter converter)
         {
             JsonTextReader reader = new JsonTextReader(new StringReader(text));
             reader.ReadAsString();
@@ -1218,19 +1218,19 @@ namespace Newtonsoft.Json.Tests
 
         public class ClobberMyProperties
         {
-            [JsonConverter(typeof(ClobberingJsonConverter), "Uno", 1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ClobberingJsonConverter), "Uno", 1)]
             public string One { get; set; }
 
-            [JsonConverter(typeof(ClobberingJsonConverter), "Dos", 2)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ClobberingJsonConverter), "Dos", 2)]
             public string Two { get; set; }
 
-            [JsonConverter(typeof(ClobberingJsonConverter), "Tres")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ClobberingJsonConverter), "Tres")]
             public string Three { get; set; }
 
             public string Four { get; set; }
         }
 
-        public class ClobberingJsonConverter : JsonConverter
+        public class ClobberingJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public string ClobberValueString { get; private set; }
 
@@ -1277,12 +1277,12 @@ namespace Newtonsoft.Json.Tests
             /// We deliberately use the wrong number/type of arguments for ClobberingJsonConverter to ensure an 
             /// exception is thrown.
             /// </summary>
-            [JsonConverter(typeof(ClobberingJsonConverter), "Uno", "Blammo")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ClobberingJsonConverter), "Uno", "Blammo")]
             public string One { get; set; }
         }
 
         
-        public class OverloadsJsonConverterer : JsonConverter
+        public class OverloadsJsonConverterer : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             private readonly string _type;
             
@@ -1368,7 +1368,7 @@ namespace Newtonsoft.Json.Tests
 
         public class OverloadWithTypeParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), typeof(int))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), typeof(int))]
             public int Overload { get; set; }
         }
 
@@ -1383,7 +1383,7 @@ namespace Newtonsoft.Json.Tests
         
         public class OverloadWithUnhandledParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), "str")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), "str")]
             public int Overload { get; set; }
         }
 
@@ -1398,73 +1398,73 @@ namespace Newtonsoft.Json.Tests
 
         public class OverloadWithIntParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 1)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithUIntParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 1U)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 1U)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithLongParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 1L)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 1L)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithULongParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 1UL)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 1UL)]
             public int Overload { get; set; }
         }
         
         public class OverloadWithShortParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), (short)1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), (short)1)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithUShortParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), (ushort)1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), (ushort)1)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithSByteParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), (sbyte)1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), (sbyte)1)]
             public int Overload { get; set; }
         }
         
         public class OverloadWithByteParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), (byte)1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), (byte)1)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithCharParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 'a')]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 'a')]
             public int Overload { get; set; }
         }
 
         public class OverloadWithBoolParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), true)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), true)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithFloatParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 1.5f)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 1.5f)]
             public int Overload { get; set; }
         }
 
         public class OverloadWithDoubleParameter
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), 1.5)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), 1.5)]
             public int Overload { get; set; }
         }
         
@@ -1553,10 +1553,10 @@ namespace Newtonsoft.Json.Tests
 
         public class OverloadWithArrayParameters
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), new int[] { 1, 2, 3 })]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), new int[] { 1, 2, 3 })]
             public int WithParams { get; set; }
 
-            [JsonConverter(typeof(OverloadsJsonConverterer), new bool[] { true, false })]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), new bool[] { true, false })]
             public int WithoutParams { get; set; }
         }
 
@@ -1571,7 +1571,7 @@ namespace Newtonsoft.Json.Tests
 
         public class OverloadWithBaseType
         {
-            [JsonConverter(typeof(OverloadsJsonConverterer), new object[] { new string[] { "a", "b", "c" } })]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OverloadsJsonConverterer), new object[] { new string[] { "a", "b", "c" } })]
             public int Overload { get; set; }
         }
 
@@ -1603,17 +1603,17 @@ namespace Newtonsoft.Json.Tests
 
         public class Measurements
         {
-            [JsonProperty(ItemConverterType = typeof(RoundingJsonConverter))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemConverterType = typeof(RoundingJsonConverter))]
             public List<double> Positions { get; set; }
 
-            [JsonProperty(ItemConverterType = typeof(RoundingJsonConverter), ItemConverterParameters = new object[] { 0, MidpointRounding.ToEven })]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemConverterType = typeof(RoundingJsonConverter), ItemConverterParameters = new object[] { 0, MidpointRounding.ToEven })]
             public List<double> Loads { get; set; }
 
-            [JsonConverter(typeof(RoundingJsonConverter), 4)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(RoundingJsonConverter), 4)]
             public double Gain { get; set; }
         }
 
-        public class RoundingJsonConverter : JsonConverter
+        public class RoundingJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             int _precision;
             MidpointRounding _rounding;
@@ -1714,11 +1714,11 @@ namespace Newtonsoft.Json.Tests
 
         public sealed class HasReadOnlyDictionary
         {
-            [JsonProperty("foo")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
             public IReadOnlyDictionary<string, string> Foo { get; } = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 
-            [JsonConstructor]
-            public HasReadOnlyDictionary([JsonProperty("bar")] int bar)
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            public HasReadOnlyDictionary([Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("bar")] int bar)
             {
 
             }
@@ -1727,11 +1727,11 @@ namespace Newtonsoft.Json.Tests
 
         public sealed class HasReadOnlyEnumerableObject
         {
-            [JsonProperty("foo")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
             public EnumerableWithConverter Foo { get; } = new EnumerableWithConverter();
 
-            [JsonConstructor]
-            public HasReadOnlyEnumerableObject([JsonProperty("bar")] int bar)
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            public HasReadOnlyEnumerableObject([Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("bar")] int bar)
             {
 
             }
@@ -1739,10 +1739,10 @@ namespace Newtonsoft.Json.Tests
 
         public sealed class HasReadOnlyEnumerableObjectAndDefaultConstructor
         {
-            [JsonProperty("foo")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
             public EnumerableWithConverter Foo { get; } = new EnumerableWithConverter();
 
-            [JsonConstructor]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
             public HasReadOnlyEnumerableObjectAndDefaultConstructor()
             {
 
@@ -1751,11 +1751,11 @@ namespace Newtonsoft.Json.Tests
 
         public sealed class AcceptsEnumerableObjectToConstructor
         {
-            [JsonConstructor]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
             public AcceptsEnumerableObjectToConstructor
             (
-                [JsonProperty("foo")] EnumerableWithConverter foo,
-                [JsonProperty("bar")] int bar
+                [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")] EnumerableWithConverter foo,
+                [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("bar")] int bar
             )
             {
 
@@ -1764,20 +1764,20 @@ namespace Newtonsoft.Json.Tests
 
         public sealed class HasEnumerableObject
         {
-            [JsonProperty("foo")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
             public EnumerableWithConverter Foo { get; set; } = new EnumerableWithConverter();
 
-            [JsonConstructor]
-            public HasEnumerableObject([JsonProperty("bar")] int bar)
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            public HasEnumerableObject([Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("bar")] int bar)
             {
 
             }
         }
 
-        [JsonConverter(typeof(Converter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(Converter))]
         public sealed class EnumerableWithConverter : IEnumerable<int>
         {
-            public sealed class Converter : JsonConverter
+            public sealed class Converter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
             {
                 public override bool CanConvert(Type objectType)
                     => objectType == typeof(Foo);
@@ -1818,12 +1818,12 @@ namespace Newtonsoft.Json.Tests
             Assert.AreEqual(value.Active, true);
         }
 
-        [JsonObject(ItemRequired = Required.Always)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemRequired = Required.Always)]
         public sealed class ItemsRequiredObjectWithIgnoredProperty
         {
             private static readonly DateTime s_unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-            [JsonProperty("exp")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("exp")]
             private int _expiration
             {
                 get
@@ -1838,8 +1838,10 @@ namespace Newtonsoft.Json.Tests
 
             public bool Active { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public DateTime Expiration { get; set; }
         }
     }
 }
+
+

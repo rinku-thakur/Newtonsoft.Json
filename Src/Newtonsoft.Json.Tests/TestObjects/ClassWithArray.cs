@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,7 +26,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ClassWithArray
     {
@@ -38,14 +38,14 @@ namespace Newtonsoft.Json.Tests.TestObjects
             bar = new List<Int64>() { int.MaxValue };
         }
 
-        [JsonProperty("foo")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
         public string Foo
         {
             get { return foo; }
             set { foo = value; }
         }
 
-        [JsonProperty(PropertyName = "bar")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "bar")]
         public IList<long> Bar
         {
             get { return bar; }

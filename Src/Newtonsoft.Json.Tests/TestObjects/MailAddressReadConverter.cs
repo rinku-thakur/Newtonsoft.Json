@@ -26,10 +26,10 @@
 using System;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-    public class MailAddressReadConverter : JsonConverter
+    public class MailAddressReadConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 #if NET20
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
@@ -10,13 +10,13 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using TestAttribute = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Linq
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
 {
     [TestFixture]
     public class AnnotationsTests : TestFixtureBase

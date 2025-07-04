@@ -28,7 +28,7 @@ using NUnit.Framework;
 using System.Web.UI;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.Linq.ComponentModel
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq.ComponentModel
 {
     [TestFixture]
     public class BindingTests : TestFixtureBase

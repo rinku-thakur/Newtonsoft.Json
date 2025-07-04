@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,7 +26,7 @@
 #if !NET20
 using System.Runtime.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     [DataContract]
     public class DataContractPrivateMembers
@@ -49,10 +49,10 @@ namespace Newtonsoft.Json.Tests.TestObjects
         [DataMember(Name = "_age")]
         private int Age { get; set; }
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         private int Rank { get; set; }
 
-        [JsonProperty(PropertyName = "JsonTitle")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "JsonTitle")]
         [DataMember(Name = "DataTitle")]
         private string Title { get; set; }
 

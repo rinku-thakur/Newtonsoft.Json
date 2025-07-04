@@ -25,7 +25,7 @@
 
 using System.Collections.Generic;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class Foo
     {
@@ -34,7 +34,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             Bars = new List<Bar>();
         }
 
-        [JsonConverter(typeof(ListOfIds<Bar>))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ListOfIds<Bar>))]
         public List<Bar> Bars { get; set; }
     }
 }

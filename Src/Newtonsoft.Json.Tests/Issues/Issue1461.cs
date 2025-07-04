@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -41,12 +41,12 @@ using System.Xml.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1461 : TestFixtureBase
@@ -56,7 +56,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                Converters = new JsonConverter[] { new IdJsonConverter() },
+                Converters = new Autodesk.DataExchange.Newtonsoft.Json.JsonConverter[] { new IdJsonConverter() },
                 TraceWriter = new TraceWriter(),
             };
 
@@ -94,7 +94,7 @@ namespace Newtonsoft.Json.Tests.Issues
             }
         }
 
-        private class IdJsonConverter : JsonConverter
+        private class IdJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override bool CanConvert(Type objectType) => typeof(Id) == objectType;
 

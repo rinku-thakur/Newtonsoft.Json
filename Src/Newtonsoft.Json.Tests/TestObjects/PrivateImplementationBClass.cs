@@ -23,31 +23,31 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PrivateImplementationBClass : PrivateImplementationAClass, IPrivateImplementationB, IPrivateOverriddenImplementation
     {
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public string PropertyB { get; set; }
 
-        [JsonProperty("PropertyB")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("PropertyB")]
         string IPrivateImplementationB.PropertyB
         {
             get { return PropertyB; }
             set { PropertyB = value; }
         }
 
-        [JsonProperty("OverriddenProperty")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("OverriddenProperty")]
         private string OverriddenPropertyString
         {
             get { return OverriddenProperty.ToString(); }
             set { OverriddenProperty = value; }
         }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public object OverriddenProperty { get; set; }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         object IPrivateOverriddenImplementation.OverriddenProperty
         {
             get { return OverriddenProperty; }

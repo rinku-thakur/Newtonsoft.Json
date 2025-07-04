@@ -30,7 +30,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 using System.Linq;
 #endif
 
-namespace Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests
 {
     public class FakeArrayPool : IArrayPool<char>
     {

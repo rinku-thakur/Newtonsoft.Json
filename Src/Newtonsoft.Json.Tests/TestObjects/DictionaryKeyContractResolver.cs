@@ -26,7 +26,7 @@
 using System.Globalization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class DictionaryKeyContractResolver : DefaultContractResolver
     {

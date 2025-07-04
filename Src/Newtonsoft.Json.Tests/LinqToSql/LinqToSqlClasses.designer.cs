@@ -1,4 +1,4 @@
-﻿#if !(DNXCORE50 || NET20)
+#if !(DNXCORE50 || NET20)
 
 #pragma warning disable 1591
 //------------------------------------------------------------------------------
@@ -11,7 +11,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Newtonsoft.Json.Tests.LinqToSql
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;

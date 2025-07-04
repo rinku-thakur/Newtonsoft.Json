@@ -1,15 +1,15 @@
-using System.Linq;
+﻿using System.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 using TestCase = Xunit.InlineDataAttribute;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     public class Issue2775
     {

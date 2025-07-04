@@ -30,14 +30,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Newtonsoft.Json.Tests.LinqToSql
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
 {
     [MetadataType(typeof(PersonMetadata))]
     public partial class Person
     {
         public class PersonMetadata
         {
-            [JsonProperty("first_name")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("first_name")]
             public string FirstName { get; set; }
         }
     }

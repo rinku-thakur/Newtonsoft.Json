@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PersonError
     {
@@ -53,7 +53,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
 
         public string Title { get; set; }
 
-        [OnError]
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
         internal void HandleError(StreamingContext context, ErrorContext errorContext)
         {
             errorContext.Handled = true;

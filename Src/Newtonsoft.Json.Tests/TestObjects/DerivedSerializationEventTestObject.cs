@@ -26,13 +26,13 @@
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class DerivedSerializationEventTestObject : SerializationEventTestObject
     {
         // This field is set to null, but populated after deserialization, only
         // in the derived class
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public string Member7 { get; set; }
 
         // These empty methods exist to make sure we're not covering up the base
@@ -58,7 +58,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             Member7 = "This value was set after deserialization.";
         }
 
-        [OnError]
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
         internal void OnDerivedErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
         }

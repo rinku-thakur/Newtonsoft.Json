@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -25,7 +25,7 @@
 
 #if !(NET35 || NET20 || DNXCORE50) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
 
-namespace Newtonsoft.Json.Tests.TestObjects.Money
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Money
 {
     public static class Tags
     {

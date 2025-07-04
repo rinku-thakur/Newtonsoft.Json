@@ -25,9 +25,9 @@
 
 using System;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject]
     public class ConverableMembers
     {
         public string String = "string";

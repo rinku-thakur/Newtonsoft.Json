@@ -25,7 +25,7 @@
 
 using System;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class Item
     {
@@ -35,7 +35,8 @@ namespace Newtonsoft.Json.Tests.TestObjects
         public double Longitude { get; set; }
         public DateTime TimeStamp { get; set; }
 
-        [JsonProperty(TypeNameHandling = TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public object Payload { get; set; }
     }
 }
+

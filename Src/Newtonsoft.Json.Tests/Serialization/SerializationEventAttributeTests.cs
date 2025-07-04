@@ -36,18 +36,18 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class SerializationEventAttributeTests : TestFixtureBase
@@ -235,7 +235,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual("This value was reset after serialization.", obj.Member2);
             Assert.AreEqual("This is a nonserialized value", obj.Member3);
             Assert.AreEqual(null, obj.Member4);
-            Assert.AreEqual("Error message for member Member6 = Error getting value from 'Member6' on 'Newtonsoft.Json.Tests.TestObjects.SerializationEventTestObject'.", obj.Member5);
+            Assert.AreEqual("Error message for member Member6 = Error getting value from 'Member6' on 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.SerializationEventTestObject'.", obj.Member5);
 
             obj = JsonConvert.DeserializeObject<SerializationEventTestObject>(json);
 
@@ -316,7 +316,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 // If I don't specify Error here, the callback isn't called
                 // either, but no exception is thrown.
-                MissingMemberHandling = MissingMemberHandling.Error,
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error,
             });
 
             // This throws with missing member exception, rather than calling my callback.
@@ -331,8 +331,8 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public int Identifier { get; set; }
 
-            [OnError]
-            private void OnError(StreamingContext context, ErrorContext error)
+            [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+            void OnError(StreamingContext context, ErrorContext error)
             {
                 Identifier = 25;
 
@@ -389,7 +389,7 @@ OnSerialized_Derived_Derived", string.Join(Environment.NewLine, e.ToArray()));
         [Test]
         public void DerivedDerivedSerializationEvents_DataContractSerializer()
         {
-            string xml = @"<DerivedDerivedSerializationEventOrderTestObject xmlns=""http://schemas.datacontract.org/2004/07/Newtonsoft.Json.Tests.Serialization"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance""/>";
+            string xml = @"<DerivedDerivedSerializationEventOrderTestObject xmlns=""http://schemas.datacontract.org/2004/07/Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance""/>";
 
             DataContractSerializer ss = new DataContractSerializer(typeof(DerivedDerivedSerializationEventOrderTestObject));
 
@@ -427,7 +427,7 @@ OnSerialized_Derived_Derived", string.Join(Environment.NewLine, e.ToArray()));
                 }
             };
 
-            ExceptionAssert.Throws<JsonException>(() => JsonConvert.SerializeObject(d, Formatting.Indented), "Serialization Callback 'Void Deserialized()' in type 'Newtonsoft.Json.Tests.Serialization.Contract' must have a single parameter of type 'System.Runtime.Serialization.StreamingContext'.");
+            ExceptionAssert.Throws<JsonException>(() => JsonConvert.SerializeObject(d, Formatting.Indented), "Serialization Callback 'Void Deserialized()' in type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Contract' must have a single parameter of type 'System.Runtime.Serialization.StreamingContext'.");
         }
     }
 
@@ -554,3 +554,4 @@ OnSerialized_Derived_Derived", string.Join(Environment.NewLine, e.ToArray()));
         }
     }
 }
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,17 +29,17 @@ using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.Reflection;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class CamelCaseNamingStrategyTests : TestFixtureBase
@@ -248,10 +248,10 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class PropertyAttributeNamingStrategyTestClass
         {
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public string HasNoAttributeNamingStrategy { get; set; }
 
-            [JsonProperty(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
             public string HasAttributeNamingStrategy { get; set; }
         }
 
@@ -272,12 +272,12 @@ namespace Newtonsoft.Json.Tests.Serialization
 }", json);
         }
 
-        [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
         public class ContainerAttributeNamingStrategyTestClass
         {
             public string Prop1 { get; set; }
             public string Prop2 { get; set; }
-            [JsonProperty(NamingStrategyType = typeof(DefaultNamingStrategy))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NamingStrategyType = typeof(DefaultNamingStrategy))]
             public string HasAttributeNamingStrategy { get; set; }
         }
 
@@ -299,7 +299,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 }", json);
         }
 
-        [JsonDictionary(NamingStrategyType = typeof(CamelCaseNamingStrategy), NamingStrategyParameters = new object[] { true, true })]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(NamingStrategyType = typeof(CamelCaseNamingStrategy), NamingStrategyParameters = new object[] { true, true })]
         public class DictionaryAttributeNamingStrategyTestClass : Dictionary<string, string>
         {
         }
@@ -322,3 +322,4 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+

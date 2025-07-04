@@ -23,9 +23,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonConverter(typeof(WidgetIdJsonConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(WidgetIdJsonConverter))]
     public struct WidgetId1
     {
         public long Value { get; set; }

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -39,7 +39,7 @@ using System;
 using System.IO;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue2504 : TestFixtureBase
@@ -51,7 +51,7 @@ namespace Newtonsoft.Json.Tests.Issues
 
             var o = JsonConvert.DeserializeObject<TestObject>(jsontext, new JsonSerializerSettings
             {
-                Converters = new List<JsonConverter> { new TestConverter() },
+                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new TestConverter() },
                 MaxDepth = 150
             });
 
@@ -67,7 +67,7 @@ namespace Newtonsoft.Json.Tests.Issues
 
             ExceptionAssert.Throws<JsonReaderException>(() => JsonConvert.DeserializeObject<TestObject>(jsontext, new JsonSerializerSettings
             {
-                Converters = new List<JsonConverter> { new TestConverter() },
+                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new TestConverter() },
                 MaxDepth = 100
             }), expectedMessage);
         }
@@ -92,7 +92,7 @@ namespace Newtonsoft.Json.Tests.Issues
             public JToken Children { get; set; }
         }
 
-        private class TestConverter : JsonConverter
+        private class TestConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {

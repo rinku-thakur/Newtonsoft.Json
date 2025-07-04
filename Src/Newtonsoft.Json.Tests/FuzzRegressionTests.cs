@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -28,14 +28,14 @@ using System.IO;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
 #pragma warning disable xUnit1013
 
-namespace Newtonsoft.Json.Tests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
 {
     [TestFixture]
     public class FuzzRegressionTests : TestFixtureBase
@@ -86,8 +86,8 @@ namespace Newtonsoft.Json.Tests
                 "[//6*/)3333/\n,[]//3", // ValidateEnd
                 "[//*/{'33/\n,33,33//3", // ReadStringIntoBuffer
                 "[//*//\n8 ,8 ", // ParseComment
-                @"[//ô   [ / 
-//""ÿ /'/*//// 
+                @"[//Ã´   [ / 
+//""Ã¿ /'/*//// 
 //[7
 // 
 //"" @'/// 
@@ -104,17 +104,17 @@ namespace Newtonsoft.Json.Tests
 // 
 ,'/J ""' ", // WriteToken
                 "[2//***;****/,7*", // ReadNumberCharIntoBuffer
-                "[2///ÿ¢  ¢¢********/,,*		", // ParseValue
+                "[2///Ã¿Â¢  Â¢Â¢********/,,*		", // ParseValue
                 @"[// *//[
 7// 
-// ""JJ· 
+// ""JJÂ· 
 //',J
  
 // 
 //',o@7,7
 //',o@/ / "" ]      
 //',o@7,7
-//',o@Ó", // ParseComment
+//',o@Ã“", // ParseComment
                 "[2//*/*", // ParsePostValue
                 "[//*/{A73/\n]1.//3:{\"'\":", //  ReadUnquotedPropertyReportIfDone
             };
@@ -125,3 +125,4 @@ namespace Newtonsoft.Json.Tests
         }
     }
 }
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,13 +32,13 @@ using Autodesk.DataExchange.Newtonsoft.Json.Schema;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
 {
     [TestFixture]
     public class ExceptionTests : TestFixtureBase
@@ -47,7 +47,7 @@ namespace Newtonsoft.Json.Tests
         public void JsonSerializationException()
         {
             JsonSerializationException exception = new JsonSerializationException();
-            Assert.AreEqual("Exception of type 'Newtonsoft.Json.JsonSerializationException' was thrown.", exception.Message);
+            Assert.AreEqual("Exception of type 'Autodesk.DataExchange.Newtonsoft.Json.JsonSerializationException' was thrown.", exception.Message);
 
             exception = new JsonSerializationException("Message!");
             Assert.AreEqual("Message!", exception.Message);
@@ -62,7 +62,7 @@ namespace Newtonsoft.Json.Tests
         public void JsonWriterException()
         {
             JsonWriterException exception = new JsonWriterException();
-            Assert.AreEqual("Exception of type 'Newtonsoft.Json.JsonWriterException' was thrown.", exception.Message);
+            Assert.AreEqual("Exception of type 'Autodesk.DataExchange.Newtonsoft.Json.JsonWriterException' was thrown.", exception.Message);
 
             exception = new JsonWriterException("Message!");
             Assert.AreEqual("Message!", exception.Message);
@@ -77,7 +77,7 @@ namespace Newtonsoft.Json.Tests
         public void JsonReaderException()
         {
             JsonReaderException exception = new JsonReaderException();
-            Assert.AreEqual("Exception of type 'Newtonsoft.Json.JsonReaderException' was thrown.", exception.Message);
+            Assert.AreEqual("Exception of type 'Autodesk.DataExchange.Newtonsoft.Json.JsonReaderException' was thrown.", exception.Message);
 
             exception = new JsonReaderException("Message!");
             Assert.AreEqual("Message!", exception.Message);
@@ -93,7 +93,7 @@ namespace Newtonsoft.Json.Tests
         public void JsonSchemaException()
         {
             JsonSchemaException exception = new JsonSchemaException();
-            Assert.AreEqual("Exception of type 'Newtonsoft.Json.Schema.JsonSchemaException' was thrown.", exception.Message);
+            Assert.AreEqual("Exception of type 'Autodesk.DataExchange.Newtonsoft.Json.Schema.JsonSchemaException' was thrown.", exception.Message);
 
             exception = new JsonSchemaException("Message!");
             Assert.AreEqual("Message!", exception.Message);

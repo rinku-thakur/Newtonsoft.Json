@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,17 +32,17 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.Documentation.Samples.Serializer;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer;
 #if DNXCORE50
 using System.Reflection;
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue2735 : TestFixtureBase
@@ -150,15 +150,17 @@ namespace Newtonsoft.Json.Tests.Issues
 
         private JsonSerializerSettings DeserializeSettings(int maxDepth) => new JsonSerializerSettings()
         {
-            TypeNameHandling = TypeNameHandling.None,
+            TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.None,
             MaxDepth = maxDepth
         };
 
         private JsonSerializerSettings SerializeSettings(int maxDepth) => new JsonSerializerSettings()
         {
-            TypeNameHandling = TypeNameHandling.All,
+            TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
             MaxDepth = maxDepth
         };
     }
 }
 #endif
+
+

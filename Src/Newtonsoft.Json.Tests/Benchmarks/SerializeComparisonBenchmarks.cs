@@ -40,9 +40,9 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using Autodesk.DataExchange.Newtonsoft.Json.Bson;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 
-namespace Newtonsoft.Json.Tests.Benchmarks
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Benchmarks
 {
     public class SerializeComparisonBenchmarks
     {

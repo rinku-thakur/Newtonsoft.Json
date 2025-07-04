@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,11 +27,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class CollectionClassAttributeDerived : ClassAttributeBase, ICollection<object>
     {
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public string CollectionDerivedClassValue { get; set; }
 
         public void Add(object item)

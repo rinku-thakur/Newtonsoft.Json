@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PublicConstructorOverridenByJsonConstructor
     {
@@ -35,7 +35,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             Constructor = "NonPublic";
         }
 
-        [JsonConstructor]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
         public PublicConstructorOverridenByJsonConstructor(string value)
         {
             Value = value;

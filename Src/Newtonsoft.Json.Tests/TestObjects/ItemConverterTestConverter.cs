@@ -25,9 +25,9 @@
 
 using System;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public class ItemConverterTestConverter : JsonConverter
+    public class ItemConverterTestConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

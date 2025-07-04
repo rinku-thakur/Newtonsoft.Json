@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,12 +33,12 @@ using System.Collections.Generic;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue0573
@@ -54,7 +54,7 @@ namespace Newtonsoft.Json.Tests.Issues
             });
             List<string> messages = traceWriter.GetTraceMessages().ToList();
 
-            bool hasMessage = messages.Any(message => message.Contains("Info Unable to deserialize value to non-writable property 'Value' on Newtonsoft.Json.Tests.Issues.Issue0573+PrivateSetterTestClass. Path 'Value', line 1, position 13."));
+            bool hasMessage = messages.Any(message => message.Contains("Info Unable to deserialize value to non-writable property 'Value' on Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues.Issue0573+PrivateSetterTestClass. Path 'Value', line 1, position 13."));
             Assert.IsTrue(hasMessage);
         }
 
@@ -64,3 +64,4 @@ namespace Newtonsoft.Json.Tests.Issues
         }
     }
 }
+

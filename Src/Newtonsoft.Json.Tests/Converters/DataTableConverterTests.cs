@@ -34,19 +34,19 @@ using System.Collections.Generic;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using System.Data;
 using System.Data.SqlTypes;
 using System.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if !(NET20 || NET35)
 using System.Numerics;
 #endif
 
-namespace Newtonsoft.Json.Tests.Converters
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 {
     public class DataTableConverterTests : TestFixtureBase
     {
@@ -370,7 +370,7 @@ namespace Newtonsoft.Json.Tests.Converters
 ]", json);
         }
 
-        public class TestDataTableConverter : JsonConverter
+        public class TestDataTableConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -476,7 +476,7 @@ namespace Newtonsoft.Json.Tests.Converters
 
             var json = JsonConvert.SerializeObject(table, Formatting.None, new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore
             });
             Assert.AreEqual(@"["
                             + @"{""item"":""shirt"",""price"":49.99},"
@@ -641,7 +641,7 @@ namespace Newtonsoft.Json.Tests.Converters
             StringAssert.AreEqual(json, json2);
         }
 
-        internal class SqlDateTimeConverter : JsonConverter
+        internal class SqlDateTimeConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {
@@ -683,7 +683,7 @@ namespace Newtonsoft.Json.Tests.Converters
             Assert.AreEqual(DBNull.Value, table.Rows[0]["timeCol"]);
         }
 
-        [JsonConverter(typeof(DataTableConverterTest))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(DataTableConverterTest))]
         public class CustomDataTable : DataTable
         {
         }
@@ -715,7 +715,7 @@ namespace Newtonsoft.Json.Tests.Converters
                 }
             }
 
-            private void OnError(object sender, Json.Serialization.ErrorEventArgs e)
+            void OnError(object sender, Json.Serialization.ErrorEventArgs e)
             {
                 e.ErrorContext.Handled = true;
             }
@@ -724,3 +724,4 @@ namespace Newtonsoft.Json.Tests.Converters
 }
 
 #endif
+

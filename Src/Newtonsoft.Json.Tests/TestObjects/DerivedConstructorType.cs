@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class DerivedConstructorType : BaseConstructorType
     {
@@ -33,7 +33,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             DerivedProperty = derivedProperty;
         }
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public string DerivedProperty { get; private set; }
     }
 }

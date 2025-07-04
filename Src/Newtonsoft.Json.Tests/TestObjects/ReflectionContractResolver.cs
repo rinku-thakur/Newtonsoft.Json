@@ -26,7 +26,7 @@
 using System.Reflection;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ReflectionContractResolver : DefaultContractResolver
     {

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,7 +33,7 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -42,7 +42,7 @@ using System.Runtime.Serialization.Json;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class WebApiIntegrationTests : TestFixtureBase
@@ -117,7 +117,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 #if !(PORTABLE || DNXCORE50 || PORTABLE40) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
     [Serializable]
 #else
-    [JsonObject(MemberSerialization.Fields)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.Fields)]
 #endif
     public class SerializableType : IEquatable<SerializableType>
     {
@@ -141,7 +141,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 #if !(PORTABLE || DNXCORE50 || PORTABLE40)
         [NonSerialized]
 #else
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
 #endif
         public string nonSerializedField;
 

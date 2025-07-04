@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -37,17 +37,17 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 using System.Globalization;
-using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
+using ErrorEventArgs = Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs;
 
-namespace Newtonsoft.Json.Tests.Documentation
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 {
     [TestFixture]
     public class ReadingAndWritingJsonTests : TestFixtureBase

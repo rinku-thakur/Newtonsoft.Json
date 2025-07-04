@@ -23,9 +23,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(ItemRequired = Required.DisallowNull)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemRequired = Required.DisallowNull)]
     public class DictionaryWithNoNull
     {
         public string Name { get; set; }

@@ -9,8 +9,8 @@
     <Product>Json.NET</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Copyright>Copyright © James Newton-King 2008</Copyright>
-    <AssemblyName>Newtonsoft.Json.Tests</AssemblyName>
-    <RootNamespace>Newtonsoft.Json.Tests</RootNamespace>
+    <AssemblyName>Autodesk.DataExchange.Newtonsoft.Json.Tests</AssemblyName>
+    <RootNamespace>Autodesk.DataExchange.Newtonsoft.Json.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
     <!-- Workaround for https://github.com/nunit/nunit3-vs-adapter/issues/296 -->
     <DebugType Condition="'$(TargetFramework)' != '' AND '$(TargetFramework)' != 'netcoreapp2.1' AND '$(TargetFramework)' != 'netcoreapp3.1' AND '$(TargetFramework)' != 'net5.0' AND '$(TargetFramework)' != 'net6.0'">Full</DebugType>    

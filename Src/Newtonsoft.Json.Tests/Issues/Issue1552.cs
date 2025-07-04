@@ -28,12 +28,12 @@ using System;
 using System.Reflection;
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1552 : TestFixtureBase
@@ -46,7 +46,7 @@ namespace Newtonsoft.Json.Tests.Issues
 
             JsonSerializationException ex = ExceptionAssert.Throws<JsonSerializationException>(
                 () => JsonConvert.SerializeObject(c),
-                "Error getting value from 'RefField' on 'Newtonsoft.Json.Tests.Issues.RefAndRefReadonlyTestClass'.");
+                "Error getting value from 'RefField' on 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues.RefAndRefReadonlyTestClass'.");
 
             Assert.AreEqual("Could not create getter for Int32& RefField. ByRef return values are not supported.", ex.InnerException.Message);
         }
@@ -93,10 +93,10 @@ namespace Newtonsoft.Json.Tests.Issues
             _refReadonlyField = refReadonlyField;
         }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public ref int RefField => ref _refField;
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public ref readonly int RefReadonlyField => ref _refReadonlyField;
 
         public void SetRefField(int value)

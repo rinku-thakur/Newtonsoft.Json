@@ -33,7 +33,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.Benchmarks
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Benchmarks
 {
     public class JValueConvertBenchmarks
     {

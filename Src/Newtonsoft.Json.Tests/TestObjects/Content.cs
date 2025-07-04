@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,15 +26,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class Content : IEnumerable<Content>
     {
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public List<Content> Children;
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public string Text;
 
         public IEnumerator GetEnumerator()

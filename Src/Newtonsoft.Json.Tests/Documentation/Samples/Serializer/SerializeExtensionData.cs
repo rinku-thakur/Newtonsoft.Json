@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,14 +29,14 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class SerializeExtensionData : TestFixtureBase
@@ -50,7 +50,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
             public decimal TaxRate { get; set; }
 
             // everything else gets stored here
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             private IDictionary<string, JToken> _additionalData;
         }
         #endregion

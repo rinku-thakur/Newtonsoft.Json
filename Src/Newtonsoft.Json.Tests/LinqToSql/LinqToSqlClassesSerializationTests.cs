@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,14 +29,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json.Tests.LinqToSql;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql;
 using NUnit.Framework;
 using System.Reflection;
 using System.ComponentModel;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using System.Data.Linq.Mapping;
 
-namespace Newtonsoft.Json.Tests.LinqToSql
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
 {
     public class LinqToSqlClassesSerializationTests : TestFixtureBase
     {
@@ -63,7 +63,7 @@ namespace Newtonsoft.Json.Tests.LinqToSql
                 Name = "Name!"
             };
 
-            string json = JsonConvert.SerializeObject(person, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            string json = JsonConvert.SerializeObject(person, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore });
 
             StringAssert.AreEqual(@"{
   ""first_name"": ""FirstName!"",

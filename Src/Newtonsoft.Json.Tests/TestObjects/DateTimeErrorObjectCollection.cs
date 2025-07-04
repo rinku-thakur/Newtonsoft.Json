@@ -28,11 +28,11 @@ using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class DateTimeErrorObjectCollection : Collection<DateTime>
     {
-        [OnError]
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
         internal void OnErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
             errorContext.Handled = true;

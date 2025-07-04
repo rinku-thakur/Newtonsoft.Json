@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -23,11 +23,11 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public abstract class LogEvent
     {
-        [JsonProperty("event")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("event")]
         public abstract string EventName { get; }
     }
 }

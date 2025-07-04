@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -39,12 +39,12 @@ using System.Xml.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1351 : TestFixtureBase
@@ -114,7 +114,7 @@ namespace Newtonsoft.Json.Tests.Issues
             };
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 Formatting = Formatting.Indented
             };
@@ -127,7 +127,7 @@ namespace Newtonsoft.Json.Tests.Issues
                 },
                 "Error reading object reference '4'. Path '[1].Color.A', line 16, position 10.");
 
-            Assert.AreEqual("A different Id has already been assigned for value 'Newtonsoft.Json.Tests.Issues.Issue1351+Color'. This error may be caused by an object being reused multiple times during deserialization and can be fixed with the setting ObjectCreationHandling.Replace.", exception.InnerException.Message);
+            Assert.AreEqual("A different Id has already been assigned for value 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues.Issue1351+Color'. This error may be caused by an object being reused multiple times during deserialization and can be fixed with the setting ObjectCreationHandling.Replace.", exception.InnerException.Message);
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace Newtonsoft.Json.Tests.Issues
             };
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 Formatting = Formatting.Indented,
                 ObjectCreationHandling = ObjectCreationHandling.Replace
@@ -176,3 +176,4 @@ namespace Newtonsoft.Json.Tests.Issues
     }
 }
 #endif
+

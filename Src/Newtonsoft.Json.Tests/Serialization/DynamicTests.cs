@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -35,18 +35,18 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class DynamicTests : TestFixtureBase
@@ -116,9 +116,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
-#pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
 #pragma warning restore 618
             });
 
@@ -138,9 +136,8 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             dynamic n = JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
 #pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
 #pragma warning restore 618
             });
 
@@ -160,7 +157,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             ExceptionAssert.Throws<JsonSerializationException>(() =>
             {
                 var settings = new JsonSerializerSettings();
-                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
                 var json = @"{
   ""contributors"": null
 }";
@@ -264,7 +261,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Ignore,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
             });
 
             StringAssert.AreEqual(@"{
@@ -285,7 +282,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Include,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Include,
             });
 
             StringAssert.AreEqual(@"{
@@ -310,7 +307,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Ignore,
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore,
             });
 
             StringAssert.AreEqual(@"{
@@ -332,7 +329,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public int Int;
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public bool Explicit;
 
         public DynamicChildObject ChildObject { get; set; }
@@ -395,3 +392,5 @@ namespace Newtonsoft.Json.Tests.Serialization
 }
 
 #endif
+
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -40,12 +40,12 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1834 : TestFixtureBase
@@ -70,36 +70,38 @@ namespace Newtonsoft.Json.Tests.Issues
 
         public class ItemWithJsonConstructor
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
 
-            [JsonConstructor]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
             private ItemWithJsonConstructor(string foo)
             {
                 Foo = foo;
             }
 
-            [JsonProperty(PropertyName = "foo", Required = Required.Always)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "foo", Required = Required.Always)]
             public string Foo { get; set; }
         }
 
         public class ItemWithJsonConstructorAndDefaultValue
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
 
-            [JsonConstructor]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
             private ItemWithJsonConstructorAndDefaultValue(string foo)
             {
                 Foo = foo;
             }
 
-            [JsonProperty("foo")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
             public string Foo { get; set; }
 
-            [JsonProperty(PropertyName = "bar", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "bar", Required = Required.Default, DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate)]
             [System.ComponentModel.DefaultValue("default")]
             public string Bar { get; set; }
         }
     }
 }
+
+

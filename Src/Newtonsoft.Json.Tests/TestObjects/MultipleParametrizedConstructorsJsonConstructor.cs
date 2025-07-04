@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class MultipleParametrizedConstructorsJsonConstructor
     {
@@ -37,7 +37,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             Constructor = "Public Parameterized 1";
         }
 
-        [JsonConstructor]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
         public MultipleParametrizedConstructorsJsonConstructor(string value, int age)
         {
             Value = value;

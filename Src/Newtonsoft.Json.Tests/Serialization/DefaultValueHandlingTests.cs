@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -31,17 +31,17 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 #endif
 using System.Text;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class DefaultValueHandlingTests : TestFixtureBase
@@ -51,7 +51,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             public const string DefaultText = "...";
 
             [DefaultValue(DefaultText)]
-            [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate)]
             public readonly string Text;
 
             public DefaultValueWithConstructorAndRename(string text = DefaultText)
@@ -72,10 +72,10 @@ namespace Newtonsoft.Json.Tests.Serialization
             public const string DefaultText = "...";
 
             [DefaultValue(DefaultText)]
-            [JsonProperty(PropertyName = "myText", DefaultValueHandling = DefaultValueHandling.Populate)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "myText", DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate)]
             public readonly string Text;
 
-            public DefaultValueWithConstructor([JsonProperty(PropertyName = "myText")]string text = DefaultText)
+            public DefaultValueWithConstructor([Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "myText")]string text = DefaultText)
             {
                 Text = text;
             }
@@ -90,7 +90,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class MyClass
         {
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public MyEnum Status { get; set; }
 
             private string _data;
@@ -120,7 +120,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = "{\"Data\":\"Other with some more text\"}";
 
-            MyClass result = JsonConvert.DeserializeObject<MyClass>(json, new JsonSerializerSettings() { DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate });
+            MyClass result = JsonConvert.DeserializeObject<MyClass>(json, new JsonSerializerSettings() { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate });
 
             Assert.AreEqual(MyEnum.Other, result.Status);
         }
@@ -140,7 +140,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string included = JsonConvert.SerializeObject(invoice,
                 Formatting.Indented,
-                new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include });
+                new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Include });
 
             StringAssert.AreEqual(@"{
   ""Company"": ""Acme Ltd."",
@@ -180,7 +180,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string ignored = JsonConvert.SerializeObject(invoice,
                 Formatting.Indented,
-                new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+                new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
 
             StringAssert.AreEqual(@"{
   ""Company"": ""Acme Ltd."",
@@ -192,19 +192,19 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void SerializeDefaultValueAttributeTest()
         {
             string json = JsonConvert.SerializeObject(new DefaultValueAttributeTestClass(),
-                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
             Assert.AreEqual(@"{""TestField1"":0,""TestProperty1"":null}", json);
 
             json = JsonConvert.SerializeObject(new DefaultValueAttributeTestClass { TestField1 = int.MinValue, TestProperty1 = "NotDefault" },
-                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
             Assert.AreEqual(@"{""TestField1"":-2147483648,""TestProperty1"":""NotDefault""}", json);
 
             json = JsonConvert.SerializeObject(new DefaultValueAttributeTestClass { TestField1 = 21, TestProperty1 = "NotDefault" },
-                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
             Assert.AreEqual(@"{""TestProperty1"":""NotDefault""}", json);
 
             json = JsonConvert.SerializeObject(new DefaultValueAttributeTestClass { TestField1 = 21, TestProperty1 = "TestProperty1Value" },
-                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+                Formatting.None, new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
             Assert.AreEqual(@"{}", json);
         }
 
@@ -215,13 +215,13 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             DefaultValueAttributeTestClass c = JsonConvert.DeserializeObject<DefaultValueAttributeTestClass>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Populate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate
             });
             Assert.AreEqual("TestProperty1Value", c.TestProperty1);
 
             c = JsonConvert.DeserializeObject<DefaultValueAttributeTestClass>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate
             });
             Assert.AreEqual("TestProperty1Value", c.TestProperty1);
         }
@@ -240,42 +240,42 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             DefaultHandler c1 = JsonConvert.DeserializeObject<DefaultHandler>("{}", new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate
             });
             Assert.AreEqual(-1, c1.field1);
             Assert.AreEqual("default", c1.field2);
 
             DefaultHandler c2 = JsonConvert.DeserializeObject<DefaultHandler>("{'field1':-1,'field2':'default'}", new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate
             });
             Assert.AreEqual(-1, c2.field1);
             Assert.AreEqual("default", c2.field2);
         }
 
-        [JsonObject]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject]
         public class NetworkUser
         {
-            [JsonProperty(PropertyName = "userId")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "userId")]
             [DefaultValue(-1)]
             public long GlobalId { get; set; }
 
-            [JsonProperty(PropertyName = "age")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "age")]
             [DefaultValue(0)]
             public int Age { get; set; }
 
-            [JsonProperty(PropertyName = "amount")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "amount")]
             [DefaultValue(0.0)]
             public decimal Amount { get; set; }
 
-            [JsonProperty(PropertyName = "floatUserId")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "floatUserId")]
             [DefaultValue(-1.0d)]
             public float FloatGlobalId { get; set; }
 
-            [JsonProperty(PropertyName = "firstName")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "firstName")]
             public string Firstname { get; set; }
 
-            [JsonProperty(PropertyName = "lastName")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "lastName")]
             public string Lastname { get; set; }
 
             public NetworkUser()
@@ -295,7 +295,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 Firstname = "blub"
             };
 
-            string json = JsonConvert.SerializeObject(user, Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore });
+            string json = JsonConvert.SerializeObject(user, Formatting.None, new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore, NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
 
             Assert.AreEqual(@"{""firstName"":""blub""}", json);
         }
@@ -345,7 +345,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             json = JsonConvert.SerializeObject(c, Formatting.Indented, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Ignore
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore
             });
 
             StringAssert.AreEqual(@"{
@@ -354,7 +354,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             json = JsonConvert.SerializeObject(c, Formatting.Indented, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Include
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Include
             });
 
             StringAssert.AreEqual(@"{
@@ -370,7 +370,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             var o = JsonConvert.DeserializeObject<DefaultValueHandlingDeserializeHolder>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Ignore
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore
             });
 
             Assert.AreEqual(int.MaxValue, o.IntValue1);
@@ -386,7 +386,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             var o = JsonConvert.DeserializeObject<DefaultValueHandlingDeserializePopulate>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Populate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate
             });
 
             Assert.AreEqual(1, o.IntValue1);
@@ -401,7 +401,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             string str = "{}";
             TestClass obj = JsonConvert.DeserializeObject<TestClass>(str, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate
             });
 
             Assert.AreEqual("fff", obj.Field1);
@@ -417,7 +417,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class PopulateWithNullJsonTest
         {
-            [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate, NullValueHandling = NullValueHandling.Ignore)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate, NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore)]
             [DefaultValue(6)]
             public int IntValue { get; set; }
         }
@@ -427,7 +427,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             private string _format;
             private ExportFormat? _exportFormat;
 
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public ExportFormat? ExportFormat
             {
                 get { return _exportFormat; }
@@ -442,7 +442,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 }
             }
 
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public string Format
             {
                 get { return _format; }
@@ -467,7 +467,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 ExportFormat = exportFormat;
             }
 
-            [JsonConstructor]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
             private FieldExportFormat(string format, ExportFormat? exportFormat)
             {
                 if (exportFormat.HasValue)
@@ -488,7 +488,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             FieldExportFormat o = JsonConvert.DeserializeObject<FieldExportFormat>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Populate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate
             });
 
             Assert.AreEqual(ExportFormat.Default, o.ExportFormat);
@@ -500,7 +500,7 @@ namespace Newtonsoft.Json.Tests.Serialization
     [DataContract]
     public class TestClass
     {
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate)]
         [DataMember(EmitDefaultValue = false)]
         [DefaultValue("fff")]
         public string Field1 { set; get; }
@@ -562,13 +562,13 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class DefaultValueHandlingPropertyClass
     {
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore)]
         public int IntIgnore { get; set; }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Include)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Include)]
         public int IntInclude { get; set; }
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public int IntDefault { get; set; }
     }
 
@@ -648,3 +648,5 @@ namespace Newtonsoft.Json.Tests.Serialization
         Integer
     }
 }
+
+

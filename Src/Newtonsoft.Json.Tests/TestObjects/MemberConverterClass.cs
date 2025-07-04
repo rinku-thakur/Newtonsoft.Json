@@ -26,13 +26,13 @@
 using System;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class MemberConverterClass
     {
         public DateTime DefaultConverter { get; set; }
 
-        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime MemberConverter { get; set; }
     }
 }

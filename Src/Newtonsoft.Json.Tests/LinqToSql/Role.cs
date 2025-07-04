@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,17 +32,17 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text;
 
-namespace Newtonsoft.Json.Tests.LinqToSql
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
 {
     [MetadataType(typeof(RoleMetadata))]
     public partial class Role
     {
         public class RoleMetadata
         {
-            [JsonConverter(typeof(GuidByteArrayConverter))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(GuidByteArrayConverter))]
             public Guid RoleId { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public EntitySet<PersonRole> PersonRoles { get; set; }
         }
     }

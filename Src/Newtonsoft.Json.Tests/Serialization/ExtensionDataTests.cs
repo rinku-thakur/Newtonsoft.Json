@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -28,19 +28,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class ExtensionDataTests : TestFixtureBase
@@ -138,7 +138,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 Data = new CustomDictionary();
             }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, object> Data { get; private set; }
         }
 
@@ -176,7 +176,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 Name = name;
             }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, JToken> _extensionData;
 
             public string Name { get; set; }
@@ -243,7 +243,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 #pragma warning disable 649
         private class ExtendedObject
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<string, JToken> _additionalData;
         }
 #pragma warning restore 649
@@ -255,7 +255,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             public decimal TaxRate { get; set; }
 
             // everything else gets stored here
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             private IDictionary<string, JToken> _additionalData;
         }
 #pragma warning restore 169
@@ -288,10 +288,10 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonProperty("custom_name")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("custom_name")]
             public string CustomName { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public IList<int> Ignored { get; set; }
 
             public bool GetPrivate { get; internal set; }
@@ -304,7 +304,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             public readonly string Readonly = "Readonly";
             public IList<int> Ints { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<string, JToken> ExtensionData { get; set; }
 
             public ExtensionDataTestClass()
@@ -313,12 +313,12 @@ namespace Newtonsoft.Json.Tests.Serialization
             }
         }
 
-        [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy), NamingStrategyParameters = new object[] { true, true, true })]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy), NamingStrategyParameters = new object[] { true, true, true })]
         public class ExtensionDataWithNamingStrategyTestClass
         {
             public string Name { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<string, JToken> ExtensionData { get; set; }
         }
 
@@ -326,7 +326,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public JObject ExtensionData { get; set; }
         }
 
@@ -481,7 +481,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(c, new JsonSerializerSettings
             {
-                ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver
+                ContractResolver = new Autodesk.DataExchange.Newtonsoft.Json.Serialization.DefaultContractResolver
                 {
                     NamingStrategy = new Newtonsoft.Json.Serialization.CamelCaseNamingStrategy()
                 },
@@ -533,7 +533,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 }", json);
         }
 
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class MyClass
         {
             public int NotForJson { get; set; }
@@ -541,7 +541,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             [JsonPropertyAttribute(Required = Required.Always)]
             public int ForJson { get; set; }
 
-            [JsonExtensionData(ReadData = true, WriteData = true)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData(ReadData = true, WriteData = true)]
             public IDictionary<String, JToken> ExtraInfoJson { get; set; }
 
             public MyClass(MyClass other = null)
@@ -571,22 +571,22 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<string, JToken> ExtensionData1 { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<string, JToken> ExtensionData2 { get; set; }
         }
 
         public class ExtensionDataAttributesInheritanceTestClass : MultipleExtensionDataAttributesTestClass
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<string, JToken> ExtensionData0 { get; set; }
         }
 
         public class FieldExtensionDataAttributeTestClass
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             internal IDictionary<object, object> ExtensionData;
         }
 
@@ -594,7 +594,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<object, object> ExtensionData;
         }
 
@@ -607,7 +607,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 Name = name;
             }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<object, object> ExtensionData;
         }
 
@@ -615,7 +615,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonExtensionData(ReadData = false)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData(ReadData = false)]
             public IDictionary<object, object> ExtensionData;
         }
 
@@ -623,7 +623,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonExtensionData(WriteData = false)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData(WriteData = false)]
             public IDictionary<object, object> ExtensionData;
         }
 
@@ -631,7 +631,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
         }
 
@@ -769,7 +769,7 @@ namespace Newtonsoft.Json.Tests.Serialization
   ""Name"": ""Name!"",
   ""Test"": 1,
   ""Self"": {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
     ""HourlyWage"": 2.0,
     ""Name"": null,
     ""BirthDate"": ""0001-01-01T00:00:00"",
@@ -779,7 +779,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             PublicExtensionDataAttributeTestClass c2 = JsonConvert.DeserializeObject<PublicExtensionDataAttributeTestClass>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             Assert.AreEqual("Name!", c2.Name);
@@ -797,7 +797,7 @@ namespace Newtonsoft.Json.Tests.Serialization
   ""Name"": ""Name!"",
   ""Test"": 1,
   ""Self"": {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
     ""HourlyWage"": 2.0,
     ""Name"": null,
     ""BirthDate"": ""0001-01-01T00:00:00"",
@@ -807,7 +807,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             PublicExtensionDataAttributeTestClassWithNonDefaultConstructor c2 = JsonConvert.DeserializeObject<PublicExtensionDataAttributeTestClassWithNonDefaultConstructor>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             Assert.AreEqual("Name!", c2.Name);
@@ -836,15 +836,15 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(c, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
                 Formatting = Formatting.Indented
             });
 
             StringAssert.AreEqual(@"{
-  ""$type"": ""Newtonsoft.Json.Tests.Serialization.ExtensionDataTests+PublicExtensionDataAttributeTestClass, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ExtensionDataTests+PublicExtensionDataAttributeTestClass, Newtonsoft.Json.Tests"",
   ""Name"": ""Name!"",
   ""Test"": {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
     ""HourlyWage"": 2.1,
     ""Name"": null,
     ""BirthDate"": ""0001-01-01T00:00:00"",
@@ -924,10 +924,10 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class TestClass
         {
-            [JsonProperty("LastActivityDate")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("LastActivityDate")]
             public DateTime? LastActivityDate { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public Dictionary<string, object> CustomFields { get; set; }
         }
 
@@ -956,10 +956,10 @@ namespace Newtonsoft.Json.Tests.Serialization
                 _content = content;
             }
 
-            [JsonProperty("_name")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("_name")]
             public string Name { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public JObject Content
             {
                 get { return _content; }
@@ -1003,14 +1003,14 @@ namespace Newtonsoft.Json.Tests.Serialization
             }
             catch (JsonSerializationException ex)
             {
-                Assert.AreEqual("Error setting value in extension data for type 'Newtonsoft.Json.Tests.Serialization.ExtensionDataTests+DocNoSetter'. Path 'Property1', line 1, position 39.", ex.Message);
+                Assert.AreEqual("Error setting value in extension data for type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ExtensionDataTests+DocNoSetter'. Path 'Property1', line 1, position 39.", ex.Message);
                 Assert.AreEqual("Cannot set value onto extension data member 'Content'. The extension data collection is null and it cannot be set.", ex.InnerException.Message);
             }
         }
 
         public class DocNoGetter
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public JObject Content
             {
                 set { }
@@ -1022,12 +1022,12 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             ExceptionAssert.Throws<JsonException>(
                 () => { JsonConvert.SerializeObject(new DocNoGetter()); },
-                "Invalid extension data attribute on 'Newtonsoft.Json.Tests.Serialization.ExtensionDataTests+DocNoGetter'. Member 'Content' must have a getter.");
+                "Invalid extension data attribute on 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ExtensionDataTests+DocNoGetter'. Member 'Content' must have a getter.");
         }
 
         public class Item
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
 
             public IEnumerable<string> Foo
@@ -1041,7 +1041,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializer jsonSerializer = new JsonSerializer
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             };
             StringWriter stringWriter = new StringWriter();
             jsonSerializer.Serialize(stringWriter, new Item());
@@ -1056,7 +1056,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class ItemWithConstructor
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
 
             public ItemWithConstructor(string temp)
@@ -1074,7 +1074,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializer jsonSerializer = new JsonSerializer
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             };
             StringWriter stringWriter = new StringWriter();
             jsonSerializer.Serialize(stringWriter, new ItemWithConstructor(null));
@@ -1088,3 +1088,5 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+
+

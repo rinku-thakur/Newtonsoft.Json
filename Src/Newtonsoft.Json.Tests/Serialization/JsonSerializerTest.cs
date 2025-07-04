@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -47,7 +47,7 @@ using System.Text.RegularExpressions;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 using TestCase = Xunit.InlineDataAttribute;
 #else
 using NUnit.Framework;
@@ -66,11 +66,11 @@ using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using System.Runtime.Serialization.Json;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Events;
-using Newtonsoft.Json.Tests.TestObjects.GeoCoding;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.GeoCoding;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 using System.Runtime.Serialization;
 using System.Globalization;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
@@ -94,7 +94,7 @@ using System.Drawing;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class JsonSerializerTest : TestFixtureBase
@@ -412,7 +412,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = JsonConvert.SerializeObject(new Binding_DisallowNull(), new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore
             });
             Assert.AreEqual("{}", json);
         }
@@ -643,7 +643,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public struct ImmutableStructWithConstructorAttribute
         {
-            [JsonConstructor]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
             public ImmutableStructWithConstructorAttribute(string value)
             {
                 Value = value;
@@ -1029,8 +1029,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             serializer.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             Assert.AreEqual(DateTimeZoneHandling.Utc, serializer.DateTimeZoneHandling);
 
-            serializer.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
-            Assert.AreEqual(DefaultValueHandling.IgnoreAndPopulate, serializer.DefaultValueHandling);
+            serializer.DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate, serializer.DefaultValueHandling);
 
             serializer.FloatFormatHandling = FloatFormatHandling.Symbol;
             Assert.AreEqual(FloatFormatHandling.Symbol, serializer.FloatFormatHandling);
@@ -1044,11 +1044,11 @@ namespace Newtonsoft.Json.Tests.Serialization
             serializer.MaxDepth = 9001;
             Assert.AreEqual(9001, serializer.MaxDepth);
 
-            serializer.MissingMemberHandling = MissingMemberHandling.Error;
-            Assert.AreEqual(MissingMemberHandling.Error, serializer.MissingMemberHandling);
+            serializer.MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error, serializer.MissingMemberHandling);
 
-            serializer.NullValueHandling = NullValueHandling.Ignore;
-            Assert.AreEqual(NullValueHandling.Ignore, serializer.NullValueHandling);
+            serializer.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore, serializer.NullValueHandling);
 
             serializer.ObjectCreationHandling = ObjectCreationHandling.Replace;
             Assert.AreEqual(ObjectCreationHandling.Replace, serializer.ObjectCreationHandling);
@@ -1056,8 +1056,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             serializer.PreserveReferencesHandling = PreserveReferencesHandling.All;
             Assert.AreEqual(PreserveReferencesHandling.All, serializer.PreserveReferencesHandling);
 
-            serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            Assert.AreEqual(ReferenceLoopHandling.Ignore, serializer.ReferenceLoopHandling);
+            serializer.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, serializer.ReferenceLoopHandling);
 
             IdReferenceResolver referenceResolver = new IdReferenceResolver();
             serializer.ReferenceResolver = referenceResolver;
@@ -1071,24 +1071,17 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(traceWriter, serializer.TraceWriter);
 
 #if !(PORTABLE || PORTABLE40 || NET20 || DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-#pragma warning disable 618
-            serializer.TypeNameAssemblyFormat = FormatterAssemblyStyle.Full;
-            Assert.AreEqual(FormatterAssemblyStyle.Full, serializer.TypeNameAssemblyFormat);
-#pragma warning restore 618
 
             Assert.AreEqual(TypeNameAssemblyFormatHandling.Full, serializer.TypeNameAssemblyFormatHandling);
 
             serializer.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple;
-#pragma warning disable 618
-            Assert.AreEqual(FormatterAssemblyStyle.Simple, serializer.TypeNameAssemblyFormat);
-#pragma warning restore 618
 #endif
 
             serializer.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full;
             Assert.AreEqual(TypeNameAssemblyFormatHandling.Full, serializer.TypeNameAssemblyFormatHandling);
 
-            serializer.TypeNameHandling = TypeNameHandling.All;
-            Assert.AreEqual(TypeNameHandling.All, serializer.TypeNameHandling);
+            serializer.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All, serializer.TypeNameHandling);
         }
 
         [Test]
@@ -1143,8 +1136,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             Assert.AreEqual(DateTimeZoneHandling.Utc, settings.DateTimeZoneHandling);
 
-            settings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
-            Assert.AreEqual(DefaultValueHandling.IgnoreAndPopulate, settings.DefaultValueHandling);
+            settings.DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate, settings.DefaultValueHandling);
 
             settings.FloatFormatHandling = FloatFormatHandling.Symbol;
             Assert.AreEqual(FloatFormatHandling.Symbol, settings.FloatFormatHandling);
@@ -1158,11 +1151,11 @@ namespace Newtonsoft.Json.Tests.Serialization
             settings.MaxDepth = 9001;
             Assert.AreEqual(9001, settings.MaxDepth);
 
-            settings.MissingMemberHandling = MissingMemberHandling.Error;
-            Assert.AreEqual(MissingMemberHandling.Error, settings.MissingMemberHandling);
+            settings.MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error, settings.MissingMemberHandling);
 
-            settings.NullValueHandling = NullValueHandling.Ignore;
-            Assert.AreEqual(NullValueHandling.Ignore, settings.NullValueHandling);
+            settings.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore, settings.NullValueHandling);
 
             settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
             Assert.AreEqual(ObjectCreationHandling.Replace, settings.ObjectCreationHandling);
@@ -1170,8 +1163,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
             Assert.AreEqual(PreserveReferencesHandling.All, settings.PreserveReferencesHandling);
 
-            settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            Assert.AreEqual(ReferenceLoopHandling.Ignore, settings.ReferenceLoopHandling);
+            settings.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, settings.ReferenceLoopHandling);
 
             IdReferenceResolver referenceResolver = new IdReferenceResolver();
 #pragma warning disable 618
@@ -1191,24 +1184,16 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(traceWriter, settings.TraceWriter);
 
 #if !(PORTABLE || PORTABLE40 || NET20 || DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-#pragma warning disable 618
-            settings.TypeNameAssemblyFormat = FormatterAssemblyStyle.Full;
-            Assert.AreEqual(FormatterAssemblyStyle.Full, settings.TypeNameAssemblyFormat);
-#pragma warning restore 618
-
             Assert.AreEqual(TypeNameAssemblyFormatHandling.Full, settings.TypeNameAssemblyFormatHandling);
 
             settings.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple;
-#pragma warning disable 618
-            Assert.AreEqual(FormatterAssemblyStyle.Simple, settings.TypeNameAssemblyFormat);
-#pragma warning restore 618
 #endif
 
             settings.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full;
             Assert.AreEqual(TypeNameAssemblyFormatHandling.Full, settings.TypeNameAssemblyFormatHandling);
 
-            settings.TypeNameHandling = TypeNameHandling.All;
-            Assert.AreEqual(TypeNameHandling.All, settings.TypeNameHandling);
+            settings.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All, settings.TypeNameHandling);
         }
 
         [Test]
@@ -1274,8 +1259,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             serializerProxy.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
             Assert.AreEqual(DateTimeZoneHandling.Utc, serializerProxy.DateTimeZoneHandling);
 
-            serializerProxy.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
-            Assert.AreEqual(DefaultValueHandling.IgnoreAndPopulate, serializerProxy.DefaultValueHandling);
+            serializerProxy.DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate, serializerProxy.DefaultValueHandling);
 
             serializerProxy.FloatFormatHandling = FloatFormatHandling.Symbol;
             Assert.AreEqual(FloatFormatHandling.Symbol, serializerProxy.FloatFormatHandling);
@@ -1289,11 +1274,11 @@ namespace Newtonsoft.Json.Tests.Serialization
             serializerProxy.MaxDepth = 9001;
             Assert.AreEqual(9001, serializerProxy.MaxDepth);
 
-            serializerProxy.MissingMemberHandling = MissingMemberHandling.Error;
-            Assert.AreEqual(MissingMemberHandling.Error, serializerProxy.MissingMemberHandling);
+            serializerProxy.MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error, serializerProxy.MissingMemberHandling);
 
-            serializerProxy.NullValueHandling = NullValueHandling.Ignore;
-            Assert.AreEqual(NullValueHandling.Ignore, serializerProxy.NullValueHandling);
+            serializerProxy.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore, serializerProxy.NullValueHandling);
 
             serializerProxy.ObjectCreationHandling = ObjectCreationHandling.Replace;
             Assert.AreEqual(ObjectCreationHandling.Replace, serializerProxy.ObjectCreationHandling);
@@ -1301,8 +1286,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             serializerProxy.PreserveReferencesHandling = PreserveReferencesHandling.All;
             Assert.AreEqual(PreserveReferencesHandling.All, serializerProxy.PreserveReferencesHandling);
 
-            serializerProxy.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            Assert.AreEqual(ReferenceLoopHandling.Ignore, serializerProxy.ReferenceLoopHandling);
+            serializerProxy.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, serializerProxy.ReferenceLoopHandling);
 
             IdReferenceResolver referenceResolver = new IdReferenceResolver();
             serializerProxy.ReferenceResolver = referenceResolver;
@@ -1316,24 +1301,17 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(traceWriter, serializerProxy.TraceWriter);
 
 #if !(PORTABLE || PORTABLE40 || NET20 || DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-#pragma warning disable 618
-            serializerProxy.TypeNameAssemblyFormat = FormatterAssemblyStyle.Full;
-            Assert.AreEqual(FormatterAssemblyStyle.Full, serializerProxy.TypeNameAssemblyFormat);
-#pragma warning restore 618
 
             Assert.AreEqual(TypeNameAssemblyFormatHandling.Full, serializerProxy.TypeNameAssemblyFormatHandling);
 
             serializerProxy.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple;
-#pragma warning disable 618
-            Assert.AreEqual(FormatterAssemblyStyle.Simple, serializerProxy.TypeNameAssemblyFormat);
-#pragma warning restore 618
 #endif
 
             serializerProxy.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full;
             Assert.AreEqual(TypeNameAssemblyFormatHandling.Full, serializerProxy.TypeNameAssemblyFormatHandling);
 
-            serializerProxy.TypeNameHandling = TypeNameHandling.All;
-            Assert.AreEqual(TypeNameHandling.All, serializerProxy.TypeNameHandling);
+            serializerProxy.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All, serializerProxy.TypeNameHandling);
         }
 
 #if !(PORTABLE || PORTABLE40 || DNXCORE50) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
@@ -1753,7 +1731,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         //  JsonSerializer serializer = new JsonSerializer();
         //  serializer.Converters.Add(new JavaScriptDateTimeConverter());
-        //  serializer.NullValueHandling = NullValueHandling.Ignore;
+        //  serializer.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
 
         //  using (StreamWriter sw = new StreamWriter(@"c:\json.txt"))
         //  using (JsonWriter writer = new JsonTextWriter(sw))
@@ -2005,7 +1983,7 @@ keyword such as type of business.""
         [Test]
         public void BadJsonPropertyClassSerialize()
         {
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.SerializeObject(new BadJsonPropertyClass()); }, @"A member with the name 'pie' already exists on 'Newtonsoft.Json.Tests.TestObjects.BadJsonPropertyClass'. Use the JsonPropertyAttribute to specify another name.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.SerializeObject(new BadJsonPropertyClass()); }, @"A member with the name 'pie' already exists on 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.BadJsonPropertyClass'. Use the JsonPropertyAttribute to specify another name.");
         }
 
         [Test]
@@ -2588,7 +2566,7 @@ keyword such as type of business.""
             {
                 IncompatibleJsonAttributeClass c = new IncompatibleJsonAttributeClass();
                 JsonConvert.SerializeObject(c);
-            }, "Unexpected value when converting date. Expected DateTime or DateTimeOffset, got Newtonsoft.Json.Tests.TestObjects.IncompatibleJsonAttributeClass.");
+            }, "Unexpected value when converting date. Expected DateTime or DateTimeOffset, got Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.IncompatibleJsonAttributeClass.");
         }
 
         [Test]
@@ -2882,7 +2860,7 @@ keyword such as type of business.""
             ExceptionAssert.Throws<JsonSerializationException>(() =>
             {
                 InterfacePropertyTestClass testFromDe = (InterfacePropertyTestClass)JsonConvert.DeserializeObject(strFromTest, typeof(InterfacePropertyTestClass));
-            }, @"Could not create an instance of type Newtonsoft.Json.Tests.TestObjects.ICo. Type is an interface or abstract class and cannot be instantiated. Path 'co.Name', line 1, position 14.");
+            }, @"Could not create an instance of type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.ICo. Type is an interface or abstract class and cannot be instantiated. Path 'co.Name', line 1, position 14.");
         }
 
         private Person GetPerson()
@@ -2993,14 +2971,14 @@ keyword such as type of business.""
 
             ConstructorAndDefaultValueAttributeTestClass c = JsonConvert.DeserializeObject<ConstructorAndDefaultValueAttributeTestClass>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Populate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate
             });
             Assert.AreEqual("value", c.TestProperty1);
             Assert.AreEqual(21, c.TestProperty2);
 
             c = JsonConvert.DeserializeObject<ConstructorAndDefaultValueAttributeTestClass>(json, new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate
             });
             Assert.AreEqual("value", c.TestProperty1);
             Assert.AreEqual(21, c.TestProperty2);
@@ -3082,7 +3060,7 @@ keyword such as type of business.""
   ""ReferenceLoopHandlingSerializeProperty"": null
 }", json);
 
-            json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
 
             StringAssert.AreEqual(@"{
   ""DefaultValueHandlingIncludeProperty"": ""Default!"",
@@ -3113,7 +3091,7 @@ keyword such as type of business.""
                 JsonPropertyWithHandlingValues o = new JsonPropertyWithHandlingValues();
                 o.ReferenceLoopHandlingErrorProperty = o;
 
-                JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore });
             }, "Self referencing loop detected for property 'ReferenceLoopHandlingErrorProperty' with type '" + classRef + "'. Path ''.");
         }
 
@@ -3421,7 +3399,7 @@ keyword such as type of business.""
         {
             string json = @"{""sublocation"":""AlertEmailSender.Program.Main"",""userId"":0,""type"":0,""summary"":""Loading settings variables"",""details"":null,""stackTrace"":""   at System.Environment.GetStackTrace(Exception e, Boolean needFileInfo)\r\n   at System.Environment.get_StackTrace()\r\n   at mr.Logging.Event..ctor(String summary) in C:\\Projects\\MRUtils\\Logging\\Event.vb:line 71\r\n   at AlertEmailSender.Program.Main(String[] args) in C:\\Projects\\AlertEmailSender\\AlertEmailSender\\Program.cs:line 25"",""tag"":null,""time"":""\/Date(1249591032026-0400)\/""}";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<Event>(json); }, @"Unable to find a constructor to use for type Newtonsoft.Json.Tests.TestObjects.Events.Event. A class should either have a default constructor, one constructor with arguments or a constructor marked with the JsonConstructor attribute. Path 'sublocation', line 1, position 15.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<Event>(json); }, @"Unable to find a constructor to use for type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event. A class should either have a default constructor, one constructor with arguments or a constructor marked with the Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor attribute. Path 'sublocation', line 1, position 15.");
         }
 
         [Test]
@@ -3460,7 +3438,7 @@ keyword such as type of business.""
         {
             string json = @"[]";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<Person>(json); }, @"Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person' because the type requires a JSON object (e.g. {""name"":""value""}) to deserialize correctly.
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<Person>(json); }, @"Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person' because the type requires a JSON object (e.g. {""name"":""value""}) to deserialize correctly.
 To fix this error either change the JSON to a JSON object (e.g. {""name"":""value""}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
 Path '', line 1, position 1.");
         }
@@ -3505,7 +3483,7 @@ Path '', line 1, position 1.");
 
             ExceptionAssert.Throws<JsonSerializationException>(
                 () => { JsonConvert.DeserializeObject<DynamicDictionary>(json); },
-                @"Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Newtonsoft.Json.Tests.Linq.DynamicDictionary' because the type requires a JSON object (e.g. {""name"":""value""}) to deserialize correctly.
+                @"Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq.DynamicDictionary' because the type requires a JSON object (e.g. {""name"":""value""}) to deserialize correctly.
 To fix this error either change the JSON to a JSON object (e.g. {""name"":""value""}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
 Path '', line 1, position 1.");
         }
@@ -3518,7 +3496,7 @@ Path '', line 1, position 1.");
 
             ExceptionAssert.Throws<JsonSerializationException>(
                 () => { JsonConvert.DeserializeObject<JObject>(json); },
-                "Deserialized JSON type 'Newtonsoft.Json.Linq.JArray' is not compatible with expected type 'Newtonsoft.Json.Linq.JObject'. Path '', line 1, position 2.");
+                "Deserialized JSON type 'Autodesk.DataExchange.Newtonsoft.Json.Linq.JArray' is not compatible with expected type 'Autodesk.DataExchange.Newtonsoft.Json.Linq.JObject'. Path '', line 1, position 2.");
         }
 
         [Test]
@@ -3526,7 +3504,7 @@ Path '', line 1, position 1.");
         {
             string json = @"new Constructor(123)";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<Person>(json); }, @"Error converting value ""Constructor"" to type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Path '', line 1, position 16.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<Person>(json); }, @"Error converting value ""Constructor"" to type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Path '', line 1, position 16.");
         }
 
         [Test]
@@ -3534,7 +3512,7 @@ Path '', line 1, position 1.");
         {
             string json = @"[new Constructor(123)]";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<List<Person>>(json); }, @"Error converting value ""Constructor"" to type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Path '[0]', line 1, position 17.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<List<Person>>(json); }, @"Error converting value ""Constructor"" to type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Path '[0]', line 1, position 17.");
         }
 
         [Test]
@@ -3549,7 +3527,7 @@ Path '', line 1, position 1.");
             }
             catch (JsonSerializationException ex)
             {
-                Assert.IsTrue(ex.Message.StartsWith(@"Cannot deserialize the current JSON object (e.g. {""name"":""value""}) into type 'System.Collections.Generic.List`1[Newtonsoft.Json.Tests.TestObjects.Organization.Person]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly." + Environment.NewLine +
+                Assert.IsTrue(ex.Message.StartsWith(@"Cannot deserialize the current JSON object (e.g. {""name"":""value""}) into type 'System.Collections.Generic.List`1[Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly." + Environment.NewLine +
                                                     @"To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object." + Environment.NewLine +
                                                     @"Path ''"));
             }
@@ -3560,7 +3538,7 @@ Path '', line 1, position 1.");
         {
             string json = @"[]";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.PopulateObject(json, new Person()); }, @"Cannot populate JSON array onto type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Path '', line 1, position 1.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.PopulateObject(json, new Person()); }, @"Cannot populate JSON array onto type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Path '', line 1, position 1.");
         }
 
         [Test]
@@ -3568,7 +3546,7 @@ Path '', line 1, position 1.");
         {
             string json = @"{}";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.PopulateObject(json, new List<Person>()); }, @"Cannot populate JSON object onto type 'System.Collections.Generic.List`1[Newtonsoft.Json.Tests.TestObjects.Organization.Person]'. Path '', line 1, position 2.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.PopulateObject(json, new List<Person>()); }, @"Cannot populate JSON object onto type 'System.Collections.Generic.List`1[Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person]'. Path '', line 1, position 2.");
         }
 
         [Test]
@@ -3751,8 +3729,8 @@ Path '', line 1, position 1.");
             string json = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
 
             StringAssert.AreEqual(@"{
-  ""Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 1,
-  ""Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 2
+  ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 1,
+  ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 2
 }", json);
         }
 
@@ -3763,8 +3741,8 @@ Path '', line 1, position 1.");
             {
                 string json =
                     @"{
-  ""Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 1,
-  ""Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 2
+  ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 1,
+  ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person"": 2
 }";
 
                 JsonConvert.DeserializeObject<Dictionary<Person, int>>(json);
@@ -3772,7 +3750,7 @@ Path '', line 1, position 1.");
             }
             catch (JsonSerializationException ex)
             {
-                Assert.IsTrue(ex.Message.StartsWith("Could not convert string 'Newtonsoft.Json.Tests.TestObjects.Organization.Person' to dictionary key type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Create a TypeConverter to convert from the string to the key type object. Path '['Newtonsoft.Json.Tests.TestObjects.Organization.Person']'"));
+                Assert.IsTrue(ex.Message.StartsWith("Could not convert string 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person' to dictionary key type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person'. Create a TypeConverter to convert from the string to the key type object. Path '['Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person']'"));
             }
         }
 
@@ -3965,7 +3943,7 @@ Path '', line 1, position 1.");
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.All,
                 MetadataPropertyHandling = MetadataPropertyHandling.Default
-            }), "Cannot preserve reference to readonly dictionary, or dictionary created from a non-default constructor: Newtonsoft.Json.Tests.TestObjects.DictionaryWithNoDefaultConstructor. Path 'key1', line 1, position 16.");
+            }), "Cannot preserve reference to readonly dictionary, or dictionary created from a non-default constructor: Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.DictionaryWithNoDefaultConstructor. Path 'key1', line 1, position 16.");
         }
 
         [Test]
@@ -4024,7 +4002,7 @@ Path '', line 1, position 1.");
 
             string json = JsonConvert.SerializeObject(c1, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore,
                 Formatting = Formatting.Indented
             });
 
@@ -4082,7 +4060,7 @@ Path '', line 1, position 1.");
 
             //Console.WriteLine(JsonConvert.SerializeObject(c, Formatting.Indented, new JsonSerializerSettings
             //  {
-            //    //               TypeNameHandling = TypeNameHandling.Objects
+            //    //               TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             //  }));
         }
 #endif
@@ -4149,7 +4127,7 @@ Path '', line 1, position 1.");
                     JsonTypeReflector.SetFullyTrusted(false);
 
                     JsonConvert.DeserializeObject<ISerializableTestObject>("{booleanValue:true}");
-                }, @"Type 'Newtonsoft.Json.Tests.TestObjects.ISerializableTestObject' implements ISerializable but cannot be deserialized using the ISerializable interface because the current application is not fully trusted and ISerializable can expose secure data." + Environment.NewLine +
+                }, @"Type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.ISerializableTestObject' implements ISerializable but cannot be deserialized using the ISerializable interface because the current application is not fully trusted and ISerializable can expose secure data." + Environment.NewLine +
                    @"To fix this error either change the environment to be fully trusted, change the application to not deserialize the type, add JsonObjectAttribute to the type or change the JsonSerializer setting ContractResolver to use a new DefaultContractResolver with IgnoreSerializableInterface set to true." + Environment.NewLine +
                    @"Path 'booleanValue', line 1, position 14.");
             }
@@ -4170,7 +4148,7 @@ Path '', line 1, position 1.");
                     ISerializableTestObject value = new ISerializableTestObject("string!", 0, default(DateTimeOffset), null);
 
                     JsonConvert.SerializeObject(value);
-                }, @"Type 'Newtonsoft.Json.Tests.TestObjects.ISerializableTestObject' implements ISerializable but cannot be serialized using the ISerializable interface because the current application is not fully trusted and ISerializable can expose secure data." + Environment.NewLine +
+                }, @"Type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.ISerializableTestObject' implements ISerializable but cannot be serialized using the ISerializable interface because the current application is not fully trusted and ISerializable can expose secure data." + Environment.NewLine +
                    @"To fix this error either change the environment to be fully trusted, change the application to not deserialize the type, add JsonObjectAttribute to the type or change the JsonSerializer setting ContractResolver to use a new DefaultContractResolver with IgnoreSerializableInterface set to true." + Environment.NewLine +
                    @"Path ''.");
             }
@@ -4557,7 +4535,7 @@ Path '', line 1, position 1.");
             var cc = JsonConvert.DeserializeObject<ConstructorCompexIgnoredProperty>(
                 json, new JsonSerializerSettings
                 {
-                    MissingMemberHandling = MissingMemberHandling.Error
+                    MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error
                 });
             Assert.AreEqual("First", cc.First);
             Assert.AreEqual(2, cc.Second);
@@ -4658,7 +4636,7 @@ Path '', line 1, position 1.");
         {
             JsonSerializer serializer1 = new JsonSerializer();
             serializer1.Converters.Add(new IsoDateTimeConverter());
-            serializer1.NullValueHandling = NullValueHandling.Ignore;
+            serializer1.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
 
             string json = @"[{""Prop1"":""""},{""Prop1"":""""}]";
 
@@ -4903,7 +4881,7 @@ Path '', line 1, position 1.");
 
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
             };
 
@@ -4949,8 +4927,8 @@ Path '', line 1, position 1.");
                 serStr,
                 new JsonSerializerSettings
                 {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
+                    NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
+                    MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore
                 });
         }
 #endif
@@ -5160,7 +5138,7 @@ Path '', line 1, position 1.");
 
             string xml = Encoding.UTF8.GetString(ms.ToArray(), 0, Convert.ToInt32(ms.Length));
 
-            Assert.AreEqual(@"<ChildDataContract xmlns=""http://schemas.datacontract.org/2004/07/Newtonsoft.Json.Tests.TestObjects"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance""><nonVirtualMember>NonVirtualMember!</nonVirtualMember><virtualMember>VirtualMember!</virtualMember><NewMember i:nil=""true""/></ChildDataContract>", xml);
+            Assert.AreEqual(@"<ChildDataContract xmlns=""http://schemas.datacontract.org/2004/07/Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance""><nonVirtualMember>NonVirtualMember!</nonVirtualMember><virtualMember>VirtualMember!</virtualMember><NewMember i:nil=""true""/></ChildDataContract>", xml);
         }
 #endif
 
@@ -5468,7 +5446,7 @@ Path '', line 1, position 1.");
             TestObject test = new TestObject("Test", new byte[] { 72, 63, 62, 71, 92, 55 });
 
             JsonSerializer serializer = new JsonSerializer();
-            serializer.TypeNameHandling = TypeNameHandling.All;
+            serializer.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
 
             byte[] objectBytes;
             using (MemoryStream stream = new MemoryStream())
@@ -5694,7 +5672,7 @@ Path '', line 1, position 1.");
   ""NullableInteger2"": null
 }";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<ConvertableIntTestClass>(json), "Error converting value 1 to type 'Newtonsoft.Json.Tests.TestObjects.ConvertibleInt'. Path 'Integer', line 2, position 14.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<ConvertableIntTestClass>(json), "Error converting value 1 to type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.ConvertibleInt'. Path 'Integer', line 2, position 14.");
         }
 #endif
 
@@ -6149,7 +6127,7 @@ Path '', line 1, position 1.");
             string json = "{}";
             IList<string> errors = new List<string>();
 
-            EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs> error = (s, e) =>
+            EventHandler<Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs> error = (s, e) =>
             {
                 errors.Add(e.ErrorContext.Error.Message);
                 e.ErrorContext.Handled = true;
@@ -6174,7 +6152,7 @@ Path '', line 1, position 1.");
             string json = "{'NonAttributeProperty':null,'UnsetProperty':null,'AllowNullProperty':null,'AlwaysProperty':null}";
             IList<string> errors = new List<string>();
 
-            EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs> error = (s, e) =>
+            EventHandler<Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs> error = (s, e) =>
             {
                 errors.Add(e.ErrorContext.Error.Message);
                 e.ErrorContext.Handled = true;
@@ -6197,7 +6175,7 @@ Path '', line 1, position 1.");
         {
             IList<string> errors = new List<string>();
 
-            EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs> error = (s, e) =>
+            EventHandler<Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs> error = (s, e) =>
             {
                 errors.Add(e.ErrorContext.Error.Message);
                 e.ErrorContext.Handled = true;
@@ -6829,7 +6807,7 @@ This is just junk, though.";
 #else
             ExceptionAssert.Throws<JsonSerializationException>(
                 doStuff,
-                "Unable to find a constructor to use for type Newtonsoft.Json.Tests.TestObjects.MyTuple`1[System.Int32]. A class should either have a default constructor, one constructor with arguments or a constructor marked with the JsonConstructor attribute. Path 'm_Item1', line 1, position 11.");
+                "Unable to find a constructor to use for type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.MyTuple`1[System.Int32]. A class should either have a default constructor, one constructor with arguments or a constructor marked with the Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor attribute. Path 'm_Item1', line 1, position 11.");
 #endif
         }
 
@@ -6845,7 +6823,7 @@ This is just junk, though.";
                 var json = JsonConvert.SerializeObject(tuple);
                 Assert.AreEqual(@"{""m_Item1"":500}", json);
 
-                ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<MyTuplePartial<int>>(json), "Unable to find a constructor to use for type Newtonsoft.Json.Tests.TestObjects.MyTuplePartial`1[System.Int32]. A class should either have a default constructor, one constructor with arguments or a constructor marked with the JsonConstructor attribute. Path 'm_Item1', line 1, position 11.");
+                ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<MyTuplePartial<int>>(json), "Unable to find a constructor to use for type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.MyTuplePartial`1[System.Int32]. A class should either have a default constructor, one constructor with arguments or a constructor marked with the Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor attribute. Path 'm_Item1', line 1, position 11.");
             }
             finally
             {
@@ -7039,14 +7017,14 @@ This is just junk, though.";
         [Test]
         public void NoConstructorReadOnlyCollectionTest()
         {
-            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<NoConstructorReadOnlyCollection<int>>("[1]"), "Cannot deserialize readonly or fixed size list: Newtonsoft.Json.Tests.TestObjects.NoConstructorReadOnlyCollection`1[System.Int32]. Path '', line 1, position 1.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<NoConstructorReadOnlyCollection<int>>("[1]"), "Cannot deserialize readonly or fixed size list: Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.NoConstructorReadOnlyCollection`1[System.Int32]. Path '', line 1, position 1.");
         }
 
 #if !(NET40 || NET35 || NET20 || PORTABLE40)
         [Test]
         public void NoConstructorReadOnlyDictionaryTest()
         {
-            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<NoConstructorReadOnlyDictionary<int, int>>("{'1':1}"), "Cannot deserialize readonly or fixed size dictionary: Newtonsoft.Json.Tests.TestObjects.NoConstructorReadOnlyDictionary`2[System.Int32,System.Int32]. Path '1', line 1, position 5.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<NoConstructorReadOnlyDictionary<int, int>>("{'1':1}"), "Cannot deserialize readonly or fixed size dictionary: Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.NoConstructorReadOnlyDictionary`2[System.Int32,System.Int32]. Path '1', line 1, position 5.");
         }
 #endif
 
@@ -7446,7 +7424,7 @@ This is just junk, though.";
             var options = new JsonSerializerSettings
             {
                 Converters = new JsonConverterCollection { new TypeConverterJsonConverter() },
-                //TypeNameHandling = TypeNameHandling.All
+                //TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             };
 
             //
@@ -7805,7 +7783,7 @@ This is just junk, though.";
         [Test]
         public void ErrorCreatingJsonConverter()
         {
-            ExceptionAssert.Throws<JsonException>(() => JsonConvert.SerializeObject(new ErroringTestClass()), "Error creating 'Newtonsoft.Json.Tests.TestObjects.ErroringJsonConverter'.");
+            ExceptionAssert.Throws<JsonException>(() => JsonConvert.SerializeObject(new ErroringTestClass()), "Error creating 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.ErroringJsonConverter'.");
         }
 
         [Test]
@@ -8215,3 +8193,5 @@ This is just junk, though.";
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -28,17 +28,17 @@ using System.Collections.Generic;
 using System.IO;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class MissingMemberHandlingTests : TestFixtureBase
@@ -67,7 +67,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             ExceptionAssert.Throws<JsonSerializationException>(() =>
             {
-                ProductShort deserializedProductShort = (ProductShort)JsonConvert.DeserializeObject(output, typeof(ProductShort), new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+                ProductShort deserializedProductShort = (ProductShort)JsonConvert.DeserializeObject(output, typeof(ProductShort), new JsonSerializerSettings { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error });
             }, @"Could not find member 'Price' on object of type 'ProductShort'. Path 'Price', line 4, position 10.");
         }
 
@@ -94,7 +94,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             //}
 
             JsonSerializer jsonSerializer = new JsonSerializer();
-            jsonSerializer.MissingMemberHandling = MissingMemberHandling.Ignore;
+            jsonSerializer.MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore;
 
             object deserializedValue;
 
@@ -115,7 +115,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         [Test]
         public void MissingMemberIgnoreComplexValue()
         {
-            JsonSerializer serializer = new JsonSerializer { MissingMemberHandling = MissingMemberHandling.Ignore };
+            JsonSerializer serializer = new JsonSerializer { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore };
             serializer.Converters.Add(new JavaScriptDateTimeConverter());
 
             string response = @"{""PreProperty"":1,""DateProperty"":new Date(1225962698973),""PostProperty"":2}";
@@ -131,7 +131,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{""height"":1}";
 
-            DoubleClass c = JsonConvert.DeserializeObject<DoubleClass>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+            DoubleClass c = JsonConvert.DeserializeObject<DoubleClass>(json, new JsonSerializerSettings { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error });
 
             Assert.AreEqual(1d, c.Height);
         }
@@ -141,7 +141,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{""Missing"":1}";
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<DoubleClass>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error }); }, "Could not find member 'Missing' on object of type 'DoubleClass'. Path 'Missing', line 1, position 11.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<DoubleClass>(json, new JsonSerializerSettings { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error }); }, "Could not find member 'Missing' on object of type 'DoubleClass'. Path 'Missing', line 1, position 11.");
         }
 
         [Test]
@@ -151,7 +151,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             JsonConvert.DeserializeObject<DoubleClass>(json, new JsonSerializerSettings
             {
-                MissingMemberHandling = MissingMemberHandling.Error
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error
             });
         }
 
@@ -163,7 +163,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             ExceptionAssert.Throws<JsonSerializationException>(() => { JsonConvert.DeserializeObject<NameWithMissingError>(json); }, "Could not find member 'Missing' on object of type 'NameWithMissingError'. Path 'Missing', line 1, position 11.");
         }
 
-        [JsonObject(MissingMemberHandling = MissingMemberHandling.Error)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error)]
         public class NameWithMissingError
         {
             public string First { get; set; }
@@ -188,7 +188,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 //This works on properties but not on a objects property.
                 /* So nameERROR:{"first":"ni"} would throw. The payload name:{"firstERROR":"hi"} would not */
-                MissingMemberHandling = MissingMemberHandling.Error,
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error,
                 Error = (sender, args) =>
                 {
                     // A more concrete error type would be nice but we are limited by Newtonsofts library here.
@@ -214,7 +214,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 //This works on properties but not on a objects property.
                 /* So nameERROR:{"first":"ni"} would throw. The payload name:{"firstERROR":"hi"} would not */
-                MissingMemberHandling = MissingMemberHandling.Error,
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error,
                 Error = (sender, args) =>
                 {
                     // A more concrete error type would be nice but we are limited by Newtonsofts library here.
@@ -231,10 +231,10 @@ namespace Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual("Could not find member 'firstERROR' on object of type 'Name'. Path 'name.firstERROR', line 1, position 20.", errors[0]);
         }
 
-        [JsonObject(MissingMemberHandling = MissingMemberHandling.Ignore)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore)]
         public class SimpleExtendableObject
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, object> Data { get; } = new Dictionary<string, object>();
         }
 
@@ -247,7 +247,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void TestMissingMemberHandlingForDirectObjects()
         {
             string json = @"{""extensionData1"": [1,2,3]}";
-            SimpleExtendableObject e2 = JsonConvert.DeserializeObject<SimpleExtendableObject>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+            SimpleExtendableObject e2 = JsonConvert.DeserializeObject<SimpleExtendableObject>(json, new JsonSerializerSettings { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error });
             JArray o1 = (JArray)e2.Data["extensionData1"];
             Assert.AreEqual(JTokenType.Array, o1.Type);
         }
@@ -256,7 +256,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void TestMissingMemberHandlingForChildObjects()
         {
             string json = @"{""Data"":{""extensionData1"": [1,2,3]}}";
-            ObjectWithExtendableChild e3 = JsonConvert.DeserializeObject<ObjectWithExtendableChild>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+            ObjectWithExtendableChild e3 = JsonConvert.DeserializeObject<ObjectWithExtendableChild>(json, new JsonSerializerSettings { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error });
             JArray o1 = (JArray)e3.Data.Data["extensionData1"];
             Assert.AreEqual(JTokenType.Array, o1.Type);
         }
@@ -268,8 +268,9 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             ExceptionAssert.Throws<JsonSerializationException>(() =>
             {
-                JsonConvert.DeserializeObject<ObjectWithExtendableChild>(json, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
+                JsonConvert.DeserializeObject<ObjectWithExtendableChild>(json, new JsonSerializerSettings { MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error });
             }, "Could not find member 'InvalidData' on object of type 'ObjectWithExtendableChild'. Path 'InvalidData', line 1, position 15.");
         }
     }
 }
+

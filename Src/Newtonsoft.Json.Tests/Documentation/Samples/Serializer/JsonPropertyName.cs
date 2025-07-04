@@ -29,13 +29,13 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class JsonPropertyName : TestFixtureBase
@@ -43,10 +43,10 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         #region Types
         public class Videogame
         {
-            [JsonProperty("name")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("name")]
             public string Name { get; set; }
 
-            [JsonProperty("release_date")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("release_date")]
             public DateTime ReleaseDate { get; set; }
         }
         #endregion
@@ -77,3 +77,4 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+

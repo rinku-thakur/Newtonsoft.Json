@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,21 +29,21 @@ using System.Collections.Generic;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Schema;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.IO;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 #if !(DNXCORE50)
 using System.Data;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Schema
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Schema
 {
     [TestFixture]
     public class ExtensionsTests : TestFixtureBase

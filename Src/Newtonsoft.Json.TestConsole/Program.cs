@@ -27,10 +27,10 @@ using System;
 using System.Diagnostics;
 using BenchmarkDotNet.Running;
 using Autodesk.DataExchange.Newtonsoft.Json;
-using Newtonsoft.Json.Tests.Benchmarks;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Benchmarks;
 using System.Reflection;
 
-namespace Newtonsoft.Json.TestConsole
+namespace Autodesk.DataExchange.Newtonsoft.Json.TestConsole
 {
     public class Program
     {

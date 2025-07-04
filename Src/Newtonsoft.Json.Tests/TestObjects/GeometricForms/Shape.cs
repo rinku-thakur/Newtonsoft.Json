@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Microsoft.FSharp.Core;
 
-namespace Newtonsoft.Json.Tests.TestObjects.GeometricForms
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.GeometricForms
 {
     [Serializable, DebuggerDisplay("{__DebugDisplay(),nq}"), CompilationMapping(SourceConstructFlags.SumType)]
     public class Shape

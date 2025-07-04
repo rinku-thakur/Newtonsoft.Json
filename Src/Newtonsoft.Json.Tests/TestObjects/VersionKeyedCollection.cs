@@ -29,10 +29,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class VersionKeyedCollection : KeyedCollection<string, Person>, IEnumerable<Person>
     {
@@ -48,7 +48,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             return item.Name;
         }
 
-        [OnError]
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
         internal void OnErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
             Messages.Add(errorContext.Path + " - Error message for member " + errorContext.Member + " = " + errorContext.Error.Message);

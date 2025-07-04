@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -30,22 +30,22 @@ using System.Reflection;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
-using Newtonsoft.Json.Tests.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
 #if NET20
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
 
-namespace Newtonsoft.Json.Tests.Utilities
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Utilities
 {
     [TestFixture]
     public class DynamicReflectionDelegateFactoryTests : TestFixtureBase
@@ -130,7 +130,7 @@ namespace Newtonsoft.Json.Tests.Utilities
                 var setter = DynamicReflectionDelegateFactory.Instance.CreateGet<object>(typeof(Movie).GetProperty("Name"));
 
                 setter(p);
-            }, "Unable to cast object of type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person' to type 'Newtonsoft.Json.Tests.TestObjects.Movie'.");
+            }, "Unable to cast object of type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person' to type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Movie'.");
         }
 
         [Test]
@@ -150,7 +150,7 @@ namespace Newtonsoft.Json.Tests.Utilities
                 setter(p, "Hi");
 
                 Assert.AreEqual(p.Name, "Hi");
-            }, "Unable to cast object of type 'Newtonsoft.Json.Tests.TestObjects.Organization.Person' to type 'Newtonsoft.Json.Tests.TestObjects.Movie'.");
+            }, "Unable to cast object of type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Person' to type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Movie'.");
         }
 
         [Test]

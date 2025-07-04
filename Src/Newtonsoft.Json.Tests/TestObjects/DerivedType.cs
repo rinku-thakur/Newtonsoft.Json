@@ -25,7 +25,7 @@
 
 using System.Runtime.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(NET20)
     [DataContract]
@@ -46,11 +46,12 @@ namespace Newtonsoft.Json.Tests.TestObjects
         [DataMember]
         public string cat;
 
-        [JsonProperty(Order = 1)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = 1)]
         public string albatross;
 
-        [JsonProperty(Order = -2)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = -2)]
         public string dinosaur;
     }
 #endif
 }
+

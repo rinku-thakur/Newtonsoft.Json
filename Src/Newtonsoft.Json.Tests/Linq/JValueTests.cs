@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if !(NET20 || NET35 || PORTABLE) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
 using System.Numerics;
 #endif
@@ -35,7 +35,7 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -46,9 +46,9 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
 using System.Linq;
 #endif
-using Newtonsoft.Json.Tests.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
 
-namespace Newtonsoft.Json.Tests.Linq
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
 {
     [TestFixture]
     public class JValueTests : TestFixtureBase
@@ -271,7 +271,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JValue v = new JValue(true);
                 JToken last = v.Last;
-            }, "Cannot access child value on Newtonsoft.Json.Linq.JValue.");
+            }, "Cannot access child value on Autodesk.DataExchange.Newtonsoft.Json.Linq.JValue.");
         }
 
         [Test]
@@ -289,7 +289,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JValue v = new JValue(true);
                 JToken first = v.First;
-            }, "Cannot access child value on Newtonsoft.Json.Linq.JValue.");
+            }, "Cannot access child value on Autodesk.DataExchange.Newtonsoft.Json.Linq.JValue.");
         }
 
         [Test]
@@ -299,7 +299,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JValue v = new JValue(true);
                 JToken first = v[0];
-            }, "Cannot access child value on Newtonsoft.Json.Linq.JValue.");
+            }, "Cannot access child value on Autodesk.DataExchange.Newtonsoft.Json.Linq.JValue.");
         }
 
         [Test]
@@ -309,7 +309,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JValue v = new JValue(true);
                 v.Values<int>();
-            }, "Cannot access child value on Newtonsoft.Json.Linq.JValue.");
+            }, "Cannot access child value on Autodesk.DataExchange.Newtonsoft.Json.Linq.JValue.");
         }
 
         [Test]
@@ -365,7 +365,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JToken t = new JValue(5L);
                 t[0] = new JValue(3);
-            }, "Cannot set child value on Newtonsoft.Json.Linq.JValue.");
+            }, "Cannot set child value on Autodesk.DataExchange.Newtonsoft.Json.Linq.JValue.");
         }
 
         [Test]
@@ -770,7 +770,7 @@ namespace Newtonsoft.Json.Tests.Linq
         }
 #endif
 
-        public class ReadOnlyStringConverter : JsonConverter
+        public class ReadOnlyStringConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -974,3 +974,4 @@ namespace Newtonsoft.Json.Tests.Linq
         }
     }
 }
+

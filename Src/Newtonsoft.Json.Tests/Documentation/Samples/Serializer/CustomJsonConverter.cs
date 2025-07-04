@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -30,7 +30,7 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -41,13 +41,13 @@ using System.Linq;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class CustomJsonConverter : TestFixtureBase
     {
         #region Types
-        public class KeysJsonConverter : JsonConverter
+        public class KeysJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             private readonly Type[] _types;
 

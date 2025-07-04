@@ -23,25 +23,25 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class AATestClass
     {
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         protected int AA_field1;
 
         protected int AA_field2;
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         protected int AA_property1 { get; set; }
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         protected int AA_property2 { get; private set; }
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         protected int AA_property3 { private get; set; }
 
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         private int AA_property4 { get; set; }
 
         protected int AA_property5 { get; private set; }
@@ -64,3 +64,4 @@ namespace Newtonsoft.Json.Tests.TestObjects
         }
     }
 }
+

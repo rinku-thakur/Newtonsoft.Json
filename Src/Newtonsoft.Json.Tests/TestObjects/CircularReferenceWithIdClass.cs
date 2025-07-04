@@ -23,12 +23,12 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(Id = "MyExplicitId")]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(Id = "MyExplicitId")]
     public class CircularReferenceWithIdClass
     {
-        [JsonProperty(Required = Required.AllowNull)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
         public string Name { get; set; }
 
         public CircularReferenceWithIdClass Child { get; set; }

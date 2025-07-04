@@ -27,7 +27,7 @@ using System;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class SerializationEventTestObject
     {
@@ -40,14 +40,14 @@ namespace Newtonsoft.Json.Tests.TestObjects
 
         // This field is not serialized. The OnDeserializedAttribute 
         // is used to set the member value after serialization.
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public string Member3 { get; set; }
 
         // This field is set to null, but populated after deserialization.
         public string Member4 { get; set; }
 
         // This field is set to null, but populated after error.
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public string Member5 { get; set; }
 
         // Getting or setting this field will throw an error.
@@ -89,7 +89,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
             Member4 = "This value was set after deserialization.";
         }
 
-        [OnError]
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
         internal void OnErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
             Member5 = "Error message for member " + errorContext.Member + " = " + errorContext.Error.Message;

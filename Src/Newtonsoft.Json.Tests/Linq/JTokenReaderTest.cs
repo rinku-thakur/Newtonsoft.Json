@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -39,10 +39,10 @@ using System.IO;
 using System.Numerics;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 
-namespace Newtonsoft.Json.Tests.Linq
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
 {
     [TestFixture]
     public class JTokenReaderTest : TestFixtureBase
@@ -442,13 +442,13 @@ namespace Newtonsoft.Json.Tests.Linq
 
             string json = JsonConvert.SerializeObject(test, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             });
 
             JObject o = JObject.Parse(json);
 
             JsonSerializer serializer = new JsonSerializer();
-            serializer.TypeNameHandling = TypeNameHandling.All;
+            serializer.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
 
             using (JsonReader nodeReader = o.CreateReader())
             {
@@ -1006,3 +1006,4 @@ namespace Newtonsoft.Json.Tests.Linq
         }
     }
 }
+

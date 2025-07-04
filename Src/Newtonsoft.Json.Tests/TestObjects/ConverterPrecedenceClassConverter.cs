@@ -28,9 +28,9 @@ using System.Globalization;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public abstract class ConverterPrecedenceClassConverter : JsonConverter
+    public abstract class ConverterPrecedenceClassConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public abstract string ConverterType { get; }
 

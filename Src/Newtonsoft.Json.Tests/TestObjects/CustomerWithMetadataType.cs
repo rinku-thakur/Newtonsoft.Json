@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -31,7 +31,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 #endif
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50 || NET20)
     [MetadataType(typeof(CustomerValidation))]
@@ -41,7 +41,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
 
         public class CustomerValidation
         {
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public System.Guid UpdatedBy_Id { get; set; }
         }
     }

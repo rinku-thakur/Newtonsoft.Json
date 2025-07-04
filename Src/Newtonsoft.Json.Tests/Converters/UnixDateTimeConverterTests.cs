@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,15 +29,15 @@ using System.Globalization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 
-namespace Newtonsoft.Json.Tests.Converters
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 {
     [TestFixture]
     public class UnixDateTimeConverterTests : TestFixtureBase
@@ -341,30 +341,30 @@ namespace Newtonsoft.Json.Tests.Converters
 #endif
     }
 
-    [JsonArray(ItemConverterType = typeof(UnixDateTimeConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemConverterType = typeof(UnixDateTimeConverter))]
     public class UnixConverterList<T> : List<T> { }
 
-    [JsonDictionary(ItemConverterType = typeof(UnixDateTimeConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemConverterType = typeof(UnixDateTimeConverter))]
     public class UnixConverterDictionary<T> : Dictionary<string, T> { }
 
-    [JsonObject(ItemConverterType = typeof(UnixDateTimeConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemConverterType = typeof(UnixDateTimeConverter))]
     public class UnixConverterObject
     {
         public object Object1 { get; set; }
 
         public object Object2 { get; set; }
 
-        [JsonConverter(typeof(UnixDateTimeConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(UnixDateTimeConverter))]
         public object ObjectNotHandled { get; set; }
     }
 
     public class PreEpochUnixConverterObject
     {
-        [JsonConverter(typeof(UnixDateTimeConverter), true)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(UnixDateTimeConverter), true)]
         public DateTime Date1 { get; set; }
 
 #if !NET20
-        [JsonConverter (typeof(UnixDateTimeConverter), true)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter (typeof(UnixDateTimeConverter), true)]
         public DateTimeOffset Date2 { get; set; }
 #endif
     }

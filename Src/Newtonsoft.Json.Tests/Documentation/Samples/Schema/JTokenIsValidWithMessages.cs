@@ -30,7 +30,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Schema
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Schema
 {
     public class JTokenIsValidWithMessages
     {

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -30,7 +30,7 @@ using System.Runtime.CompilerServices;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -38,9 +38,9 @@ using NUnit.Framework;
 using System.Dynamic;
 #endif
 using System.Runtime.Serialization;
-using Newtonsoft.Json.Tests.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class ReferenceLoopHandlingTests : TestFixtureBase
@@ -50,11 +50,11 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonPropertyAttribute attribute = new JsonPropertyAttribute();
             Assert.AreEqual(null, attribute._defaultValueHandling);
-            Assert.AreEqual(ReferenceLoopHandling.Error, attribute.ReferenceLoopHandling);
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Error, attribute.ReferenceLoopHandling);
 
-            attribute.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            Assert.AreEqual(ReferenceLoopHandling.Ignore, attribute._referenceLoopHandling);
-            Assert.AreEqual(ReferenceLoopHandling.Ignore, attribute.ReferenceLoopHandling);
+            attribute.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, attribute._referenceLoopHandling);
+            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, attribute.ReferenceLoopHandling);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
             });
             Assert.AreEqual("{}", json);
         }
@@ -78,7 +78,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
             });
             StringAssert.AreEqual(@"{
   ""Value"": {
@@ -103,7 +103,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(a, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
             });
             Assert.AreEqual("[]", json);
         }
@@ -116,7 +116,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(d, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
             });
             Assert.AreEqual("{}", json);
         }
@@ -190,7 +190,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             var settings =
                 new JsonSerializerSettings();
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.SerializeObject(main, settings), "Self referencing loop detected with type 'Newtonsoft.Json.Tests.Serialization.ReferenceLoopHandlingTests+MainClass'. Path 'Child'.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.SerializeObject(main, settings), "Self referencing loop detected with type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ReferenceLoopHandlingTests+MainClass'. Path 'Child'.");
         }
 
         [Test]
@@ -205,7 +205,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             main.Child = child;
 
             var settings =
-                new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+                new JsonSerializerSettings() { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore };
 
             var c = JsonConvert.SerializeObject(main, settings);
             Assert.AreEqual(@"{""Child"":{""Name"":""Child1""}}", c);
@@ -249,7 +249,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             var settings = new JsonSerializerSettings();
 
-            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.SerializeObject(parent, settings), "Self referencing loop detected with type 'Newtonsoft.Json.Tests.Serialization.ReferenceLoopHandlingTests+DictionaryDynamicObject'. Path 'child'.");
+            ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.SerializeObject(parent, settings), "Self referencing loop detected with type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ReferenceLoopHandlingTests+DictionaryDynamicObject'. Path 'child'.");
         }
 
         [Test]
@@ -262,7 +262,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             child.parent = parent;
             child.name = "child";
 
-            var settings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+            var settings = new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore };
 
             var c = JsonConvert.SerializeObject(parent, settings);
             Assert.AreEqual(@"{""child"":{""name"":""child""},""name"":""parent""}", c);
@@ -284,7 +284,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             ExceptionAssert.Throws<JsonSerializationException>(
                 () => JsonConvert.SerializeObject(account),
-                "Self referencing loop detected for property 'Manager' with type 'Newtonsoft.Json.Tests.Serialization.AccountWithEquals'. Path ''.");
+                "Self referencing loop detected for property 'Manager' with type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.AccountWithEquals'. Path ''.");
 
             string json = JsonConvert.SerializeObject(account, new JsonSerializerSettings
             {
@@ -350,7 +350,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public string Text { get; set; }
 
-        [JsonProperty(ItemReferenceLoopHandling = ReferenceLoopHandling.Serialize)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize)]
         public IList<PropertyItemReferenceLoopHandling> Data
         {
             get
@@ -371,29 +371,29 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 
-    [JsonArray(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingList : List<ReferenceLoopHandlingList>
     {
     }
 
-    [JsonDictionary(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingDictionary : Dictionary<string, ReferenceLoopHandlingDictionary>
     {
     }
 
-    [JsonObject(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingObjectContainerAttribute
     {
         public ReferenceLoopHandlingObjectContainerAttribute Value { get; set; }
     }
 
-    [JsonObject(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingObjectContainerAttributeWithPropertyOverride
     {
         private ReferenceLoopHandlingObjectContainerAttributeWithPropertyOverride _value;
         private int _getCount;
 
-        [JsonProperty(ReferenceLoopHandling = ReferenceLoopHandling.Serialize)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize)]
         public ReferenceLoopHandlingObjectContainerAttributeWithPropertyOverride Value
         {
             get
@@ -409,3 +409,5 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+
+

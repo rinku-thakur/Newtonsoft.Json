@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,7 +34,7 @@ using System.Text.RegularExpressions;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -42,9 +42,9 @@ using Autodesk.DataExchange.Newtonsoft.Json.Bson;
 using System.IO;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 using System.Globalization;
-using Newtonsoft.Json.Tests.TestObjects.GeoCoding;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.GeoCoding;
 #if NET20
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
@@ -52,7 +52,7 @@ using System.Linq;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Bson
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Bson
 {
     [TestFixture]
     public class BsonWriterTests : TestFixtureBase
@@ -540,7 +540,7 @@ namespace Newtonsoft.Json.Tests.Bson
             writer.WritePropertyName("_id");
             writer.WriteObjectId(HexToBytes("4ABBED9D1D8B0F0218000001"));
             writer.WritePropertyName("test");
-            writer.WriteValue("1234�56");
+            writer.WriteValue("1234£56");
             writer.WriteEndObject();
 
             byte[] expected = HexToBytes("29000000075F6964004ABBED9D1D8B0F02180000010274657374000900000031323334C2A335360000");

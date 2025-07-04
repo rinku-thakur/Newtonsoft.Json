@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -38,7 +38,7 @@ using System.Xml;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -47,11 +47,11 @@ using System.IO;
 using System.Reflection;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.JsonTextReaderTests;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
-namespace Newtonsoft.Json.Tests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
 {
     [TestFixture]
     public class JsonTextWriterTest : TestFixtureBase
@@ -1719,8 +1719,8 @@ null//comment
         [Test]
         public void NewlinesInSingleLineComments()
         {
-            // it’s not possible for this to be created by parsing JSON,
-            // but if someone gets creative with the API…
+            // itâ€™s not possible for this to be created by parsing JSON,
+            // but if someone gets creative with the APIâ€¦
             var sw = new StringWriter();
             using (var w = new JsonTextWriter(sw))
             {
@@ -1836,3 +1836,4 @@ null//comment
         }
     }
 }
+

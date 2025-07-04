@@ -29,29 +29,29 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class JsonObjectAttributeOptIn : TestFixtureBase
     {
         #region Types
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class File
         {
             // excluded from serialization
             // does not have JsonPropertyAttribute
             public Guid Id { get; set; }
 
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public string Name { get; set; }
 
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public int Size { get; set; }
         }
         #endregion
@@ -83,3 +83,4 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+

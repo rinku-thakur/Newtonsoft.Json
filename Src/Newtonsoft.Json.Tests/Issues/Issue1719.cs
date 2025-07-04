@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -41,12 +41,12 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1719 : TestFixtureBase
@@ -56,7 +56,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             ExtensionDataTestClass a = JsonConvert.DeserializeObject<ExtensionDataTestClass>("{\"E\":null}", new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Ignore,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
             });
 
             Assert.IsNull(a.PropertyBag);
@@ -67,7 +67,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             ExtensionDataTestClassWorkaround a = JsonConvert.DeserializeObject<ExtensionDataTestClassWorkaround>("{\"E\":null}", new JsonSerializerSettings
             {
-                NullValueHandling = NullValueHandling.Ignore,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
             });
 
             Assert.IsNull(a.PropertyBag);
@@ -78,7 +78,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             ExtensionDataWithDefaultValueTestClass a = JsonConvert.DeserializeObject<ExtensionDataWithDefaultValueTestClass>("{\"E\":2}", new JsonSerializerSettings
             {
-                DefaultValueHandling = DefaultValueHandling.Ignore,
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore,
             });
 
             Assert.IsNull(a.PropertyBag);
@@ -88,7 +88,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             public B? E { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, object> PropertyBag { get; set; }
         }
 
@@ -97,7 +97,7 @@ namespace Newtonsoft.Json.Tests.Issues
             [DefaultValue(2)]
             public int? E { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, object> PropertyBag { get; set; }
         }
 
@@ -109,11 +109,13 @@ namespace Newtonsoft.Json.Tests.Issues
 
         class ExtensionDataTestClassWorkaround
         {
-            [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, NullValueHandling = NullValueHandling.Include)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate, NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Include)]
             public B? E { get; set; }
 
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, object> PropertyBag { get; set; }
         }
     }
 }
+
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -28,15 +28,15 @@ using System.Collections.Generic;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Tests.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 
-namespace Newtonsoft.Json.Tests.Converters
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 {
     [TestFixture]
     public class JavaScriptDateTimeConverterTests : TestFixtureBase
@@ -270,27 +270,27 @@ namespace Newtonsoft.Json.Tests.Converters
         }
     }
 
-    [JsonArray(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
     public class ConverterList<T> : List<T>
     {
     }
 
-    [JsonDictionary(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
     public class ConverterDictionary<T> : Dictionary<string, T>
     {
     }
 
-    [JsonObject(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
     public class ConverterObject
     {
         public object Object1 { get; set; }
         public object Object2 { get; set; }
 
-        [JsonConverter(typeof(DateIntConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(DateIntConverter))]
         public object ObjectNotHandled { get; set; }
     }
 
-    public class DateIntConverter : JsonConverter
+    public class DateIntConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

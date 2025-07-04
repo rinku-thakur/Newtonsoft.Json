@@ -23,13 +23,13 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ClassAndMemberConverterClass
     {
         public ConverterPrecedenceClass DefaultConverter { get; set; }
 
-        [JsonConverter(typeof(MemberConverterPrecedenceClassConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(MemberConverterPrecedenceClassConverter))]
         public ConverterPrecedenceClass MemberConverter { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -38,7 +38,7 @@ using System.Collections;
 using System;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue2484
@@ -48,7 +48,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             var json = "[]";
             var ex = ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject(json, typeof(JObject)));
-            Assert.AreEqual("Deserialized JSON type 'Newtonsoft.Json.Linq.JArray' is not compatible with expected type 'Newtonsoft.Json.Linq.JObject'. Path '', line 1, position 2.", ex.Message);
+            Assert.AreEqual("Deserialized JSON type 'Autodesk.DataExchange.Newtonsoft.Json.Linq.JArray' is not compatible with expected type 'Autodesk.DataExchange.Newtonsoft.Json.Linq.JObject'. Path '', line 1, position 2.", ex.Message);
         }
     }
 }

@@ -27,7 +27,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class DirectoryAccount
     {
@@ -38,7 +38,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
         public string UserName { get; set; }
         public string Domain { get; set; }
 
-        [JsonExtensionData]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
         private IDictionary<string, JToken> _additionalData;
 
         [OnDeserialized]

@@ -29,13 +29,13 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class JsonPropertyPropertyLevelSetting : TestFixtureBase
@@ -46,7 +46,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
             public string Name { get; set; }
             public string Class { get; set; }
 
-            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore)]
             public DateTime? LaunchDate { get; set; }
         }
         #endregion
@@ -77,3 +77,5 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+
+

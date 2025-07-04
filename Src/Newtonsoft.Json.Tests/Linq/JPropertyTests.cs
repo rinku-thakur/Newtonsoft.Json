@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -36,13 +36,13 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using System.IO;
 
-namespace Newtonsoft.Json.Tests.Linq
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
 {
     [TestFixture]
     public class JPropertyTests : TestFixtureBase
@@ -99,7 +99,7 @@ namespace Newtonsoft.Json.Tests.Linq
             JProperty p = new JProperty("TestProperty", null);
             IList l = p;
 
-            ExceptionAssert.Throws<JsonException>(() => { l.Clear(); }, "Cannot add or remove items from Newtonsoft.Json.Linq.JProperty.");
+            ExceptionAssert.Throws<JsonException>(() => { l.Clear(); }, "Cannot add or remove items from Autodesk.DataExchange.Newtonsoft.Json.Linq.JProperty.");
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace Newtonsoft.Json.Tests.Linq
             JProperty p = new JProperty("TestProperty", null);
             IList l = p;
 
-            ExceptionAssert.Throws<JsonException>(() => { l.Add(null); }, "Newtonsoft.Json.Linq.JProperty cannot have multiple values.");
+            ExceptionAssert.Throws<JsonException>(() => { l.Add(null); }, "Autodesk.DataExchange.Newtonsoft.Json.Linq.JProperty cannot have multiple values.");
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace Newtonsoft.Json.Tests.Linq
             JProperty p = new JProperty("TestProperty", null);
             IList l = p;
 
-            ExceptionAssert.Throws<JsonException>(() => { l.Remove(p.Value); }, "Cannot add or remove items from Newtonsoft.Json.Linq.JProperty.");
+            ExceptionAssert.Throws<JsonException>(() => { l.Remove(p.Value); }, "Cannot add or remove items from Autodesk.DataExchange.Newtonsoft.Json.Linq.JProperty.");
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace Newtonsoft.Json.Tests.Linq
             JProperty p = new JProperty("TestProperty", null);
             IList l = p;
 
-            ExceptionAssert.Throws<JsonException>(() => { l.RemoveAt(0); }, "Cannot add or remove items from Newtonsoft.Json.Linq.JProperty.");
+            ExceptionAssert.Throws<JsonException>(() => { l.RemoveAt(0); }, "Cannot add or remove items from Autodesk.DataExchange.Newtonsoft.Json.Linq.JProperty.");
         }
 
         [Test]
@@ -215,7 +215,7 @@ namespace Newtonsoft.Json.Tests.Linq
         {
             IList<JToken> t = new JProperty("error", new List<string> { "one", "two" });
 
-            ExceptionAssert.Throws<JsonException>(() => { t.Add(1); }, "Newtonsoft.Json.Linq.JProperty cannot have multiple values.");
+            ExceptionAssert.Throws<JsonException>(() => { t.Add(1); }, "Autodesk.DataExchange.Newtonsoft.Json.Linq.JProperty cannot have multiple values.");
         }
 
         [Test]

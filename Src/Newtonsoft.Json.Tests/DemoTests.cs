@@ -45,13 +45,13 @@ using System.Threading.Tasks;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
 {
     [TestFixture]
     public class DemoTests : TestFixtureBase
@@ -64,7 +64,7 @@ namespace Newtonsoft.Json.Tests
         }
 
         [Test]
-        public void JsonConverter()
+        public void JsonConverterTest()
         {
             HtmlColor red = new HtmlColor
             {
@@ -115,7 +115,7 @@ namespace Newtonsoft.Json.Tests
             public DateTime Date { get; set; }
         }
 
-        public class HtmlColorConverter : JsonConverter
+        public class HtmlColorConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -355,7 +355,7 @@ namespace Newtonsoft.Json.Tests
             string json = JsonConvert.SerializeObject(mike, new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,
-                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             });
             // {
@@ -383,16 +383,16 @@ namespace Newtonsoft.Json.Tests
 
             StringAssert.AreEqual(@"{
   ""$id"": ""1"",
-  ""$type"": ""Newtonsoft.Json.Tests.DemoTests+Manager, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.DemoTests+Manager, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
   ""Reportees"": [
     {
       ""$id"": ""2"",
-      ""$type"": ""Newtonsoft.Json.Tests.DemoTests+Employee, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.DemoTests+Employee, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
       ""Name"": ""Arnie Admin""
     },
     {
       ""$id"": ""3"",
-      ""$type"": ""Newtonsoft.Json.Tests.DemoTests+Manager, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.DemoTests+Manager, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
       ""Reportees"": [
         {
           ""$ref"": ""2""
@@ -410,16 +410,16 @@ namespace Newtonsoft.Json.Tests
         {
             string json = @"{
   '$id': '1',
-  '$type': 'Newtonsoft.Json.Tests.DemoTests+Manager, Newtonsoft.Json.Tests',
+  '$type': 'Autodesk.DataExchange.Newtonsoft.Json.Tests.DemoTests+Manager, Autodesk.DataExchange.Newtonsoft.Json.Tests',
   'Reportees': [
     {
       '$id': '2',
-      '$type': 'Newtonsoft.Json.Tests.DemoTests+Employee, Newtonsoft.Json.Tests',
+      '$type': 'Autodesk.DataExchange.Newtonsoft.Json.Tests.DemoTests+Employee, Autodesk.DataExchange.Newtonsoft.Json.Tests',
       'Name': 'Arnie Admin'
     },
     {
       '$id': '3',
-      '$type': 'Newtonsoft.Json.Tests.DemoTests+Manager, Newtonsoft.Json.Tests',
+      '$type': 'Autodesk.DataExchange.Newtonsoft.Json.Tests.DemoTests+Manager, Autodesk.DataExchange.Newtonsoft.Json.Tests',
       'Reportees': [
         {
           '$ref': '2'
@@ -433,7 +433,7 @@ namespace Newtonsoft.Json.Tests
 
             var e = JsonConvert.DeserializeObject<Employee>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             });
             // Name = Mike Manager
@@ -460,20 +460,20 @@ namespace Newtonsoft.Json.Tests
         {
             public string StreetAddress { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public int Bedrooms { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public decimal FloorArea { get; set; }
 
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public DateTime BuildDate { get; set; }
         }
 
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class House3
         {
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public string StreetAddress { get; set; }
 
             public int Bedrooms { get; set; }
@@ -481,10 +481,10 @@ namespace Newtonsoft.Json.Tests
             public DateTime BuildDate { get; set; }
         }
 
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class House2
         {
-            [JsonProperty("address")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("address")]
             public string StreetAddress { get; set; }
 
             public int Bedrooms { get; set; }
@@ -492,30 +492,30 @@ namespace Newtonsoft.Json.Tests
             public DateTime BuildDate { get; set; }
         }
 
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class House4
         {
-            [JsonProperty("address", Order = 2)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("address", Order = 2)]
             public string StreetAddress { get; set; }
 
             public int Bedrooms { get; set; }
             public decimal FloorArea { get; set; }
 
-            [JsonProperty("buildDate", Order = 1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("buildDate", Order = 1)]
             public DateTime BuildDate { get; set; }
         }
 
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class House5
         {
-            [JsonProperty("address", Order = 2)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("address", Order = 2)]
             public string StreetAddress { get; set; }
 
             public int Bedrooms { get; set; }
             public decimal FloorArea { get; set; }
 
-            [JsonProperty("buildDate", Order = 1)]
-            [JsonConverter(typeof(JavaScriptDateTimeConverter))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("buildDate", Order = 1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(JavaScriptDateTimeConverter))]
             public DateTime BuildDate { get; set; }
         }
 
@@ -624,20 +624,20 @@ namespace Newtonsoft.Json.Tests
             dt.Columns.Add("Version", typeof(string));
             dt.Columns.Add("ReleaseDate", typeof(DateTime));
 
-            dt.Rows.Add("Newtonsoft.Json", "11.0.1", new DateTime(2018, 2, 17));
-            dt.Rows.Add("Newtonsoft.Json", "10.0.3", new DateTime(2017, 6, 18));
+            dt.Rows.Add("Autodesk.DataExchange.Newtonsoft.Json", "11.0.1", new DateTime(2018, 2, 17));
+            dt.Rows.Add("Autodesk.DataExchange.Newtonsoft.Json", "10.0.3", new DateTime(2017, 6, 18));
 
             string json = JsonConvert.SerializeObject(dt, Formatting.Indented);
 
             Console.WriteLine(json);
             // [
             //   {
-            //     "PackageId": "Newtonsoft.Json",
+            //     "PackageId": "Autodesk.DataExchange.Newtonsoft.Json",
             //     "Version": "11.0.1",
             //     "ReleaseDate": "2018-02-17T00:00:00"
             //   },
             //   {
-            //     "PackageId": "Newtonsoft.Json",
+            //     "PackageId": "Autodesk.DataExchange.Newtonsoft.Json",
             //     "Version": "10.0.3",
             //     "ReleaseDate": "2017-06-18T00:00:00"
             //   }
@@ -645,12 +645,12 @@ namespace Newtonsoft.Json.Tests
 
             StringAssert.AreEqual(@"[
   {
-    ""PackageId"": ""Newtonsoft.Json"",
+    ""PackageId"": ""Autodesk.DataExchange.Newtonsoft.Json"",
     ""Version"": ""11.0.1"",
     ""ReleaseDate"": ""2018-02-17T00:00:00""
   },
   {
-    ""PackageId"": ""Newtonsoft.Json"",
+    ""PackageId"": ""Autodesk.DataExchange.Newtonsoft.Json"",
     ""Version"": ""10.0.3"",
     ""ReleaseDate"": ""2017-06-18T00:00:00""
   }
@@ -663,7 +663,7 @@ namespace Newtonsoft.Json.Tests
         {
             JArray packages = JArray.Parse(@"[
               {
-                ""PackageId"": ""Newtonsoft.Json"",
+                ""PackageId"": ""Autodesk.DataExchange.Newtonsoft.Json"",
                 ""Version"": ""11.0.1"",
                 ""ReleaseDate"": ""2018-02-17T00:00:00""
               },
@@ -674,7 +674,7 @@ namespace Newtonsoft.Json.Tests
               }
             ]");
 
-            List<JToken> newtonsoftPackages = packages.SelectTokens(@"$.[?(@.PackageId =~ /^Newtonsoft\.(.*)$/)]").ToList();
+            List<JToken> newtonsoftPackages = packages.SelectTokens(@"$.[?(@.PackageId =~ /^Autodesk.DataExchange.Newtonsoft\.(.*)$/)]").ToList();
 
             Console.WriteLine(newtonsoftPackages.Count);
             // 1
@@ -725,3 +725,5 @@ namespace Newtonsoft.Json.Tests
     }
 #endif
 }
+
+

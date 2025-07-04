@@ -29,16 +29,15 @@ using System.ComponentModel;
 using System.Reflection;
 using Autodesk.DataExchange.Newtonsoft.Json;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
-using Newtonsoft.Json.Tests.TestObjects;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 
 #else
 using NUnit.Framework;
-using Autodesk.DataExchange.Newtonsoft.Json;
-using Newtonsoft.Json.Tests.TestObjects;
 
 
 #endif
@@ -49,7 +48,7 @@ using System.Linq;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class ConstructorHandlingTests : TestFixtureBase
@@ -59,7 +58,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{Name:""Name!""}";
 
-            var c = JsonConvert.DeserializeObject<PrivateConstructorTestClass>(json);
+            var c = JsonConvert.DeserializeObject<Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.PrivateConstructorTestClass>(json);
 
             Assert.AreEqual("Name!", c.Name);
         }
@@ -201,7 +200,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             var testObject = JsonConvert.DeserializeObject<ConstructorParametersRespectDefaultValueAttributes>("{'Parameter2':'value!'}", new JsonSerializerSettings()
             {
-                DefaultValueHandling = DefaultValueHandling.Populate
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate
             });
 
             Assert.AreEqual("parameter1_default", testObject.Parameter1);
@@ -244,7 +243,7 @@ namespace Newtonsoft.Json.Tests.Serialization
                 foreach (var property in properties.Where(p => p.PropertyType == typeof(string)))
                 {
                     property.DefaultValue = ConstructorParametersRespectDefaultValue.DefaultValue;
-                    property.DefaultValueHandling = DefaultValueHandling.Populate;
+                    property.DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate;
                 }
 
                 return properties;
@@ -252,3 +251,5 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+
+

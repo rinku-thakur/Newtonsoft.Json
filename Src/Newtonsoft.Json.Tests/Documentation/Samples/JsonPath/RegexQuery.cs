@@ -27,7 +27,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -40,7 +40,7 @@ using System.Linq;
 #endif
 using System.Text;
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.JsonPath
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.JsonPath
 {
     [TestFixture]
     public class RegexQuery : TestFixtureBase
@@ -62,8 +62,8 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.JsonPath
               }
             ]");
 
-            // Find Newtonsoft packages
-            List<JToken> newtonsoftPackages = packages.SelectTokens(@"$.[?(@.PackageId =~ /^Newtonsoft\.(.*)$/)]").ToList();
+            // Find Autodesk.DataExchange.Newtonsoft packages
+            List<JToken> newtonsoftPackages = packages.SelectTokens(@"$.[?(@.PackageId =~ /^Autodesk.DataExchange.Newtonsoft\.(.*)$/)]").ToList();
 
             foreach (JToken item in newtonsoftPackages)
             {

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -25,39 +25,40 @@
 
 using System.ComponentModel;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class JsonPropertyWithHandlingValues
     {
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore)]
         [DefaultValue("Default!")]
         public string DefaultValueHandlingIgnoreProperty { get; set; }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Include)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Include)]
         [DefaultValue("Default!")]
         public string DefaultValueHandlingIncludeProperty { get; set; }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate)]
         [DefaultValue("Default!")]
         public string DefaultValueHandlingPopulateProperty { get; set; }
 
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate)]
         [DefaultValue("Default!")]
         public string DefaultValueHandlingIgnoreAndPopulateProperty { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NullValueHandlingIgnoreProperty { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Include)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Include)]
         public string NullValueHandlingIncludeProperty { get; set; }
 
-        [JsonProperty(ReferenceLoopHandling = ReferenceLoopHandling.Error)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Error)]
         public JsonPropertyWithHandlingValues ReferenceLoopHandlingErrorProperty { get; set; }
 
-        [JsonProperty(ReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
         public JsonPropertyWithHandlingValues ReferenceLoopHandlingIgnoreProperty { get; set; }
 
-        [JsonProperty(ReferenceLoopHandling = ReferenceLoopHandling.Serialize)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize)]
         public JsonPropertyWithHandlingValues ReferenceLoopHandlingSerializeProperty { get; set; }
     }
 }
+

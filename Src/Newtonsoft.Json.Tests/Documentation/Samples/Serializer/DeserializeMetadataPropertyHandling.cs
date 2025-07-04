@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -35,9 +35,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using User = Newtonsoft.Json.Tests.Serialization.MetadataPropertyHandlingTests.User;
+using User = Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MetadataPropertyHandlingTests.User;
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class DeserializeMetadataPropertyHandling : TestFixtureBase
@@ -56,7 +56,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 
                 object o = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.All,
+                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
                     // $type no longer needs to be first
                     MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
                 });
@@ -73,3 +73,4 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+

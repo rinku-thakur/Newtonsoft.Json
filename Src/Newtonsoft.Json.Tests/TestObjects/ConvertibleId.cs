@@ -26,7 +26,7 @@
 using System;
 using System.Globalization;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ConvertibleId : IConvertible
     {

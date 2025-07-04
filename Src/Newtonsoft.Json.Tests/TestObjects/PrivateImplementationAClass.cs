@@ -23,14 +23,14 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PrivateImplementationAClass : IPrivateImplementationA
     {
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public string PropertyA { get; set; }
 
-        [JsonProperty("PropertyA")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("PropertyA")]
         string IPrivateImplementationA.PropertyA
         {
             get { return PropertyA; }

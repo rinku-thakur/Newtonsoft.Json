@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,12 +33,12 @@ using System.Linq;
 using System.Text;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Tests.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -53,7 +53,7 @@ using System.Xml.Linq;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Converters
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 {
     [TestFixture]
     public class XmlNodeConverterTest : TestFixtureBase
@@ -514,7 +514,7 @@ namespace Newtonsoft.Json.Tests.Converters
             json["Prop2"] = new MyModel().MyProperty;
 
             var xmlNodeConverter = new XmlNodeConverter { DeserializeRootElementName = "object" };
-            var jsonSerializerSettings = new JsonSerializerSettings { Converters = new JsonConverter[] { xmlNodeConverter } };
+            var jsonSerializerSettings = new JsonSerializerSettings { Converters = new Autodesk.DataExchange.Newtonsoft.Json.JsonConverter[] { xmlNodeConverter } };
             var jsonSerializer = JsonSerializer.CreateDefault(jsonSerializerSettings);
             XDocument d = json.ToObject<XDocument>(jsonSerializer);
 
@@ -2443,7 +2443,7 @@ namespace Newtonsoft.Json.Tests.Converters
 
             string xmlString = System.Text.Encoding.UTF8.GetString(xml.ToArray());
 
-            Assert.AreEqual(@"?<?xml version=""1.0"" encoding=""utf-8""?><root booleanType=""true"" />", xmlString);
+            Assert.AreEqual(@"<?xml version=""1.0"" encoding=""utf-8""?><root booleanType=""true"" />", xmlString);
         }
 
 #if !(NETSTANDARD1_0 || NETSTANDARD1_3)
@@ -2553,7 +2553,7 @@ namespace Newtonsoft.Json.Tests.Converters
         {
             Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings();
             settings.Converters.Add(new Newtonsoft.Json.Converters.XmlNodeConverter());
-            Newtonsoft.Json.JsonSerializer serializer = Newtonsoft.Json.JsonSerializer.Create(settings);
+            Autodesk.DataExchange.Newtonsoft.Json.JsonSerializer serializer = Autodesk.DataExchange.Newtonsoft.Json.JsonSerializer.Create(settings);
             using (Newtonsoft.Json.JsonTextReader reader = new Newtonsoft.Json.JsonTextReader(new System.IO.StreamReader(json)))
             {
                 XmlDocument doc = (XmlDocument)serializer.Deserialize(reader, typeof(XmlDocument));
@@ -3414,7 +3414,7 @@ namespace Newtonsoft.Json.Tests.Converters
 
             var serializer = JsonSerializer.Create(new JsonSerializerSettings
             {
-                Converters = new List<JsonConverter>(new[] { new XmlNodeConverter() })
+                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter>(new[] { new XmlNodeConverter() })
             });
 
             var json = new StringBuilder(1024);

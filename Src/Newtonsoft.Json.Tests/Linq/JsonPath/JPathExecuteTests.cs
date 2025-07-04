@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -30,14 +30,14 @@ using System.Text;
 using System.Numerics;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Linq.JsonPath;
-using Newtonsoft.Json.Tests.Bson;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Bson;
 #if HAVE_REGEX_TIMEOUTS
 using System.Text.RegularExpressions;
 #endif
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 using TestCaseSource = Xunit.MemberDataAttribute;
 #else
 using NUnit.Framework;
@@ -49,7 +49,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 using System.Linq;
 #endif
 
-namespace Newtonsoft.Json.Tests.Linq.JsonPath
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq.JsonPath
 {
     [TestFixture]
     public class JPathExecuteTests : TestFixtureBase

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -30,18 +30,18 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class ReflectionAttributeProviderTests : TestFixtureBase
@@ -49,15 +49,15 @@ namespace Newtonsoft.Json.Tests.Serialization
         public class ReflectionTestObject
         {
             [DefaultValue("1")]
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public int TestProperty { get; set; }
 
             [DefaultValue("1")]
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public int TestField;
 
             public ReflectionTestObject(
-                [DefaultValue("1")] [JsonProperty] int testParameter)
+                [DefaultValue("1")] [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute] int testParameter)
             {
                 TestProperty = testParameter;
                 TestField = testParameter;
@@ -119,3 +119,4 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+

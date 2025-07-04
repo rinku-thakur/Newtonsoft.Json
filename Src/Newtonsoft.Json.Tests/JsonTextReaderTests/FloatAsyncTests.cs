@@ -29,14 +29,14 @@ using System;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Newtonsoft.Json.Tests.JsonTextReaderTests
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.JsonTextReaderTests
 {
     [TestFixture]
 #if !DNXCORE50
@@ -350,3 +350,4 @@ namespace Newtonsoft.Json.Tests.JsonTextReaderTests
 }
 
 #endif
+

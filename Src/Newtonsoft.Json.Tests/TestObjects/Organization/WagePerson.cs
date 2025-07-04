@@ -23,11 +23,11 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects.Organization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization
 {
     public class WagePerson : Person
     {
-        [JsonProperty]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
         public decimal HourlyWage { get; set; }
     }
 }

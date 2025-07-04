@@ -23,9 +23,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonConverter(typeof(ClassConverterPrecedenceClassConverter))]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ClassConverterPrecedenceClassConverter))]
     public class ConverterPrecedenceClass
     {
         public string TestValue { get; set; }

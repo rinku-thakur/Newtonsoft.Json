@@ -23,14 +23,14 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class NonPublicConstructorWithJsonConstructor
     {
         public string Value { get; private set; }
         public string Constructor { get; private set; }
 
-        [JsonConstructor]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
         private NonPublicConstructorWithJsonConstructor()
         {
             Constructor = "NonPublic";

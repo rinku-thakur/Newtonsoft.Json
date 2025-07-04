@@ -29,13 +29,13 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class JsonPropertyItemLevelSetting : TestFixtureBase
@@ -45,7 +45,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         {
             public string Name { get; set; }
 
-            [JsonProperty(ItemIsReference = true)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemIsReference = true)]
             public IList<Employee> Employees { get; set; }
         }
 
@@ -53,7 +53,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         {
             public string Name { get; set; }
 
-            [JsonProperty(IsReference = true)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(IsReference = true)]
             public Employee Manager { get; set; }
         }
         #endregion
@@ -124,3 +124,4 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+

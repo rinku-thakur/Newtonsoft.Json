@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -40,16 +40,16 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 using System.Globalization;
 
-namespace Newtonsoft.Json.Tests.Documentation
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 {
     public class Employee
     {
@@ -143,9 +143,9 @@ namespace Newtonsoft.Json.Tests.Documentation
         [Test]
         public void ShouldSerializeContractResolverTest()
         {
-            Newtonsoft.Json.Tests.Documentation.Employee joe = new Newtonsoft.Json.Tests.Documentation.Employee();
+            Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Employee joe = new Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Employee();
             joe.Name = "Joe Employee";
-            Newtonsoft.Json.Tests.Documentation.Employee mike = new Newtonsoft.Json.Tests.Documentation.Employee();
+            Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Employee mike = new Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Employee();
             mike.Name = "Mike Manager";
 
             joe.Manager = mike;
@@ -175,3 +175,4 @@ namespace Newtonsoft.Json.Tests.Documentation
 }
 
 #endif
+

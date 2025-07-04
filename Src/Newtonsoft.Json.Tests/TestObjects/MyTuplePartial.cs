@@ -23,9 +23,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(MemberSerialization.Fields)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.Fields)]
     public class MyTuplePartial<T1>
     {
         private readonly T1 m_Item1;

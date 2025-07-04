@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -23,15 +23,15 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class VirtualOverrideNewBaseObject
     {
-        [JsonProperty(PropertyName = "virtualMember")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "virtualMember")]
         public virtual string VirtualMember { get; set; }
 
-        [JsonProperty(PropertyName = "nonVirtualMember")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "nonVirtualMember")]
         public string NonVirtualMember { get; set; }
     }
 }

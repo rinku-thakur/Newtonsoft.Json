@@ -35,9 +35,9 @@ using System.Linq;
 using System.Text;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 
-namespace Newtonsoft.Json.Tests.LinqToSql
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
 {
-    public class DepartmentConverter : JsonConverter
+    public class DepartmentConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

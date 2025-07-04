@@ -31,7 +31,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 #endif
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50 || NET20)
     [Serializable]
@@ -52,7 +52,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
     [MetadataType(typeof(FaqItemMetadata))]
     partial class FaqItem
     {
-        [JsonProperty("FullSectionsProp")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("FullSectionsProp")]
         public ICollection<FaqSection> FullSections
         {
             get { return Sections; }
@@ -61,7 +61,7 @@ namespace Newtonsoft.Json.Tests.TestObjects
 
     public class FaqItemMetadata
     {
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public virtual ICollection<FaqSection> Sections { get; set; }
     }
 

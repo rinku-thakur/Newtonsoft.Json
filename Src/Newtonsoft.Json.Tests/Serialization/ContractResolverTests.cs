@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,7 +32,7 @@ using System.Runtime.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -42,8 +42,8 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 using System.Linq;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 using System.Reflection;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 using System.Globalization;
@@ -51,7 +51,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     public class DynamicContractResolver : DefaultContractResolver
     {
@@ -214,7 +214,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<AbstractTestClass>(@"{Value:'Value!'}", new JsonSerializerSettings
             {
                 ContractResolver = resolver
-            }), "Could not create an instance of type Newtonsoft.Json.Tests.TestObjects.AbstractTestClass. Type is an interface or abstract class and cannot be instantiated. Path 'Value', line 1, position 7.");
+            }), "Could not create an instance of type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.AbstractTestClass. Type is an interface or abstract class and cannot be instantiated. Path 'Value', line 1, position 7.");
 
             contract.DefaultCreator = () => new AbstractImplementationTestClass();
 
@@ -239,7 +239,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<AbstractListTestClass<int>>(@"[1,2]", new JsonSerializerSettings
             {
                 ContractResolver = resolver
-            }), "Could not create an instance of type Newtonsoft.Json.Tests.TestObjects.AbstractListTestClass`1[System.Int32]. Type is an interface or abstract class and cannot be instantiated. Path '', line 1, position 1.");
+            }), "Could not create an instance of type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.AbstractListTestClass`1[System.Int32]. Type is an interface or abstract class and cannot be instantiated. Path '', line 1, position 1.");
 
             contract.DefaultCreator = () => new AbstractImplementationListTestClass<int>();
 
@@ -319,7 +319,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             ExceptionAssert.Throws<JsonSerializationException>(() => JsonConvert.DeserializeObject<AbstractDictionaryTestClass<string, int>>(@"{key1:1,key2:2}", new JsonSerializerSettings
             {
                 ContractResolver = resolver
-            }), "Could not create an instance of type Newtonsoft.Json.Tests.TestObjects.AbstractDictionaryTestClass`2[System.String,System.Int32]. Type is an interface or abstract class and cannot be instantiated. Path 'key1', line 1, position 6.");
+            }), "Could not create an instance of type Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.AbstractDictionaryTestClass`2[System.String,System.Int32]. Type is an interface or abstract class and cannot be instantiated. Path 'key1', line 1, position 6.");
 
             contract.DefaultCreator = () => new AbstractImplementationDictionaryTestClass<string, int>();
 
@@ -634,7 +634,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class ClassWithExtensionData
         {
-            [JsonExtensionData]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
             public IDictionary<string, object> Data { get; set; }
         }
 
@@ -848,3 +848,4 @@ namespace Newtonsoft.Json.Tests.Serialization
         }
     }
 }
+

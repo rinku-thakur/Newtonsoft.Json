@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -36,12 +36,12 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1682 : TestFixtureBase
@@ -61,7 +61,7 @@ namespace Newtonsoft.Json.Tests.Issues
         {
             ExceptionAssert.Throws<JsonSerializationException>(
                 () => { JsonConvert.DeserializeObject<BaseSerializable>("{}"); },
-                "Could not create an instance of type Newtonsoft.Json.Tests.Issues.Issue1682+BaseSerializable. Type is an interface or abstract class and cannot be instantiated. Path '', line 1, position 2.");
+                "Could not create an instance of type Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues.Issue1682+BaseSerializable. Type is an interface or abstract class and cannot be instantiated. Path '', line 1, position 2.");
         }
 
         public class ClassWithSerializableProperty

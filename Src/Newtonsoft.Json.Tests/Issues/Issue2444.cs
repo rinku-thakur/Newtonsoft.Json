@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +27,7 @@
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -35,7 +35,7 @@ using System.Collections.Generic;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue2444
@@ -70,7 +70,7 @@ namespace Newtonsoft.Json.Tests.Issues
             ExceptionAssert.Throws<JsonSerializationException>(() =>
             {
                 JsonConvert.DeserializeObject<List<MyEnum>>(@"[""text_value""]", settings);
-            }, @"Error converting value ""text_value"" to type 'Newtonsoft.Json.Tests.Issues.Issue2444+MyEnum'. Path '[0]', line 1, position 13.");
+            }, @"Error converting value ""text_value"" to type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues.Issue2444+MyEnum'. Path '[0]', line 1, position 13.");
         }
 
         public enum MyEnum

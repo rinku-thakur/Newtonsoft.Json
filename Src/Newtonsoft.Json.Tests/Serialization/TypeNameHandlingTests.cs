@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,7 +34,8 @@ using System.Collections.ObjectModel;
 using System.Dynamic;
 #endif
 using System.Text;
-using Newtonsoft.Json.Tests.Linq;
+using System.Runtime.Serialization.Formatters;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,12 +43,12 @@ using System.Globalization;
 using System.Runtime.Serialization.Formatters;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
-using Newtonsoft.Json.Tests.TestObjects.Organization;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -57,7 +58,7 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Reflection;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class TypeNameHandlingTests : TestFixtureBase
@@ -76,12 +77,12 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
                 Formatting = Formatting.Indented
             });
 
             string expectedJson = @"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.HasMultidimensionalByteArray, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.HasMultidimensionalByteArray, Newtonsoft.Json.Tests"",
   ""Array2D"": {
     ""$type"": """ + array2dRef + @""",
     ""$values"": [
@@ -126,7 +127,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void DeserializeMultidimensionalByteArrayWithTypeName()
         {
             string json = @"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.HasMultidimensionalByteArray, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.HasMultidimensionalByteArray, Newtonsoft.Json.Tests"",
   ""Array2D"": {
     ""$type"": ""System.Byte[,], mscorlib"",
     ""$values"": [
@@ -164,7 +165,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 }";
             HasMultidimensionalByteArray value = JsonConvert.DeserializeObject<HasMultidimensionalByteArray>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             Assert.AreEqual(1, value.Array2D[0, 0]);
@@ -186,7 +187,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void DeserializeByteArrayWithTypeName()
         {
             string json = @"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.HasByteArray, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.HasByteArray, Newtonsoft.Json.Tests"",
   ""EncryptedPassword"": {
     ""$type"": ""System.Byte[], mscorlib"",
     ""$value"": ""cGFzc3dvcmQ=""
@@ -194,7 +195,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 }";
             HasByteArray value = JsonConvert.DeserializeObject<HasByteArray>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             CollectionAssert.AreEquivalent(Convert.FromBase64String("cGFzc3dvcmQ="), value.EncryptedPassword);
@@ -204,7 +205,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void DeserializeByteArrayWithTypeName_BadAdditionalContent()
         {
             string json = @"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.HasByteArray, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.HasByteArray, Newtonsoft.Json.Tests"",
   ""EncryptedPassword"": {
     ""$type"": ""System.Byte[], mscorlib"",
     ""$value"": ""cGFzc3dvcmQ="",
@@ -216,7 +217,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 JsonConvert.DeserializeObject<HasByteArray>(json, new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Objects
+                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
                 });
             }, "Error reading bytes. Unexpected token: PropertyName. Path 'EncryptedPassword.$value', line 6, position 13.");
         }
@@ -225,7 +226,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         public void DeserializeByteArrayWithTypeName_ExtraProperty()
         {
             string json = @"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.HasByteArray, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.HasByteArray, Newtonsoft.Json.Tests"",
   ""EncryptedPassword"": {
     ""$type"": ""System.Byte[], mscorlib"",
     ""$value"": ""cGFzc3dvcmQ=""
@@ -234,7 +235,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 }";
             HasByteArray value = JsonConvert.DeserializeObject<HasByteArray>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             Assert.IsNotNull(value.EncryptedPassword);
@@ -251,7 +252,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(t, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             });
 
             StringAssert.AreEqual(@"{
@@ -263,7 +264,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             ValueTuple<int, int, string> t2 = (ValueTuple<int, int, string>)JsonConvert.DeserializeObject(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             });
 
             Assert.AreEqual(1, t2.Item1);
@@ -306,7 +307,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(c, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
             StringAssert.AreEqual(@"{
@@ -345,12 +346,12 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(dic, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
             StringAssert.AreEqual(@"{
   ""movie"": {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Movie, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Movie, Newtonsoft.Json.Tests"",
     ""Name"": ""Die Hard"",
     ""Description"": null,
     ""Classification"": null,
@@ -371,14 +372,14 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(dic, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
             StringAssert.AreEqual(@"[
   {
     ""Key"": ""movie"",
     ""Value"": {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Movie, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Movie, Newtonsoft.Json.Tests"",
       ""Name"": ""Die Hard"",
       ""Description"": null,
       ""Classification"": null,
@@ -413,14 +414,14 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             var serializer = new JsonSerializer()
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             };
             var sw = new StringWriter();
             serializer.Serialize(new JsonTextWriter(sw) { Formatting = Formatting.Indented }, new WagePerson(), typeof(Person));
             var result = sw.ToString();
 
             StringAssert.AreEqual(@"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
   ""HourlyWage"": 0.0,
   ""Name"": null,
   ""BirthDate"": ""0001-01-01T00:00:00"",
@@ -441,11 +442,11 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = JsonConvert.SerializeObject(new WagePerson(), typeof(object), Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
             StringAssert.AreEqual(@"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
   ""HourlyWage"": 0.0,
   ""Name"": null,
   ""BirthDate"": ""0001-01-01T00:00:00"",
@@ -458,11 +459,11 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = JsonConvert.SerializeObject(new WagePerson(), typeof(object), Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
             StringAssert.AreEqual(@"{
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",
   ""HourlyWage"": 0.0,
   ""Name"": null,
   ""BirthDate"": ""0001-01-01T00:00:00"",
@@ -475,10 +476,10 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = JsonConvert.SerializeObject(new WagePerson(), typeof(object), new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
-            StringAssert.AreEqual(@"{""$type"":""Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",""HourlyWage"":0.0,""Name"":null,""BirthDate"":""0001-01-01T00:00:00"",""LastModified"":""0001-01-01T00:00:00""}", json);
+            StringAssert.AreEqual(@"{""$type"":""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.WagePerson, Newtonsoft.Json.Tests"",""HourlyWage"":0.0,""Name"":null,""BirthDate"":""0001-01-01T00:00:00"",""LastModified"":""0001-01-01T00:00:00""}", json);
         }
 
         public class Wrapper
@@ -502,7 +503,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(wrapper, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
             });
 
             StringAssert.AreEqual(@"{
@@ -536,7 +537,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(employee, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             StringAssert.AreEqual(@"{
@@ -561,7 +562,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             object employee = JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             CustomAssert.IsInstanceOfType(typeof(EmployeeReference), employee);
@@ -581,7 +582,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             object cookie = JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             CustomAssert.IsInstanceOfType(typeof(Cookie), cookie);
@@ -613,10 +614,8 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(values, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
-#pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
-#pragma warning restore 618
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
+
             });
 
             StringAssert.AreEqual(@"[
@@ -672,10 +671,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             List<object> values = (List<object>)JsonConvert.DeserializeObject(json, typeof(List<object>), new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
-#pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
-#pragma warning restore 618
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
             });
 
             Assert.AreEqual(4, values.Count);
@@ -711,10 +707,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 JsonConvert.DeserializeObject(json, typeof(Person), new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Objects,
-#pragma warning disable 618
-                    TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
-#pragma warning restore 618
+                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
+
                 });
             }
             catch (JsonSerializationException ex)
@@ -748,7 +742,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{
   ""$id"": ""1"",
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Employee"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Employee"",
   ""Name"": ""Name!"",
   ""Manager"": null
 }";
@@ -757,9 +751,9 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.Objects
+                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
                 });
-            }, "Type specified in JSON 'Newtonsoft.Json.Tests.TestObjects.Employee' was not resolved. Path '$type', line 3, position 55.");
+            }, "Type specified in JSON 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Employee' was not resolved. Path '$type', line 3, position 55.");
         }
 
         public interface ICorrelatedMessage
@@ -806,10 +800,8 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             ICorrelatedMessage message = JsonConvert.DeserializeObject<ICorrelatedMessage>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
-#pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
-#pragma warning restore 618
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
+
             });
 
             CustomAssert.IsInstanceOfType(typeof(SendHttpRequest), message);
@@ -835,11 +827,9 @@ namespace Newtonsoft.Json.Tests.Serialization
             string json = JsonConvert.SerializeObject(container, Formatting.Indented,
                 new JsonSerializerSettings
                 {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    TypeNameHandling = TypeNameHandling.All,
-#pragma warning disable 618
-                    TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
-#pragma warning restore 618
+                    NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
+                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+
                 });
 
             StringAssert.AreEqual(@"{
@@ -859,7 +849,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             public string Name { get; set; }
 
-            [JsonProperty(TypeNameHandling = TypeNameHandling.All)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
             public object Value { get; set; }
         }
 
@@ -942,13 +932,13 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{
   ""$id"": ""1"",
-  ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Employee"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Employee"",
   ""Name"": ""Name!""
 }";
 
             object p = JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
 #pragma warning disable CS0618 // Type or member is obsolete
                 Binder = new CustomSerializationBinder()
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -973,7 +963,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         [Test]
         public void SerializeUsingCustomBinder()
         {
-            TypeNameSerializationBinder binder = new TypeNameSerializationBinder("Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests");
+            TypeNameSerializationBinder binder = new TypeNameSerializationBinder("Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests");
 
             IList<object> values = new List<object>
             {
@@ -991,7 +981,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(values, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
 #pragma warning disable CS0618 // Type or member is obsolete
                 Binder = binder
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -1025,9 +1015,9 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             IList<object> newValues = JsonConvert.DeserializeObject<IList<object>>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
 #pragma warning disable CS0618 // Type or member is obsolete
-                Binder = new TypeNameSerializationBinder("Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests")
+                Binder = new TypeNameSerializationBinder("Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests")
 #pragma warning restore CS0618 // Type or member is obsolete
             });
 
@@ -1067,7 +1057,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         [Test]
         public void NewSerializeUsingCustomBinder()
         {
-            NewTypeNameSerializationBinder binder = new NewTypeNameSerializationBinder("Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests");
+            NewTypeNameSerializationBinder binder = new NewTypeNameSerializationBinder("Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests");
 
             IList<object> values = new List<object>
             {
@@ -1085,7 +1075,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(values, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 SerializationBinder = binder
             });
 
@@ -1117,8 +1107,8 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             IList<object> newValues = JsonConvert.DeserializeObject<IList<object>>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new NewTypeNameSerializationBinder("Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests")
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
+                SerializationBinder = new NewTypeNameSerializationBinder("Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.{0}, Newtonsoft.Json.Tests")
             });
 
             CustomAssert.IsInstanceOfType(typeof(Customer), newValues[0]);
@@ -1164,13 +1154,13 @@ namespace Newtonsoft.Json.Tests.Serialization
             testObject.AThirdTestMember = new ContentSubClass("Third One");
 
             JsonSerializer serializingTester = new JsonSerializer();
-            serializingTester.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            serializingTester.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             StringWriter sw = new StringWriter();
             using (JsonTextWriter jsonWriter = new JsonTextWriter(sw))
             {
                 jsonWriter.Formatting = Formatting.Indented;
-                serializingTester.TypeNameHandling = TypeNameHandling.Auto;
+                serializingTester.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto;
                 serializingTester.Serialize(jsonWriter, testObject);
             }
 
@@ -1210,7 +1200,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             using (JsonTextReader jsonReader = new JsonTextReader(sr))
             {
-                deserializingTester.TypeNameHandling = TypeNameHandling.Auto;
+                deserializingTester.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto;
 
                 anotherTestObject = deserializingTester.Deserialize<HolderClass>(jsonReader);
             }
@@ -1242,7 +1232,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             // {
             //   "Address": "http://www.google.com",
             //   "Body": {
-            //     "$type": "Newtonsoft.Json.Tests.Serialization.SearchDetails, Newtonsoft.Json.Tests",
+            //     "$type": "Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.SearchDetails, Newtonsoft.Json.Tests",
             //     "Query": "Json.NET",
             //     "Language": "en-us"
             //   }
@@ -1278,10 +1268,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(collection, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
-#pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple
-#pragma warning restore 618
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
             });
 
             string dictionaryTypeName = ReflectionUtils.GetTypeName(typeof(Dictionary<string, object>), TypeNameAssemblyFormatHandling.Simple, null);
@@ -1319,10 +1306,8 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             object c = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
-#pragma warning disable 618
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple
-#pragma warning restore 618
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+
             });
 
             CustomAssert.IsInstanceOfType(typeof(Dictionary<string, object>), c);
@@ -1342,7 +1327,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             CustomEnumerable<Product> products = new CustomEnumerable<Product>();
 
-            string json = JsonConvert.SerializeObject(products, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            string json = JsonConvert.SerializeObject(products, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All });
 
             StringAssert.AreEqual(@"{
   ""$type"": """ + productClassRef + @""",
@@ -1408,7 +1393,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             public object[] Objects { get; set; }
 
             // ignored
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public DateTime LastModified { get; set; }
         }
 
@@ -1421,8 +1406,8 @@ namespace Newtonsoft.Json.Tests.Serialization
             testerObject.Objects = new object[] { data, "prueba" };
 
             JsonSerializerSettings jsonSettings = new JsonSerializerSettings();
-            jsonSettings.NullValueHandling = NullValueHandling.Ignore;
-            jsonSettings.TypeNameHandling = TypeNameHandling.All;
+            jsonSettings.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
+            jsonSettings.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
 
             string output = JsonConvert.SerializeObject(testerObject, Formatting.Indented, jsonSettings);
 
@@ -1473,12 +1458,12 @@ namespace Newtonsoft.Json.Tests.Serialization
             //Test Json Serialization
             //This fails because the JsonSerializer doesn't serialize type names correctly for ISerializable objects
             //Type Names should be serialized for All, Auto and Object modes
-            TestJsonSerializationRoundTrip(w, TypeNameHandling.All);
-            TestJsonSerializationRoundTrip(w, TypeNameHandling.Auto);
-            TestJsonSerializationRoundTrip(w, TypeNameHandling.Objects);
+            TestJsonSerializationRoundTrip(w, Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All);
+            TestJsonSerializationRoundTrip(w, Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto);
+            TestJsonSerializationRoundTrip(w, Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects);
         }
 
-        private void TestJsonSerializationRoundTrip(SerializableWrapper e, TypeNameHandling flag)
+        private void TestJsonSerializationRoundTrip(SerializableWrapper e, Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling flag)
         {
             StringWriter writer = new StringWriter();
 
@@ -1492,7 +1477,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             //Now try to deserialize
             //Json.Net will cause an error here as it will try and instantiate
             //the interface directly because it failed to respect the
-            //TypeNameHandling property on serialization
+            //Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling property on serialization
             SerializableWrapper f = serializer.Deserialize<SerializableWrapper>(new JsonTextReader(new StringReader(writer.ToString())));
 
             //Check Round Trip
@@ -1512,9 +1497,9 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(message, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
 #pragma warning disable CS0618 // Type or member is obsolete
-                TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
+               
                 Binder = new MetroBinder(),
 #pragma warning restore CS0618 // Type or member is obsolete
                 ContractResolver = new DefaultContractResolver
@@ -1583,11 +1568,11 @@ namespace Newtonsoft.Json.Tests.Serialization
             string json = JsonConvert.SerializeObject(l, Formatting.Indented);
             StringAssert.AreEqual(@"[
   {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
     ""MyProperty"": 0
   },
   {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.Organization.Employee, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization.Employee, Newtonsoft.Json.Tests"",
     ""FirstName"": null,
     ""LastName"": null,
     ""BirthDate"": ""2000-12-12T12:12:12Z"",
@@ -1618,7 +1603,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             string json = JsonConvert.SerializeObject(l, Formatting.Indented);
             StringAssert.AreEqual(@"{
   ""First"": {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
     ""MyProperty"": 1
   },
   ""Second"": ""String!"",
@@ -1648,7 +1633,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             string json = JsonConvert.SerializeObject(o1, Formatting.Indented);
             string expected = @"{
   ""Object1"": {
-    ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
     ""MyProperty"": 1
   },
   ""Object2"": 123,
@@ -1689,7 +1674,7 @@ namespace Newtonsoft.Json.Tests.Serialization
     1,
     ""two"",
     {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     }
   ]
@@ -1730,7 +1715,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             StringAssert.AreEqual(@"{
   ""Data"": [
     {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     {
@@ -1755,14 +1740,14 @@ namespace Newtonsoft.Json.Tests.Serialization
             json = @"{
   ""Data"": [
     {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     {
       ""$type"": """ + listTypeName + @""",
       ""$values"": [
         {
-          ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+          ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
           ""MyProperty"": 1
         }
       ]
@@ -1812,7 +1797,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             StringAssert.AreEqual(@"{
   ""Data"": {
     ""one"": {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     ""two"": {
@@ -1835,13 +1820,13 @@ namespace Newtonsoft.Json.Tests.Serialization
             json = @"{
   ""Data"": {
     ""one"": {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     ""two"": {
       ""$type"": """ + dictionaryTypeName + @""",
       ""one"": {
-        ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+        ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
         ""MyProperty"": 1
       }
     }
@@ -1898,7 +1883,7 @@ namespace Newtonsoft.Json.Tests.Serialization
       ]
     },
     ""Prop2"": {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     ""Prop3"": 3,
@@ -1946,11 +1931,11 @@ namespace Newtonsoft.Json.Tests.Serialization
             StringAssert.AreEqual(@"{
   ""Data"": {
     ""one"": {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     ""two"": {
-      ""$type"": ""Newtonsoft.Json.Tests.Linq.DynamicDictionary, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq.DynamicDictionary, Newtonsoft.Json.Tests"",
       ""one"": {
         ""MyProperty"": 2
       }
@@ -1973,13 +1958,13 @@ namespace Newtonsoft.Json.Tests.Serialization
             json = @"{
   ""Data"": {
     ""one"": {
-      ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
       ""MyProperty"": 1
     },
     ""two"": {
-      ""$type"": ""Newtonsoft.Json.Tests.Linq.DynamicDictionary, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq.DynamicDictionary, Newtonsoft.Json.Tests"",
       ""one"": {
-        ""$type"": ""Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
+        ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.TestComponentSimple, Newtonsoft.Json.Tests"",
         ""MyProperty"": 2
       }
     }
@@ -2007,7 +1992,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
             {
                 Formatting = Formatting.Indented,
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             };
             string serializedString = JsonConvert.SerializeObject(inputContext, jsonSerializerSettings);
 
@@ -2036,11 +2021,11 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore,
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
                 Formatting = Formatting.Indented
             };
 
@@ -2048,7 +2033,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             StringAssert.AreEqual(@"{
   ""c"": {
-    ""$type"": ""Newtonsoft.Json.Tests.Serialization.MyChild, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MyChild, Newtonsoft.Json.Tests"",
     ""p"": ""string!""
   }
 }", json);
@@ -2071,11 +2056,11 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore,
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
                 Formatting = Formatting.Indented
             };
 
@@ -2083,7 +2068,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             StringAssert.AreEqual(@"{
   ""c"": {
-    ""$type"": ""Newtonsoft.Json.Tests.Serialization.MyChildList, Newtonsoft.Json.Tests"",
+    ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MyChildList, Newtonsoft.Json.Tests"",
     ""$values"": [
       ""string!""
     ]
@@ -2112,9 +2097,9 @@ namespace Newtonsoft.Json.Tests.Serialization
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Ignore,
-                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Ignore,
+                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore,
+                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore,
                 Formatting = Formatting.Indented
             };
 
@@ -2123,7 +2108,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             StringAssert.AreEqual(@"{
   ""ParentProp"": {
     ""c"": {
-      ""$type"": ""Newtonsoft.Json.Tests.Serialization.MyChild, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MyChild, Newtonsoft.Json.Tests"",
       ""p"": ""string!""
     }
   }
@@ -2149,14 +2134,14 @@ namespace Newtonsoft.Json.Tests.Serialization
                 Newtonsoft.Json.Formatting.Indented,
                 new JsonSerializerSettings
                 {
-                    TypeNameHandling = TypeNameHandling.All,
+                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
 #pragma warning disable 618
-                    TypeNameAssemblyFormat = FormatterAssemblyStyle.Full // TypeNameHandling.Auto will work
+
 #pragma warning restore 618
                 });
 
             var output = JsonConvert.DeserializeObject<List<Stack<string>>>(serialized,
-                new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All }
+                new JsonSerializerSettings { TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All }
                 );
 
             List<string> strings = output.SelectMany(s => s).ToList();
@@ -2172,7 +2157,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{
     ""itemIdentifier"": {
-        ""$type"": ""Newtonsoft.Json.Tests.Serialization.ReportItemKeys, Newtonsoft.Json.Tests"",
+        ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.ReportItemKeys, Newtonsoft.Json.Tests"",
         ""dataType"": 0,
         ""wantedUnitID"": 1,
         ""application"": 3,
@@ -2186,7 +2171,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             GroupingInfo g = JsonConvert.DeserializeObject<GroupingInfo>(json, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects
             });
 
             ReportItemKeys item = (ReportItemKeys)g.ItemIdentifier;
@@ -2229,7 +2214,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
 #pragma warning disable 618
                 TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple
 #pragma warning restore 618
@@ -2252,7 +2237,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
 #pragma warning disable 618
                 TypeNameAssemblyFormat = FormatterAssemblyStyle.Full
 #pragma warning restore 618
@@ -2275,7 +2260,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 Formatting = Formatting.Indented
             };
 
@@ -2295,7 +2280,7 @@ namespace Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 Formatting = Formatting.Indented
             };
 
@@ -2383,7 +2368,7 @@ namespace Newtonsoft.Json.Tests.Serialization
     {
         public string Value { get; }
 
-        [JsonConstructor]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
         public Message2(string value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
@@ -2409,7 +2394,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             Rows = new Dictionary<string, IEnumerable<IMyInterfaceType>>();
         }
 
-        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.Auto, TypeNameHandling = TypeNameHandling.Auto)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto, TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto)]
         public Dictionary<string, IEnumerable<IMyInterfaceType>> Rows { get; private set; }
     }
 
@@ -2426,7 +2411,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 #if !(DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
     public class ParentParent
     {
-        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.Auto)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto)]
         public MyParent ParentProp { get; set; }
     }
 
@@ -2452,7 +2437,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class MyChild : ISomeBase
     {
-        [JsonProperty("p")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("p")]
         public String MyProperty { get; internal set; }
     }
 
@@ -2469,7 +2454,7 @@ namespace Newtonsoft.Json.Tests.Serialization
     {
         public string Address { get; set; }
 
-        [JsonProperty(TypeNameHandling = TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public object Body { get; set; }
     }
 
@@ -2580,14 +2565,14 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class PropertyItemTypeNameHandlingObject
     {
-        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public TypeNameHandlingTestObject Data { get; set; }
     }
 
 #if !(NET35 || NET20 || PORTABLE40)
     public class PropertyItemTypeNameHandlingDynamic
     {
-        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public DynamicDictionary Data { get; set; }
     }
 #endif
@@ -2602,33 +2587,33 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class PropertyItemTypeNameHandlingDictionary
     {
-        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public IDictionary<string, object> Data { get; set; }
     }
 
     public class PropertyItemTypeNameHandling
     {
-        [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public IList<object> Data { get; set; }
     }
 
-    [JsonArray(ItemTypeNameHandling = TypeNameHandling.All)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
     public class TypeNameList<T> : List<T>
     {
     }
 
-    [JsonDictionary(ItemTypeNameHandling = TypeNameHandling.All)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
     public class TypeNameDictionary<T> : Dictionary<string, T>
     {
     }
 
-    [JsonObject(ItemTypeNameHandling = TypeNameHandling.All)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemTypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
     public class TypeNameObject
     {
         public object Object1 { get; set; }
         public object Object2 { get; set; }
 
-        [JsonProperty(TypeNameHandling = TypeNameHandling.None)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.None)]
         public object ObjectNotHandled { get; set; }
 
         public string String { get; set; }
@@ -2673,3 +2658,5 @@ namespace Newtonsoft.Json.Tests.Serialization
 #endif
 }
 #endif
+
+

@@ -30,7 +30,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if NET20
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
 #else
@@ -39,15 +39,15 @@ using System.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using System.IO;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
-using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
+using ErrorEventArgs = Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs;
 
-namespace Newtonsoft.Json.Tests.Serialization
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 {
     [TestFixture]
     public class SerializationErrorHandlingTests : TestFixtureBase
@@ -59,7 +59,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             AAA a2 = JsonConvert.DeserializeObject<AAA>(@"{""MyTest"":{""$type"":""<Namespace>.JsonTest+MyTest2, <Assembly>""}}", new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 Error = (object sender, Json.Serialization.ErrorEventArgs e) =>
                 {
                     errors.Add(e.ErrorContext.Error);
@@ -79,7 +79,7 @@ namespace Newtonsoft.Json.Tests.Serialization
 
             JObject a2 = (JObject)JsonConvert.DeserializeObject(@"{""$type"":""<Namespace>.JsonTest+MyTest2, <Assembly>""}", new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
                 Error = (object sender, Json.Serialization.ErrorEventArgs e) =>
                 {
                     errors.Add(e.ErrorContext.Error);
@@ -102,9 +102,9 @@ namespace Newtonsoft.Json.Tests.Serialization
 
         public class MyClass1
         {
-            [JsonProperty("myint")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("myint")]
             public int MyInt { get; set; }
-            [JsonProperty("Mybool")]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("Mybool")]
             public bool Mybool { get; set; }
         }
 
@@ -115,7 +115,7 @@ namespace Newtonsoft.Json.Tests.Serialization
             var json = "{\"myint\":3554860000,\"Mybool\":false}";
             var i = JsonConvert.DeserializeObject<MyClass1>(json, new JsonSerializerSettings
             {
-                Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
+                Error = delegate (object sender, Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
                     errors.Add(args.ErrorContext.Error.Message);
                     args.ErrorContext.Handled = true;
@@ -855,10 +855,10 @@ namespace Newtonsoft.Json.Tests.Serialization
         /// <summary>
         /// This could be an object we are passing up in an interface.
         /// </summary>
-        [JsonConverter(typeof(SomethingConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(SomethingConverter))]
         public class Something
         {
-            public class SomethingConverter : JsonConverter
+            public class SomethingConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
             {
                 public override bool CanConvert(Type objectType)
                 {
@@ -911,10 +911,10 @@ namespace Newtonsoft.Json.Tests.Serialization
         /// <summary>
         /// This is an object that is contained in the interface object.
         /// </summary>
-        [JsonConverter(typeof(SomethingElseConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(SomethingElseConverter))]
         public class SomethingElse
         {
-            public class SomethingElseConverter : JsonConverter
+            public class SomethingElseConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
             {
                 public override bool CanConvert(Type objectType)
                 {
@@ -1120,13 +1120,13 @@ namespace Newtonsoft.Json.Tests.Serialization
         public string ItemName { get; set; }
     }
 
-    [JsonObject]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject]
     public class MyTypeWithRequiredMembers
     {
-        [JsonProperty(Required = Required.AllowNull)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
         public string Required1;
 
-        [JsonProperty(Required = Required.AllowNull)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
         public string Required2;
     }
 
@@ -1144,8 +1144,8 @@ namespace Newtonsoft.Json.Tests.Serialization
 
     public class ErrorTestObject
     {
-        [OnError]
-        internal void OnError(StreamingContext context, ErrorContext errorContext)
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+        void OnError(StreamingContext context, ErrorContext errorContext)
         {
         }
     }
@@ -1155,10 +1155,13 @@ namespace Newtonsoft.Json.Tests.Serialization
     /// </summary>
     public class TolerantDictionary<TKey, TValue> : Dictionary<TKey, TValue>
     {
-        [OnError]
+        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
         public void OnDeserializationError(StreamingContext streamingContext, ErrorContext errorContext)
         {
             errorContext.Handled = true;
         }
     }
 }
+
+
+

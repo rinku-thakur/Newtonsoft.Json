@@ -30,14 +30,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class DateTimeTestClass
     {
         public string PreField { get; set; }
 
         [DefaultValue("")]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore)]
         public DateTime DateTimeField { get; set; }
 
         public DateTimeOffset DateTimeOffsetField { get; set; }
@@ -46,3 +46,4 @@ namespace Newtonsoft.Json.Tests.TestObjects
 }
 
 #endif
+

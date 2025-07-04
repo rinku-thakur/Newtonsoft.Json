@@ -30,19 +30,19 @@ using System.Collections;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class JsonObjectAttributeOverrideIEnumerable : TestFixtureBase
     {
         #region Types
-        [JsonObject]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject]
         public class Directory : IEnumerable<string>
         {
             public string Name { get; set; }

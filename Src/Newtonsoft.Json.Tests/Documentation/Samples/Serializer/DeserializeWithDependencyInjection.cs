@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -31,7 +31,7 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
@@ -41,10 +41,10 @@ using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Autofac;
 using Autofac.Core;
 using Autofac.Core.Activators.Reflection;
-using Newtonsoft.Json.Tests.Serialization;
-using LogService = Newtonsoft.Json.Tests.Serialization.LogManager;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization;
+using LogService = Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.LogManager;
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class DeserializeWithDependencyInjection : TestFixtureBase

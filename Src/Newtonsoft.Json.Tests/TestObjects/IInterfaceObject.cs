@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,13 +26,13 @@
 using System;
 using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public interface IInterfaceObject
     {
-        [JsonProperty(PropertyName = "virtualMember")]
-        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "virtualMember")]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(IsoDateTimeConverter))]
         DateTime InterfaceMember { get; set; }
     }
 }

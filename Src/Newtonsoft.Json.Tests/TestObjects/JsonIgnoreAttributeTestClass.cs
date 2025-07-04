@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class JsonIgnoreAttributeTestClass
     {
@@ -37,16 +37,16 @@ namespace Newtonsoft.Json.Tests.TestObjects
             get { return _property; }
         }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public int IgnoredField;
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public int IgnoredProperty
         {
             get { return _ignoredProperty; }
         }
 
-        [JsonIgnore]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
         public Product IgnoredObject = new Product();
     }
 }

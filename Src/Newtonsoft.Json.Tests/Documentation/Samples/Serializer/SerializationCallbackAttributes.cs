@@ -30,13 +30,13 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class SerializationCallbackAttributes : TestFixtureBase
@@ -54,7 +54,7 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 
             // This field is not serialized. The OnDeserializedAttribute 
             // is used to set the member value after serialization.
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public string Member3 { get; set; }
 
             // This field is set to null, but populated after deserialization.

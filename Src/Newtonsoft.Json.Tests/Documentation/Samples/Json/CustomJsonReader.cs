@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,7 +33,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
@@ -41,7 +41,7 @@ using NUnit.Framework;
 
 #if !(DNXCORE50 || NET20) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Json
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Json
 {
 
     #region Types

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,12 +33,12 @@ using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue1576 : TestFixtureBase
@@ -75,7 +75,7 @@ namespace Newtonsoft.Json.Tests.Issues
 
         public class TestClassWithJsonConverter
         {
-            [JsonConverter(typeof(OneItemListJsonConverter))]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OneItemListJsonConverter))]
             public List<int> Items { get; } = new List<int>();
         }
 
@@ -94,7 +94,7 @@ namespace Newtonsoft.Json.Tests.Issues
             }
         }
 
-        public class OneItemListJsonConverter : JsonConverter
+        public class OneItemListJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
         {
             public override bool CanWrite => false;
 
@@ -136,3 +136,4 @@ namespace Newtonsoft.Json.Tests.Issues
 
     }
 }
+

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,7 +33,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 using TestCase = Xunit.InlineDataAttribute;
 #else
 using NUnit.Framework;
@@ -48,7 +48,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Linq
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
 {
     [TestFixture]
     public class JTokenTests : TestFixtureBase
@@ -994,7 +994,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JArray a = new JArray();
                 a.Add(new JProperty("PropertyName"));
-            }, "Can not add Newtonsoft.Json.Linq.JProperty to Newtonsoft.Json.Linq.JArray.");
+            }, "Can not add Autodesk.DataExchange.Newtonsoft.Json.Linq.JProperty to Autodesk.DataExchange.Newtonsoft.Json.Linq.JArray.");
         }
 
         [Test]
@@ -1004,7 +1004,7 @@ namespace Newtonsoft.Json.Tests.Linq
             {
                 JObject o = new JObject();
                 o.Add(5);
-            }, "Can not add Newtonsoft.Json.Linq.JValue to Newtonsoft.Json.Linq.JObject.");
+            }, "Can not add Autodesk.DataExchange.Newtonsoft.Json.Linq.JValue to Autodesk.DataExchange.Newtonsoft.Json.Linq.JObject.");
         }
 
         [Test]

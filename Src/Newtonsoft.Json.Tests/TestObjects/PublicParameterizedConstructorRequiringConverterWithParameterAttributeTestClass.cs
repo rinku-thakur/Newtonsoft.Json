@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -23,13 +23,13 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 #endregion
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PublicParameterizedConstructorRequiringConverterWithParameterAttributeTestClass
     {
         private readonly NameContainer _nameContainer;
 
-        public PublicParameterizedConstructorRequiringConverterWithParameterAttributeTestClass([JsonConverter(typeof(NameContainerConverter))] NameContainer nameParameter)
+        public PublicParameterizedConstructorRequiringConverterWithParameterAttributeTestClass([Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(NameContainerConverter))] NameContainer nameParameter)
         {
             _nameContainer = nameParameter;
         }

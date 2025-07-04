@@ -37,19 +37,19 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 using System.Globalization;
-using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
+using ErrorEventArgs = Autodesk.DataExchange.Newtonsoft.Json.Serialization.ErrorEventArgs;
 using OriginalStreamWriter = System.IO.StreamWriter;
-using StreamWriter = Newtonsoft.Json.Tests.Documentation.SerializationTests.StreamWriter;
+using StreamWriter = Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.SerializationTests.StreamWriter;
 
-namespace Newtonsoft.Json.Tests.Documentation
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 {
     [TestFixture]
     public class SerializationTests : TestFixtureBase
@@ -99,7 +99,7 @@ namespace Newtonsoft.Json.Tests.Documentation
 
             JsonSerializer serializer = new JsonSerializer();
             serializer.Converters.Add(new JavaScriptDateTimeConverter());
-            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
 
             using (StreamWriter sw = new StreamWriter(@"c:\json.txt"))
             using (JsonWriter writer = new JsonTextWriter(sw))
@@ -111,19 +111,19 @@ namespace Newtonsoft.Json.Tests.Documentation
         }
 
         #region SerializationAttributes
-        [JsonObject(MemberSerialization.OptIn)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
         public class Person
         {
             // "John Smith"
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public string Name { get; set; }
 
             // "2000-12-15T22:11:03"
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public DateTime BirthDate { get; set; }
 
             // new Date(976918263055)
-            [JsonProperty]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
             public DateTime LastModified { get; set; }
 
             // not serialized because mode is opt-in
@@ -144,7 +144,7 @@ namespace Newtonsoft.Json.Tests.Documentation
 
             // This field is not serialized. The OnDeserializedAttribute 
             // is used to set the member value after serialization.
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public string Member3 { get; set; }
 
             // This field is set to null, but populated after deserialization.
@@ -310,8 +310,8 @@ namespace Newtonsoft.Json.Tests.Documentation
 
             public string Title { get; set; }
 
-            [OnError]
-            internal void OnError(StreamingContext context, ErrorContext errorContext)
+            [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+            void OnError(StreamingContext context, ErrorContext errorContext)
             {
                 errorContext.Handled = true;
             }
@@ -442,7 +442,7 @@ namespace Newtonsoft.Json.Tests.Documentation
         }
 
         #region PreservingObjectReferencesAttribute
-        [JsonObject(IsReference = true)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(IsReference = true)]
         public class EmployeeReference
         {
             public string Name { get; set; }
@@ -520,7 +520,7 @@ namespace Newtonsoft.Json.Tests.Documentation
             IPerson person = people[0];
 
             Console.WriteLine(person.GetType());
-            // Newtonsoft.Json.Tests.Employee
+            // Autodesk.DataExchange.Newtonsoft.Json.Tests.Employee
 
             Console.WriteLine(person.FirstName);
             // Maurice
@@ -723,7 +723,7 @@ namespace Newtonsoft.Json.Tests.Documentation
             public List<string> Features { get; set; }
 
             // ignored
-            [JsonIgnore]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
             public DateTime LastModified { get; set; }
         }
         #endregion
@@ -782,7 +782,7 @@ namespace Newtonsoft.Json.Tests.Documentation
 
             string ignored = JsonConvert.SerializeObject(movie,
                 Formatting.Indented,
-                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
 
             // {
             //   "Name": "Bad Boys III",
@@ -854,7 +854,7 @@ namespace Newtonsoft.Json.Tests.Documentation
 
             string ignored = JsonConvert.SerializeObject(invoice,
                 Formatting.Indented,
-                new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+                new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
 
             // {
             //   "Company": "Acme Ltd.",
@@ -1073,3 +1073,5 @@ namespace Newtonsoft.Json.Tests.Documentation
 }
 
 #endif
+
+

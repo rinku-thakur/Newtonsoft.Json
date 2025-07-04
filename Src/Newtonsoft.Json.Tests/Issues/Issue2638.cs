@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2022 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -25,17 +25,17 @@
 
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using System.Globalization;
-using Newtonsoft.Json.Tests.Documentation.Samples.Linq;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Linq;
 
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue2638
@@ -127,3 +127,4 @@ namespace Newtonsoft.Json.Tests.Issues
         }
     }
 }
+

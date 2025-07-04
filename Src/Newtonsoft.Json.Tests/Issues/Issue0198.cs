@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,16 +34,16 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Tests.TestObjects;
+using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 #endif
 
-namespace Newtonsoft.Json.Tests.Issues
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 {
     [TestFixture]
     public class Issue0198 : TestFixtureBase
@@ -81,13 +81,13 @@ namespace Newtonsoft.Json.Tests.Issues
 
             string serializedData = JsonConvert.SerializeObject(objects, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
                 Formatting = Formatting.Indented
             });
 
             IEnumerable<TestClass1> a = JsonConvert.DeserializeObject<IEnumerable<TestClass1>>(serializedData, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             });
 
             TestClass1 o = a.First();
@@ -108,13 +108,13 @@ namespace Newtonsoft.Json.Tests.Issues
 
             string serializedData = JsonConvert.SerializeObject(c, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All,
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
                 Formatting = Formatting.Indented
             });
 
             TestClass3 a = JsonConvert.DeserializeObject<TestClass3>(serializedData, new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
             });
 
             Assert.AreEqual(1, a.Prop1.Count);
@@ -155,3 +155,4 @@ namespace Newtonsoft.Json.Tests.Issues
     }
 }
 #endif
+

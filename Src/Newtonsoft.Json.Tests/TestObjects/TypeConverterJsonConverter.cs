@@ -32,10 +32,10 @@ using System.Linq;
 #endif
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
-namespace Newtonsoft.Json.Tests.TestObjects
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(NET35 || NET20 || PORTABLE || PORTABLE40) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
-    internal class TypeConverterJsonConverter : JsonConverter
+    internal class TypeConverterJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
     {
         private TypeConverter GetConverter(Type type)
         {

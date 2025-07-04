@@ -29,13 +29,13 @@ using System.Text;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
-using Assert = Newtonsoft.Json.Tests.XUnitAssert;
+using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
 #else
 using NUnit.Framework;
 
 #endif
 
-namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
+namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Serializer
 {
     [TestFixture]
     public class JsonPropertyOrder : TestFixtureBase
@@ -46,17 +46,17 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
             public string EmailAddress { get; set; }
 
             // appear last
-            [JsonProperty(Order = 1)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = 1)]
             public bool Deleted { get; set; }
 
-            [JsonProperty(Order = 2)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = 2)]
             public DateTime DeletedDate { get; set; }
 
             public DateTime CreatedDate { get; set; }
             public DateTime UpdatedDate { get; set; }
 
             // appear first
-            [JsonProperty(Order = -2)]
+            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = -2)]
             public string FullName { get; set; }
         }
         #endregion
@@ -99,3 +99,4 @@ namespace Newtonsoft.Json.Tests.Documentation.Samples.Serializer
         }
     }
 }
+
