@@ -615,6 +615,67 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
         }
 #endif
 
+
+        [Test]
+        public void TestJObjectToObject()
+        {
+            JObject o = JObject.Parse(@"{
+""autodesk.design:components.geometry-1.0.0"": {
+  ""geometry"": {
+    ""autodesk.design:geometry.curveset-1.0.0"": {
+      ""geometry"": {
+        ""array<autodesk.geometry.curve:curve-1.0.0>"": {
+          ""curves"": {
+            ""insert"": [
+              [
+                0,
+                [
+                  {
+                    ""typeid"": ""autodesk.geometry.curve:line-1.0.0"",
+                    ""autodesk.geometry:paramrange-1.0.0"": {
+                      ""range"": {
+                        ""Float64"": {
+                          ""high"": 6.5,
+                          ""low"": 0
+                        },
+                        ""enum<Enum>"": {
+                          ""type"": 1
+                        }
+                      }
+                    },
+                    ""autodesk.math:point3d-1.0.0"": {
+                      ""position"": {
+                        ""Float64"": {
+                          ""x"": -573.25956405730278,
+                          ""y"": -343.35679203730854,
+                          ""z"": 0
+                        }
+                      }
+                    },
+                    ""autodesk.math:vector3d-1.0.0"": {
+                      ""direction"": {
+                        ""Float64"": {
+                          ""x"": 30.48,
+                          ""y"": -9.96741220580054E-14,
+                          ""z"": 0
+                        }
+                      }
+                    }
+                  }
+                ]
+              ]
+            ]
+          }
+        }
+      }
+    }
+  }
+}}");
+
+            JObject jsonObj = JObject.FromObject(o);
+
+        }
+
 #if !(PORTABLE || DNXCORE50 || PORTABLE40) || NETSTANDARD2_0 || NET6_0_OR_GREATER
         [Test]
         public void SerializeDataTable()
