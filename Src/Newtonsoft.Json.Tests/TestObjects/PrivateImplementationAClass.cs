@@ -27,10 +27,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PrivateImplementationAClass : IPrivateImplementationA
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string PropertyA { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("PropertyA")]
+        [JsonProperty("PropertyA")]
         string IPrivateImplementationA.PropertyA
         {
             get { return PropertyA; }

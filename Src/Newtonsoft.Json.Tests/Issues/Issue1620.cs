@@ -83,7 +83,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         {
         }
 
-        public class FooConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class FooConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {

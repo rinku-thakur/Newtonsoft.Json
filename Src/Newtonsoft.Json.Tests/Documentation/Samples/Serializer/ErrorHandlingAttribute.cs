@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -66,8 +66,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             public string Title { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
-            void OnError(StreamingContext context, ErrorContext errorContext)
+            [OnError]
+            internal void OnError(StreamingContext context, ErrorContext errorContext)
             {
                 errorContext.Handled = true;
             }

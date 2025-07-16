@@ -57,7 +57,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             {
                 JsonConvert.DeserializeObject(
                     @"[""1"",",
-                    new JsonSerializerSettings() { TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.None, MaxDepth = 1024 });
+                    new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.None, MaxDepth = 1024 });
             }, "Unexpected end when reading token. Path ''.");
         }
 
@@ -200,4 +200,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 #endif
     }
 }
-

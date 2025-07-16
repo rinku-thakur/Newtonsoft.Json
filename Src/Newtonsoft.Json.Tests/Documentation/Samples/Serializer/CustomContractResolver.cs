@@ -36,7 +36,6 @@ using System.Linq;
 using Xunit;
 using Test = Xunit.FactAttribute;
 using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
-using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 #else
 using NUnit.Framework;
 
@@ -115,4 +114,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

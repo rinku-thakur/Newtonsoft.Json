@@ -93,10 +93,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             _refReadonlyField = refReadonlyField;
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public ref int RefField => ref _refField;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public ref readonly int RefReadonlyField => ref _refReadonlyField;
 
         public void SetRefField(int value)

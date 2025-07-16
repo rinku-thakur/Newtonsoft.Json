@@ -92,11 +92,11 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
     public class Simple
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+        [JsonProperty(Required = Required.Always)]
         public SimpleObject[] Array { get; set; }
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(LineInfoConverter))]
+    [JsonConverter(typeof(LineInfoConverter))]
     public class SimpleObject : JsonLineInfo
     {
         public string Value { get; set; }
@@ -104,14 +104,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
     public class JsonLineInfo
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public int? LineNumber { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public int? LinePosition { get; set; }
     }
 
-    public class LineInfoConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class LineInfoConverter : JsonConverter
     {
         public override bool CanWrite
         {
@@ -153,5 +153,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         }
     }
 }
-
-

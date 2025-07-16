@@ -59,7 +59,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             string json = JsonConvert.SerializeObject(joe, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
 
             Console.WriteLine(json);
@@ -80,4 +80,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

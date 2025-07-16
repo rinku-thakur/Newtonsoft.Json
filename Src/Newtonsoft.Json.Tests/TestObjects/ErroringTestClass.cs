@@ -25,7 +25,7 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ErroringJsonConverter))]
+    [JsonConverter(typeof(ErroringJsonConverter))]
     public class ErroringTestClass
     {
     }

@@ -48,7 +48,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             return item.Name;
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+        [OnError]
         internal void OnErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
             Messages.Add(errorContext.Path + " - Error message for member " + errorContext.Member + " = " + errorContext.Error.Message);

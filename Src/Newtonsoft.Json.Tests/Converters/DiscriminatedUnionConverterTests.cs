@@ -49,7 +49,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
     [TestFixture]
     public class DiscriminatedUnionConverterTests : TestFixtureBase
     {
-        public class DoubleDoubleConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class DoubleDoubleConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -293,7 +293,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             string json = JsonConvert.SerializeObject(Shape.NewRectangle(10.0, 5.0), new JsonSerializerSettings
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.All,
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             });
 
             Assert.AreEqual(@"{""Case"":""Rectangle"",""Fields"":[10.0,5.0]}", json);
@@ -310,4 +310,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 }
 
 #endif
-

@@ -634,7 +634,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class ClassWithExtensionData
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             public IDictionary<string, object> Data { get; set; }
         }
 
@@ -848,4 +848,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-

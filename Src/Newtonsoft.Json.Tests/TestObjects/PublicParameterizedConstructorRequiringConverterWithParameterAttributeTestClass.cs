@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
     {
         private readonly NameContainer _nameContainer;
 
-        public PublicParameterizedConstructorRequiringConverterWithParameterAttributeTestClass([Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(NameContainerConverter))] NameContainer nameParameter)
+        public PublicParameterizedConstructorRequiringConverterWithParameterAttributeTestClass([JsonConverter(typeof(NameContainerConverter))] NameContainer nameParameter)
         {
             _nameContainer = nameParameter;
         }

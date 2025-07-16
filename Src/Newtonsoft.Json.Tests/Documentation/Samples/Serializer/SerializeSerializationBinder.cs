@@ -88,7 +88,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             string json = JsonConvert.SerializeObject(car, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
+                TypeNameHandling = TypeNameHandling.Objects,
                 SerializationBinder = knownTypesBinder
             });
 
@@ -101,7 +101,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             object newValue = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
+                TypeNameHandling = TypeNameHandling.Objects,
                 SerializationBinder = knownTypesBinder
             });
 
@@ -113,4 +113,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

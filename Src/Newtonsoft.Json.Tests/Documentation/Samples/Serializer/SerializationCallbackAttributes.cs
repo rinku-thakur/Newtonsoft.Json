@@ -54,7 +54,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             // This field is not serialized. The OnDeserializedAttribute 
             // is used to set the member value after serialization.
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public string Member3 { get; set; }
 
             // This field is set to null, but populated after deserialization.

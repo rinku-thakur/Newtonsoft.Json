@@ -25,10 +25,10 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(Id = "MyExplicitId")]
+    [JsonObject(Id = "MyExplicitId")]
     public class CircularReferenceWithIdClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public string Name { get; set; }
 
         public CircularReferenceWithIdClass Child { get; set; }

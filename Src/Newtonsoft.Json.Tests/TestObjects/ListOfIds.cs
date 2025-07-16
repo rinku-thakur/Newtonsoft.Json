@@ -30,7 +30,7 @@ using System.Reflection;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public class ListOfIds<T> : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter where T : Bar, new()
+    public class ListOfIds<T> : JsonConverter where T : Bar, new()
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -67,7 +67,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         public override bool CanConvert(Type objectType)
         {
 #if DNXCORE50 && !(NETSTANDARD2_0 || NET6_0_OR_GREATER)
-            return Newtonsoft.Json.Utilities.TypeExtensions.IsAssignableFrom(typeof(IList<T>), objectType);
+            return Autodesk.DataExchange.Newtonsoft.Json.Utilities.TypeExtensions.IsAssignableFrom(typeof(IList<T>), objectType);
 #else
             return typeof(IList<T>).IsAssignableFrom(objectType);
 #endif

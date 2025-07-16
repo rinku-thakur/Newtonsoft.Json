@@ -6,11 +6,9 @@
   </Configurations>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
-    <File Path="global.json" />
-    <File Path="NuGet.Config" />
   </Folder>
-  <Project Path="Newtonsoft.Json.FuzzTests/Newtonsoft.Json.FuzzTests.csproj" />
-  <Project Path="Newtonsoft.Json.TestConsole/Newtonsoft.Json.TestConsole.csproj" />
-  <Project Path="Newtonsoft.Json.Tests/Newtonsoft.Json.Tests.csproj" />
-  <Project Path="Newtonsoft.Json/Newtonsoft.Json.csproj" />
+  <Project Path="Newtonsoft.Json.FuzzTests/Autodesk.DataExchange.Newtonsoft.Json.FuzzTests.csproj" />
+  <Project Path="Newtonsoft.Json.TestConsole/Autodesk.DataExchange.Newtonsoft.Json.TestConsole.csproj" />
+  <Project Path="Newtonsoft.Json.Tests/Autodesk.DataExchange.Newtonsoft.Json.Tests.csproj" />
+  <Project Path="Newtonsoft.Json/Autodesk.DataExchange.Newtonsoft.Json.csproj" />
 </Solution>

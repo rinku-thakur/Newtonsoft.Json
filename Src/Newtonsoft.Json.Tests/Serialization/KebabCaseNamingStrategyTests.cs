@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -248,10 +248,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class PropertyAttributeNamingStrategyTestClass
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public string HasNoAttributeNamingStrategy { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NamingStrategyType = typeof(KebabCaseNamingStrategy))]
+            [JsonProperty(NamingStrategyType = typeof(KebabCaseNamingStrategy))]
             public string HasAttributeNamingStrategy { get; set; }
         }
 
@@ -272,12 +272,12 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 }", json);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(NamingStrategyType = typeof(KebabCaseNamingStrategy))]
+        [JsonObject(NamingStrategyType = typeof(KebabCaseNamingStrategy))]
         public class ContainerAttributeNamingStrategyTestClass
         {
             public string Prop1 { get; set; }
             public string Prop2 { get; set; }
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NamingStrategyType = typeof(DefaultNamingStrategy))]
+            [JsonProperty(NamingStrategyType = typeof(DefaultNamingStrategy))]
             public string HasAttributeNamingStrategy { get; set; }
         }
 
@@ -299,7 +299,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 }", json);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(NamingStrategyType = typeof(KebabCaseNamingStrategy), NamingStrategyParameters = new object[] { true, true })]
+        [JsonDictionary(NamingStrategyType = typeof(KebabCaseNamingStrategy), NamingStrategyParameters = new object[] { true, true })]
         public class DictionaryAttributeNamingStrategyTestClass : Dictionary<string, string>
         {
         }
@@ -322,4 +322,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-

@@ -63,7 +63,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
                 Name = "Name!"
             };
 
-            string json = JsonConvert.SerializeObject(person, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore });
+            string json = JsonConvert.SerializeObject(person, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
             StringAssert.AreEqual(@"{
   ""first_name"": ""FirstName!"",

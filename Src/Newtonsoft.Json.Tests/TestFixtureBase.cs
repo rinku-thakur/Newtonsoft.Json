@@ -51,7 +51,7 @@ using System.Threading.Tasks;
 #endif
 #if NET20
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
-using Action = Newtonsoft.Json.Serialization.Action;
+using Action = Autodesk.DataExchange.Newtonsoft.Json.Serialization.Action;
 #else
 using System.Linq;
 

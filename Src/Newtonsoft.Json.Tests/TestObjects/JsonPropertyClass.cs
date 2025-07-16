@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,17 +27,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class JsonPropertyClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("pie")]
+        [JsonProperty("pie")]
         public string Pie = "Yum";
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string pie = "No pie for you!";
 
         public string pie1 = "PieChart!";
 
         private int _sweetCakesCount;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("sweet_cakes_count")]
+        [JsonProperty("sweet_cakes_count")]
         public int SweetCakesCount
         {
             get { return _sweetCakesCount; }

@@ -37,16 +37,16 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             get { return _property; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public int IgnoredField;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public int IgnoredProperty
         {
             get { return _ignoredProperty; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public Product IgnoredObject = new Product();
     }
 }

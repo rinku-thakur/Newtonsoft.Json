@@ -29,16 +29,16 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class RequiredMembersClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+        [JsonProperty(Required = Required.Always)]
         public string FirstName { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         public string MiddleName { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public string LastName { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Default)]
+        [JsonProperty(Required = Required.Default)]
         public DateTime BirthDate { get; set; }
     }
 }

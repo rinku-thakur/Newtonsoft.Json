@@ -52,7 +52,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
     [MetadataType(typeof(FaqItemMetadata))]
     partial class FaqItem
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("FullSectionsProp")]
+        [JsonProperty("FullSectionsProp")]
         public ICollection<FaqSection> FullSections
         {
             get { return Sections; }
@@ -61,7 +61,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 
     public class FaqItemMetadata
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public virtual ICollection<FaqSection> Sections { get; set; }
     }
 

@@ -60,9 +60,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         {
             public int Foo { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             public IDictionary<string, JToken> Extra { get; set; }
         }
     }
 }
-

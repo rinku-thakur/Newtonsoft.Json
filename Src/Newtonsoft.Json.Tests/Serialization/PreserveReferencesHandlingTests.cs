@@ -52,7 +52,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             public bool SomeValue { get; set; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ListConverter))]
+        [JsonConverter(typeof(ListConverter))]
         public class ContentA : List<object>
         {
             public ContentB B { get; set; }
@@ -63,7 +63,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             }
         }
 
-        public class ListConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class ListConverter : JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {
@@ -99,7 +99,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.PreserveReferencesHandling = PreserveReferencesHandling.All;
-            settings.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
+            settings.TypeNameHandling = TypeNameHandling.All;
             settings.Formatting = Formatting.Indented;
 
             Container c1 = new Container();
@@ -112,14 +112,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             StringAssert.AreEqual(@"{
   ""$id"": ""1"",
-  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.PreserveReferencesHandlingTests+Container, Newtonsoft.Json.Tests"",
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.PreserveReferencesHandlingTests+Container, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
   ""ListA"": {
     ""$id"": ""2"",
     ""$type"": """ + ReflectionUtils.GetTypeName(typeof(List<ContentA>), 0, DefaultSerializationBinder.Instance) + @""",
     ""$values"": [
       {
         ""$id"": ""3"",
-        ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.PreserveReferencesHandlingTests+ContentB, Newtonsoft.Json.Tests"",
+        ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.PreserveReferencesHandlingTests+ContentB, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
         ""SomeValue"": true
       }
     ]
@@ -305,7 +305,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(circularList,
                 Formatting.Indented,
-                new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore });
+                new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
             StringAssert.AreEqual(@"[
   null,
@@ -456,7 +456,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             circularDictionary.Add("self", circularDictionary);
 
             string json = JsonConvert.SerializeObject(circularDictionary, Formatting.Indented,
-                new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore });
+                new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
             StringAssert.AreEqual(@"{
   ""other"": {
@@ -482,7 +482,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             }, @"Unexpected end when reading JSON. Path '$id', line 2, position 8.");
         }
 
-        public class CircularReferenceClassConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class CircularReferenceClassConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -538,7 +538,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             string json = JsonConvert.SerializeObject(c1, Formatting.Indented, new JsonSerializerSettings
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new CircularReferenceClassConverter() }
+                Converters = new List<JsonConverter> { new CircularReferenceClassConverter() }
             });
 
             StringAssert.AreEqual(@"{
@@ -586,7 +586,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             CircularReferenceClass c1 = JsonConvert.DeserializeObject<CircularReferenceClass>(json, new JsonSerializerSettings
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new CircularReferenceClassConverter() }
+                Converters = new List<JsonConverter> { new CircularReferenceClassConverter() }
             });
 
             Assert.AreEqual("c1", c1.Name);
@@ -657,7 +657,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(employees[0], employees[1].Manager);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(IsReference = true)]
+        [JsonObject(IsReference = true)]
         private class Condition
         {
             public int Value { get; }
@@ -990,14 +990,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             Assert.AreEqual(true, equal);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+        [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
         public class User
         {
             #region properties
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always, PropertyName = "SecretType")]
+            [JsonProperty(Required = Required.Always, PropertyName = "SecretType")]
             private string secretType;
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+            [JsonProperty(Required = Required.Always)]
             public string Login { get; set; }
 
             public Type SecretType
@@ -1006,7 +1006,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
                 set { secretType = value.AssemblyQualifiedName; }
             }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public User Friend { get; set; }
             #endregion
 
@@ -1046,8 +1046,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
-                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.All,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects
             };
@@ -1317,38 +1317,36 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
     public class PropertyItemIsReferenceObject
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemIsReference = true)]
+        [JsonProperty(ItemIsReference = true)]
         public PropertyItemIsReferenceBody Data { get; set; }
     }
 
     public class PropertyItemIsReferenceList
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemIsReference = true)]
+        [JsonProperty(ItemIsReference = true)]
         public IList<IList<object>> Data { get; set; }
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemIsReference = true)]
+    [JsonArray(ItemIsReference = true)]
     public class ReferencedList<T> : List<T>
     {
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemIsReference = true)]
+    [JsonDictionary(ItemIsReference = true)]
     public class ReferencedDictionary<T> : Dictionary<string, T>
     {
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemIsReference = true)]
+    [JsonObject(ItemIsReference = true)]
     public class ReferenceObject
     {
         public TestComponentSimple Component1 { get; set; }
         public TestComponentSimple Component2 { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(IsReference = false)]
+        [JsonProperty(IsReference = false)]
         public TestComponentSimple ComponentNotReference { get; set; }
 
         public string String { get; set; }
         public int Integer { get; set; }
     }
 }
-
-

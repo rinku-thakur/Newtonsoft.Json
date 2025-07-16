@@ -14,7 +14,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
     public class Issue2775
     {
         [Test]
-        //https://github.com/JamesNK/Newtonsoft.Json/issues/2775
+        //https://github.com/JamesNK/Autodesk.DataExchange.Newtonsoft.Json/issues/2775
         public void TokenType()
         {
             var jObject = new JObject { { "NullProperty", false ? "0" : null } };

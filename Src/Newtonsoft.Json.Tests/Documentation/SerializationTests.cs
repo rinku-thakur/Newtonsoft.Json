@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -99,7 +99,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             JsonSerializer serializer = new JsonSerializer();
             serializer.Converters.Add(new JavaScriptDateTimeConverter());
-            serializer.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
+            serializer.NullValueHandling = NullValueHandling.Ignore;
 
             using (StreamWriter sw = new StreamWriter(@"c:\json.txt"))
             using (JsonWriter writer = new JsonTextWriter(sw))
@@ -111,19 +111,19 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
         }
 
         #region SerializationAttributes
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
+        [JsonObject(MemberSerialization.OptIn)]
         public class Person
         {
             // "John Smith"
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public string Name { get; set; }
 
             // "2000-12-15T22:11:03"
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public DateTime BirthDate { get; set; }
 
             // new Date(976918263055)
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public DateTime LastModified { get; set; }
 
             // not serialized because mode is opt-in
@@ -144,7 +144,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             // This field is not serialized. The OnDeserializedAttribute 
             // is used to set the member value after serialization.
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public string Member3 { get; set; }
 
             // This field is set to null, but populated after deserialization.
@@ -310,8 +310,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             public string Title { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
-            void OnError(StreamingContext context, ErrorContext errorContext)
+            [OnError]
+            internal void OnError(StreamingContext context, ErrorContext errorContext)
             {
                 errorContext.Handled = true;
             }
@@ -442,7 +442,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
         }
 
         #region PreservingObjectReferencesAttribute
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(IsReference = true)]
+        [JsonObject(IsReference = true)]
         public class EmployeeReference
         {
             public string Name { get; set; }
@@ -723,7 +723,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
             public List<string> Features { get; set; }
 
             // ignored
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public DateTime LastModified { get; set; }
         }
         #endregion
@@ -782,7 +782,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             string ignored = JsonConvert.SerializeObject(movie,
                 Formatting.Indented,
-                new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             // {
             //   "Name": "Bad Boys III",
@@ -854,7 +854,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             string ignored = JsonConvert.SerializeObject(invoice,
                 Formatting.Indented,
-                new JsonSerializerSettings { DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore });
+                new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
 
             // {
             //   "Company": "Acme Ltd.",
@@ -1073,5 +1073,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 }
 
 #endif
-
-

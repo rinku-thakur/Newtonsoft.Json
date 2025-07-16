@@ -270,27 +270,27 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
         }
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+    [JsonArray(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
     public class ConverterList<T> : List<T>
     {
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+    [JsonDictionary(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
     public class ConverterDictionary<T> : Dictionary<string, T>
     {
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+    [JsonObject(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
     public class ConverterObject
     {
         public object Object1 { get; set; }
         public object Object2 { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(DateIntConverter))]
+        [JsonConverter(typeof(DateIntConverter))]
         public object ObjectNotHandled { get; set; }
     }
 
-    public class DateIntConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class DateIntConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

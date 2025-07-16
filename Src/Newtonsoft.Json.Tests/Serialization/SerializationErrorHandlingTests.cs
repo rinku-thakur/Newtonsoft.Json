@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -59,7 +59,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             AAA a2 = JsonConvert.DeserializeObject<AAA>(@"{""MyTest"":{""$type"":""<Namespace>.JsonTest+MyTest2, <Assembly>""}}", new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.Auto,
                 Error = (object sender, Json.Serialization.ErrorEventArgs e) =>
                 {
                     errors.Add(e.ErrorContext.Error);
@@ -79,7 +79,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             JObject a2 = (JObject)JsonConvert.DeserializeObject(@"{""$type"":""<Namespace>.JsonTest+MyTest2, <Assembly>""}", new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.Auto,
                 Error = (object sender, Json.Serialization.ErrorEventArgs e) =>
                 {
                     errors.Add(e.ErrorContext.Error);
@@ -102,9 +102,9 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class MyClass1
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("myint")]
+            [JsonProperty("myint")]
             public int MyInt { get; set; }
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("Mybool")]
+            [JsonProperty("Mybool")]
             public bool Mybool { get; set; }
         }
 
@@ -855,10 +855,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         /// <summary>
         /// This could be an object we are passing up in an interface.
         /// </summary>
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(SomethingConverter))]
+        [JsonConverter(typeof(SomethingConverter))]
         public class Something
         {
-            public class SomethingConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+            public class SomethingConverter : JsonConverter
             {
                 public override bool CanConvert(Type objectType)
                 {
@@ -911,10 +911,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         /// <summary>
         /// This is an object that is contained in the interface object.
         /// </summary>
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(SomethingElseConverter))]
+        [JsonConverter(typeof(SomethingElseConverter))]
         public class SomethingElse
         {
-            public class SomethingElseConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+            public class SomethingElseConverter : JsonConverter
             {
                 public override bool CanConvert(Type objectType)
                 {
@@ -1120,13 +1120,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         public string ItemName { get; set; }
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject]
+    [JsonObject]
     public class MyTypeWithRequiredMembers
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public string Required1;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public string Required2;
     }
 
@@ -1144,8 +1144,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
     public class ErrorTestObject
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
-        void OnError(StreamingContext context, ErrorContext errorContext)
+        [OnError]
+        internal void OnError(StreamingContext context, ErrorContext errorContext)
         {
         }
     }
@@ -1155,13 +1155,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
     /// </summary>
     public class TolerantDictionary<TKey, TValue> : Dictionary<TKey, TValue>
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+        [OnError]
         public void OnDeserializationError(StreamingContext streamingContext, ErrorContext errorContext)
         {
             errorContext.Handled = true;
         }
     }
 }
-
-
-

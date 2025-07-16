@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -39,13 +39,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             _readonlyString = "default!";
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         private string _privateString;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         private readonly string _readonlyString;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         internal string _internalString;
 
         public string UseValue()

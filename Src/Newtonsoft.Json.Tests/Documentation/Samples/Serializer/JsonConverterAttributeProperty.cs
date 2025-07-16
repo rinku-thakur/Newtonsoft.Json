@@ -53,7 +53,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         {
             public string UserName { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+            [JsonConverter(typeof(StringEnumConverter))]
             public UserStatus Status { get; set; }
         }
         #endregion

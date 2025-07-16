@@ -45,7 +45,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         {
             public string Name { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemIsReference = true)]
+            [JsonProperty(ItemIsReference = true)]
             public IList<Employee> Employees { get; set; }
         }
 
@@ -53,7 +53,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         {
             public string Name { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(IsReference = true)]
+            [JsonProperty(IsReference = true)]
             public Employee Manager { get; set; }
         }
         #endregion
@@ -124,4 +124,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

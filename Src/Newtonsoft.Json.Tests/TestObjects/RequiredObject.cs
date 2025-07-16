@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -25,21 +25,21 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemRequired = Required.Always)]
+    [JsonObject(ItemRequired = Required.Always)]
     public class RequiredObject
     {
         public int? NonAttributeProperty { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         public int? UnsetProperty { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Default)]
+        [JsonProperty(Required = Required.Default)]
         public int? DefaultProperty { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public int? AllowNullProperty { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+        [JsonProperty(Required = Required.Always)]
         public int? AlwaysProperty { get; set; }
     }
 }

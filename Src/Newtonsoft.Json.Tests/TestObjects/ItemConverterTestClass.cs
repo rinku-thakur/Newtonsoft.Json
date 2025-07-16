@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ItemConverterTestClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemConverterType = typeof(ItemConverterTestConverter))]
+        [JsonProperty(ItemConverterType = typeof(ItemConverterTestConverter))]
         public Dictionary<string, object> MyProperty { get; set; }
     }
 }

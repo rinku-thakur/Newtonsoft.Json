@@ -50,7 +50,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             public decimal TaxRate { get; set; }
 
             // everything else gets stored here
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             private IDictionary<string, JToken> _additionalData;
         }
         #endregion

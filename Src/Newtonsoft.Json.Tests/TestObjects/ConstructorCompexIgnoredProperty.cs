@@ -27,7 +27,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class ConstructorCompexIgnoredProperty
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public Product Ignored { get; set; }
 
         public string First { get; set; }

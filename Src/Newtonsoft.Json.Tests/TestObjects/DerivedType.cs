@@ -46,12 +46,11 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         [DataMember]
         public string cat;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = 1)]
+        [JsonProperty(Order = 1)]
         public string albatross;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = -2)]
+        [JsonProperty(Order = -2)]
         public string dinosaur;
     }
 #endif
 }
-

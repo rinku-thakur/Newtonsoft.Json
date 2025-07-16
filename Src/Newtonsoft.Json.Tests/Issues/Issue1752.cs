@@ -53,7 +53,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         [Test]
         public void Test_EmptyString()
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto };
+            JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
 
             string s1 = JsonConvert.SerializeObject(new TestObject() { Obj = new byte[] { } }, settings);
 
@@ -82,4 +82,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         }
     }
 }
-

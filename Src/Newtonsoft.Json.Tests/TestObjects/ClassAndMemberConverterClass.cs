@@ -29,7 +29,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
     {
         public ConverterPrecedenceClass DefaultConverter { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(MemberConverterPrecedenceClassConverter))]
+        [JsonConverter(typeof(MemberConverterPrecedenceClassConverter))]
         public ConverterPrecedenceClass MemberConverter { get; set; }
     }
 }

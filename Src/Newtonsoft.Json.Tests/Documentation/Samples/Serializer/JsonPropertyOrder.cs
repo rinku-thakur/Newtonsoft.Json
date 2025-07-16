@@ -46,17 +46,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             public string EmailAddress { get; set; }
 
             // appear last
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = 1)]
+            [JsonProperty(Order = 1)]
             public bool Deleted { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = 2)]
+            [JsonProperty(Order = 2)]
             public DateTime DeletedDate { get; set; }
 
             public DateTime CreatedDate { get; set; }
             public DateTime UpdatedDate { get; set; }
 
             // appear first
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Order = -2)]
+            [JsonProperty(Order = -2)]
             public string FullName { get; set; }
         }
         #endregion
@@ -99,4 +99,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

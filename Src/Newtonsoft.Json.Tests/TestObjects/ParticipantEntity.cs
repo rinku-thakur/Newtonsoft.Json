@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,7 +32,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
     {
         private Dictionary<string, string> _properties;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+        [JsonConstructor]
         public ParticipantEntity()
         {
         }
@@ -40,13 +40,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         /// <summary>
         /// Gets or sets the date and time that the participant was created in the CU.
         /// </summary>
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "pa_created", DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore, NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "pa_created", DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         public DateTimeOffset CreationDate { get; internal set; }
 
         /// <summary>
         /// Gets the properties of the participant.
         /// </summary>
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "pa_info")]
+        [JsonProperty(PropertyName = "pa_info")]
         public Dictionary<string, string> Properties
         {
             get { return _properties ?? (_properties = new Dictionary<string, string>()); }
@@ -54,4 +54,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         }
     }
 }
-

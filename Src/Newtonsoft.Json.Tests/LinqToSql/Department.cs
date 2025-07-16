@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -36,7 +36,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
     [MetadataType(typeof(DepartmentMetadata))]
     public partial class Department
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(DepartmentConverter))]
+        [JsonConverter(typeof(DepartmentConverter))]
         public class DepartmentMetadata
         {
         }

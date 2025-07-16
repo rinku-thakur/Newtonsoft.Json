@@ -30,7 +30,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         public string Value { get; private set; }
         public string Constructor { get; private set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+        [JsonConstructor]
         private NonPublicConstructorWithJsonConstructor()
         {
             Constructor = "NonPublic";

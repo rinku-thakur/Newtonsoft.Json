@@ -27,7 +27,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Converters;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(IsoDateTimeConverter))]
+    [JsonConverter(typeof(IsoDateTimeConverter))]
     public class IncompatibleJsonAttributeClass
     {
     }

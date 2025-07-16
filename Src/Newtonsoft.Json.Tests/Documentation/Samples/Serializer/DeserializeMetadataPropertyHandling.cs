@@ -56,7 +56,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
                 object o = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
                 {
-                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                    TypeNameHandling = TypeNameHandling.All,
                     // $type no longer needs to be first
                     MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
                 });
@@ -73,4 +73,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

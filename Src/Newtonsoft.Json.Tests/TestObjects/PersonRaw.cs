@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -35,14 +35,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         private string _lastName;
         private JRaw _rawContent;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public Guid InternalId
         {
             get { return _internalId; }
             set { _internalId = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("first_name")]
+        [JsonProperty("first_name")]
         public string FirstName
         {
             get { return _firstName; }
@@ -55,7 +55,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             set { _rawContent = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("last_name")]
+        [JsonProperty("last_name")]
         public string LastName
         {
             get { return _lastName; }

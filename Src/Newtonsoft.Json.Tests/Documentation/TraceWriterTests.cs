@@ -147,8 +147,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             Console.WriteLine(traceWriter);
             // 2012-11-11T12:08:42.761 Info Started serializing Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Staff. Path ''.
-            // 2012-11-11T12:08:42.785 Info Started serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
-            // 2012-11-11T12:08:42.791 Info Finished serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
+            // 2012-11-11T12:08:42.785 Info Started serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
+            // 2012-11-11T12:08:42.791 Info Finished serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
             // 2012-11-11T12:08:42.797 Info Started serializing System.Collections.Generic.List`1[System.String]. Path 'Roles'.
             // 2012-11-11T12:08:42.798 Info Finished serializing System.Collections.Generic.List`1[System.String]. Path 'Roles'.
             // 2012-11-11T12:08:42.799 Info Finished serializing Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Staff. Path ''.
@@ -166,7 +166,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 
             MemoryTraceWriter memoryTraceWriter = (MemoryTraceWriter)traceWriter;
 
-            Assert.AreEqual(916, memoryTraceWriter.ToString().Length);
+            Assert.AreEqual(1004, memoryTraceWriter.ToString().Length);
             Assert.AreEqual(7, memoryTraceWriter.GetTraceMessages().Count());
         }
     }

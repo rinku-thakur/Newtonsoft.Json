@@ -51,7 +51,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
             var o = JsonConvert.DeserializeObject<TestObject>(jsontext, new JsonSerializerSettings
             {
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new TestConverter() },
+                Converters = new List<JsonConverter> { new TestConverter() },
                 MaxDepth = 150
             });
 
@@ -67,7 +67,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
             ExceptionAssert.Throws<JsonReaderException>(() => JsonConvert.DeserializeObject<TestObject>(jsontext, new JsonSerializerSettings
             {
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new TestConverter() },
+                Converters = new List<JsonConverter> { new TestConverter() },
                 MaxDepth = 100
             }), expectedMessage);
         }
@@ -92,7 +92,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             public JToken Children { get; set; }
         }
 
-        private class TestConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        private class TestConverter : JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {

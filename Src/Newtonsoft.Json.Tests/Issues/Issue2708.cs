@@ -62,7 +62,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         [DataContract]
         public abstract class RecordBase
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             protected IDictionary<string, JToken> additionalData;
 
             public string Name { get; set; }
@@ -79,4 +79,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
     }
 }
 #endif
-

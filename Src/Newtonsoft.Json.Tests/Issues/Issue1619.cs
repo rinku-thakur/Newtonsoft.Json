@@ -55,7 +55,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             public DirectoryInfo Bar { get; set; }
         }
 
-        public class DirectoryInfoJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class DirectoryInfoJsonConverter : JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -33,13 +33,12 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         {
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonProperty(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public ContentBaseClass TestMember { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
+        [Autodesk.DataExchange.Newtonsoft.Json.JsonProperty(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
         public Dictionary<int, IList<ContentBaseClass>> AnotherTestMember { get; set; }
 
         public ContentBaseClass AThirdTestMember { get; set; }
     }
 }
-

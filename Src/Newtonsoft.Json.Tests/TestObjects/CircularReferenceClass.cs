@@ -27,11 +27,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class CircularReferenceClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+        [JsonProperty(Required = Required.Always)]
         public string Name { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public CircularReferenceClass Child { get; set; }
     }
 }
-

@@ -48,7 +48,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
     [TestFixture]
     public class GenericJsonConverterTests : TestFixtureBase
     {
-        public class TestGenericConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter<string>
+        public class TestGenericConverter : JsonConverter<string>
         {
             public override void WriteJson(JsonWriter writer, string value, JsonSerializer serializer)
             {

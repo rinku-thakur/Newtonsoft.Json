@@ -47,7 +47,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
     public class CustomJsonConverter : TestFixtureBase
     {
         #region Types
-        public class KeysJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class KeysJsonConverter : JsonConverter
         {
             private readonly Type[] _types;
 

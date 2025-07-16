@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,19 +27,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using Autodesk.DataExchange.Newtonsoft.Json;
 using Autodesk.DataExchange.Newtonsoft.Json.Serialization;
 using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
 #if DNXCORE50
 using Xunit;
 using Test = Xunit.FactAttribute;
 using Assert = Autodesk.DataExchange.Newtonsoft.Json.Tests.XUnitAssert;
-using Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects;
-
 #else
 using NUnit.Framework;
-
-
 #endif
 #if NET20
 using Autodesk.DataExchange.Newtonsoft.Json.Utilities.LinqBridge;
@@ -58,7 +53,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             string json = @"{Name:""Name!""}";
 
-            var c = JsonConvert.DeserializeObject<Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.PrivateConstructorTestClass>(json);
+            var c = JsonConvert.DeserializeObject<PrivateConstructorTestClass>(json);
 
             Assert.AreEqual("Name!", c.Name);
         }
@@ -200,7 +195,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             var testObject = JsonConvert.DeserializeObject<ConstructorParametersRespectDefaultValueAttributes>("{'Parameter2':'value!'}", new JsonSerializerSettings()
             {
-                DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate
+                DefaultValueHandling = DefaultValueHandling.Populate
             });
 
             Assert.AreEqual("parameter1_default", testObject.Parameter1);
@@ -243,7 +238,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
                 foreach (var property in properties.Where(p => p.PropertyType == typeof(string)))
                 {
                     property.DefaultValue = ConstructorParametersRespectDefaultValue.DefaultValue;
-                    property.DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Populate;
+                    property.DefaultValueHandling = DefaultValueHandling.Populate;
                 }
 
                 return properties;
@@ -251,5 +246,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-
-

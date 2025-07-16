@@ -37,7 +37,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             Constructor = "Public Parameterized 1";
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+        [JsonConstructor]
         public MultipleParametrizedConstructorsJsonConstructor(string value, int age)
         {
             Value = value;

@@ -37,7 +37,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.LinqToSql
     {
         public class PersonMetadata
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("first_name")]
+            [JsonProperty("first_name")]
             public string FirstName { get; set; }
         }
     }

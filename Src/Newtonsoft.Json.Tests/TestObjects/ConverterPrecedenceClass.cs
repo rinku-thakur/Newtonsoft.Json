@@ -25,7 +25,7 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ClassConverterPrecedenceClassConverter))]
+    [JsonConverter(typeof(ClassConverterPrecedenceClassConverter))]
     public class ConverterPrecedenceClass
     {
         public string TestValue { get; set; }

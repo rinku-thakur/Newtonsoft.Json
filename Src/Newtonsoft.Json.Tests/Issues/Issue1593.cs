@@ -59,7 +59,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             {
                 Extra = new ExpandoObject();
             }
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             public ExpandoObject Extra { get; set; }
         }
 

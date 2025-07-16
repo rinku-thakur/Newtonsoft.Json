@@ -27,7 +27,7 @@ using System;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public class ErroringJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class ErroringJsonConverter : JsonConverter
     {
         public ErroringJsonConverter(string s)
         {

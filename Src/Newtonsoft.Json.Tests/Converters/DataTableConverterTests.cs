@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -370,7 +370,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 ]", json);
         }
 
-        public class TestDataTableConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class TestDataTableConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -476,7 +476,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 
             var json = JsonConvert.SerializeObject(table, Formatting.None, new JsonSerializerSettings
             {
-                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore
             });
             Assert.AreEqual(@"["
                             + @"{""item"":""shirt"",""price"":49.99},"
@@ -641,7 +641,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             StringAssert.AreEqual(json, json2);
         }
 
-        internal class SqlDateTimeConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        internal class SqlDateTimeConverter : JsonConverter
         {
             public override bool CanConvert(Type objectType)
             {
@@ -683,7 +683,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             Assert.AreEqual(DBNull.Value, table.Rows[0]["timeCol"]);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(DataTableConverterTest))]
+        [JsonConverter(typeof(DataTableConverterTest))]
         public class CustomDataTable : DataTable
         {
         }
@@ -715,7 +715,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
                 }
             }
 
-            void OnError(object sender, Json.Serialization.ErrorEventArgs e)
+            private void OnError(object sender, Json.Serialization.ErrorEventArgs e)
             {
                 e.ErrorContext.Handled = true;
             }
@@ -724,4 +724,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 }
 
 #endif
-

@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ using System.IO;
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-    public class AttachmentReadConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class AttachmentReadConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
@@ -56,10 +56,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 
         private class AttachmentInfo
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+            [JsonProperty(Required = Required.Always)]
             public string FileName { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+            [JsonProperty(Required = Required.Always)]
             public string ContentBase64 { get; set; }
         }
     }

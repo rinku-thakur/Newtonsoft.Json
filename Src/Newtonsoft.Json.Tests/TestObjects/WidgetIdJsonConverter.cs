@@ -27,7 +27,7 @@ using System;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public class WidgetIdJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class WidgetIdJsonConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

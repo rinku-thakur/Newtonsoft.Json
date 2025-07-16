@@ -117,7 +117,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 #if !(PORTABLE || DNXCORE50 || PORTABLE40) || NETSTANDARD1_3 || NETSTANDARD2_0 || NET6_0_OR_GREATER
     [Serializable]
 #else
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.Fields)]
 #endif
     public class SerializableType : IEquatable<SerializableType>
     {
@@ -141,7 +141,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 #if !(PORTABLE || DNXCORE50 || PORTABLE40)
         [NonSerialized]
 #else
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
 #endif
         public string nonSerializedField;
 

@@ -43,10 +43,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
     {
         public class ObjectIdTestClass
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("_id")]
+            [JsonProperty("_id")]
             public BsonObjectId Id { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("test")]
+            [JsonProperty("test")]
             public string Test { get; set; }
         }
 
@@ -87,4 +87,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
     }
 }
 #pragma warning restore 618
-

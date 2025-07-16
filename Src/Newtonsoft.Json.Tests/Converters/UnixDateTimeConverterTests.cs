@@ -341,30 +341,30 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 #endif
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemConverterType = typeof(UnixDateTimeConverter))]
+    [JsonArray(ItemConverterType = typeof(UnixDateTimeConverter))]
     public class UnixConverterList<T> : List<T> { }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemConverterType = typeof(UnixDateTimeConverter))]
+    [JsonDictionary(ItemConverterType = typeof(UnixDateTimeConverter))]
     public class UnixConverterDictionary<T> : Dictionary<string, T> { }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemConverterType = typeof(UnixDateTimeConverter))]
+    [JsonObject(ItemConverterType = typeof(UnixDateTimeConverter))]
     public class UnixConverterObject
     {
         public object Object1 { get; set; }
 
         public object Object2 { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(UnixDateTimeConverter))]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public object ObjectNotHandled { get; set; }
     }
 
     public class PreEpochUnixConverterObject
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(UnixDateTimeConverter), true)]
+        [JsonConverter(typeof(UnixDateTimeConverter), true)]
         public DateTime Date1 { get; set; }
 
 #if !NET20
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter (typeof(UnixDateTimeConverter), true)]
+        [JsonConverter (typeof(UnixDateTimeConverter), true)]
         public DateTimeOffset Date2 { get; set; }
 #endif
     }

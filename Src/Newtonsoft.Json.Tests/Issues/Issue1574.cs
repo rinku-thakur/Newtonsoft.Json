@@ -55,7 +55,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
         public class TestClass
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public IEnumerable<ServerType> ServerTypes => Enum.GetValues(typeof(ServerType)).Cast<ServerType>();
         }
     }

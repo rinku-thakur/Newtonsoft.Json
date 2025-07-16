@@ -34,7 +34,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             Bars = new List<Bar>();
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(ListOfIds<Bar>))]
+        [JsonConverter(typeof(ListOfIds<Bar>))]
         public List<Bar> Bars { get; set; }
     }
 }

@@ -58,14 +58,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         [Test]
         public void DeserializeNullIntoDateTime()
         {
-            DateTimeTestClass c = JsonConvert.DeserializeObject<DateTimeTestClass>(@"{DateTimeField:null}", new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
+            DateTimeTestClass c = JsonConvert.DeserializeObject<DateTimeTestClass>(@"{DateTimeField:null}", new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Assert.AreEqual(c.DateTimeField, default(DateTime));
         }
 
         [Test]
         public void DeserializeEmptyStringIntoDateTimeWithEmptyStringDefaultValue()
         {
-            DateTimeTestClass c = JsonConvert.DeserializeObject<DateTimeTestClass>(@"{DateTimeField:""""}", new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
+            DateTimeTestClass c = JsonConvert.DeserializeObject<DateTimeTestClass>(@"{DateTimeField:""""}", new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             Assert.AreEqual(c.DateTimeField, default(DateTime));
         }
 #endif
@@ -76,7 +76,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             Store s1 = new Store();
 
             JsonSerializer jsonSerializer = new JsonSerializer();
-            jsonSerializer.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
+            jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
 
             StringWriter sw = new StringWriter();
             jsonSerializer.Serialize(sw, s1);
@@ -117,7 +117,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string ignored = JsonConvert.SerializeObject(movie,
                 Formatting.Indented,
-                new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             // {
             //   "Name": "Bad Boys III",
@@ -140,7 +140,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             
             string ignored = JsonConvert.SerializeObject(movie,
                 Formatting.Indented,
-                new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Include });
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include });
 
             // {
             //   "Name": "Bad Boys III",
@@ -161,7 +161,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string included = JsonConvert.SerializeObject(movie,
                 Formatting.Indented,
-                new JsonSerializerSettings { NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore });
+                new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             // {
             //   "Name": "Bad Boys III",
@@ -176,4 +176,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-

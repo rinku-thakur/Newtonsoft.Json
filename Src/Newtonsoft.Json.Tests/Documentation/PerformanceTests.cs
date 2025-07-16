@@ -51,7 +51,7 @@ using System.Globalization;
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
 {
     #region JsonConverterAttribute
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(PersonConverter))]
+    [JsonConverter(typeof(PersonConverter))]
     public class Person
     {
         public Person()
@@ -84,7 +84,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation
     }
     #endregion
 
-    public class PersonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class PersonConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

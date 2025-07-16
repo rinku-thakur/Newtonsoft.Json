@@ -132,7 +132,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             public NegativeFlagsEnum Value2 { get; set; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), true)]
+        [JsonConverter(typeof(StringEnumConverter), true)]
         public enum CamelCaseEnumObsolete
         {
             This,
@@ -140,7 +140,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             CamelCase
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy))]
+        [JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy))]
         public enum CamelCaseEnumNew
         {
             This,
@@ -148,7 +148,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             CamelCase
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+        [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
         public enum SnakeCaseEnumNew
         {
             This,
@@ -156,21 +156,21 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             SnakeCase
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy), new object[0], false)]
+        [JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy), new object[0], false)]
         public enum NotAllowIntegerValuesEnum
         {
             Foo = 0,
             Bar = 1
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy))]
+        [JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy))]
         public enum AllowIntegerValuesEnum
         {
             Foo = 0,
             Bar = 1
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy), null)]
+        [JsonConverter(typeof(StringEnumConverter), typeof(CamelCaseNamingStrategy), null)]
         public enum NullArgumentInAttribute
         {
             Foo = 0,
@@ -770,7 +770,7 @@ Parameter name: namingStrategyType", "Value cannot be null. (Parameter 'namingSt
 
         // Define other methods and classes here
         [Flags]
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         private enum Foo
         {
             [EnumMember(Value = "foo_bar")]
@@ -781,7 +781,7 @@ Parameter name: namingStrategyType", "Value cannot be null. (Parameter 'namingSt
             SerializeAsBaz = 0x4,
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         private enum Bar
         {
             [EnumMember(Value = "foo_bar")]
@@ -945,7 +945,7 @@ Parameter name: namingStrategyType", "Value cannot be null. (Parameter 'namingSt
         }
 
 #if !NET20
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum EnumMemberDoesNotMatchName
         {
             [EnumMember(Value = "first_value")]
@@ -987,7 +987,7 @@ Parameter name: namingStrategyType", "Value cannot be null. (Parameter 'namingSt
             Assert.AreEqual(EnumMemberDoesNotMatchName.First, e);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum EnumMemberWithDiffrentCases
         {
             [EnumMember(Value = "first_value")]

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,7 +34,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             _nameContainer = name;
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(NameContainerConverter))]
+        [JsonConverter(typeof(NameContainerConverter))]
         public NameContainer Name
         {
             get { return _nameContainer; }

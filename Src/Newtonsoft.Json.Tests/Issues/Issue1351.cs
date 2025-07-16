@@ -114,7 +114,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             };
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.Auto,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 Formatting = Formatting.Indented
             };
@@ -158,7 +158,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             };
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.Auto,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 Formatting = Formatting.Indented,
                 ObjectCreationHandling = ObjectCreationHandling.Replace
@@ -176,4 +176,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
     }
 }
 #endif
-

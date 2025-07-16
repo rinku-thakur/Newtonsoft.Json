@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -25,10 +25,10 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class A
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("A1")]
+        [JsonProperty("A1")]
         private string _A1;
 
         public string A1
@@ -37,7 +37,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             set { _A1 = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("A2")]
+        [JsonProperty("A2")]
         private string A2 { get; set; }
     }
 }

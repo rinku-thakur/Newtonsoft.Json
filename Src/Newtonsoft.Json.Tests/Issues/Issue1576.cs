@@ -75,7 +75,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
         public class TestClassWithJsonConverter
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(OneItemListJsonConverter))]
+            [JsonConverter(typeof(OneItemListJsonConverter))]
             public List<int> Items { get; } = new List<int>();
         }
 
@@ -94,7 +94,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             }
         }
 
-        public class OneItemListJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class OneItemListJsonConverter : JsonConverter
         {
             public override bool CanWrite => false;
 
@@ -136,4 +136,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
     }
 }
-

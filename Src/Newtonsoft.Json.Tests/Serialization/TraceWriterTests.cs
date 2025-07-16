@@ -140,10 +140,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
                 traceWriter.Trace(TraceLevel.Error, "Error!", null);
                 traceWriter.Trace(TraceLevel.Off, "Off!", null);
 
-                StringAssert.AreEqual(@"Newtonsoft.Json Verbose: 0 : Verbose!
-Newtonsoft.Json Information: 0 : Info!
-Newtonsoft.Json Warning: 0 : Warning!
-Newtonsoft.Json Error: 0 : Error!
+                StringAssert.AreEqual(@"Autodesk.DataExchange.Newtonsoft.Json Verbose: 0 : Verbose!
+Autodesk.DataExchange.Newtonsoft.Json Information: 0 : Info!
+Autodesk.DataExchange.Newtonsoft.Json Warning: 0 : Warning!
+Autodesk.DataExchange.Newtonsoft.Json Error: 0 : Error!
 ", sw.ToString());
             }
             finally
@@ -292,8 +292,8 @@ Newtonsoft.Json Error: 0 : Error!
                 new JsonSerializerSettings { TraceWriter = traceWriter, Converters = { new JavaScriptDateTimeConverter() } });
 
             // 2012-11-11T12:08:42.761 Info Started serializing Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Staff. Path ''.
-            // 2012-11-11T12:08:42.785 Info Started serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
-            // 2012-11-11T12:08:42.791 Info Finished serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
+            // 2012-11-11T12:08:42.785 Info Started serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
+            // 2012-11-11T12:08:42.791 Info Finished serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
             // 2012-11-11T12:08:42.797 Info Started serializing System.Collections.Generic.List`1[System.String]. Path 'Roles'.
             // 2012-11-11T12:08:42.798 Info Finished serializing System.Collections.Generic.List`1[System.String]. Path 'Roles'.
             // 2012-11-11T12:08:42.799 Info Finished serializing Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Staff. Path ''.
@@ -301,7 +301,7 @@ Newtonsoft.Json Error: 0 : Error!
             MemoryTraceWriter memoryTraceWriter = (MemoryTraceWriter)traceWriter;
             string output = memoryTraceWriter.ToString();
 
-            Assert.AreEqual(916, output.Length);
+            Assert.AreEqual(1004, output.Length);
             Assert.AreEqual(7, memoryTraceWriter.GetTraceMessages().Count());
 
             string json = @"Serialized JSON: 
@@ -351,8 +351,8 @@ Newtonsoft.Json Error: 0 : Error!
                 });
 
             // 2012-11-11T12:08:42.761 Info Started serializing Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Staff. Path ''.
-            // 2012-11-11T12:08:42.785 Info Started serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
-            // 2012-11-11T12:08:42.791 Info Finished serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
+            // 2012-11-11T12:08:42.785 Info Started serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
+            // 2012-11-11T12:08:42.791 Info Finished serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path 'StartDate'.
             // 2012-11-11T12:08:42.797 Info Started serializing System.Collections.Generic.List`1[System.String]. Path 'Roles'.
             // 2012-11-11T12:08:42.798 Info Finished serializing System.Collections.Generic.List`1[System.String]. Path 'Roles'.
             // 2012-11-11T12:08:42.799 Info Finished serializing Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.Staff. Path ''.
@@ -370,7 +370,7 @@ Newtonsoft.Json Error: 0 : Error!
             MemoryTraceWriter memoryTraceWriter = (MemoryTraceWriter)traceWriter;
             string output = memoryTraceWriter.ToString();
 
-            Assert.AreEqual(1058, output.Length);
+            Assert.AreEqual(1146, output.Length);
             Assert.AreEqual(7, memoryTraceWriter.GetTraceMessages().Count());
 
             json = StringAssert.Normalize(json);
@@ -756,7 +756,7 @@ Newtonsoft.Json Error: 0 : Error!
 
             JsonConvert.SerializeObject(l, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 TraceWriter = traceWriter
             });
 
@@ -791,8 +791,8 @@ Newtonsoft.Json Error: 0 : Error!
             });
 
             Assert.AreEqual("Started serializing System.Collections.Generic.List`1[System.DateTime]. Path ''.", traceWriter.TraceRecords[0].Message);
-            Assert.AreEqual("Started serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path ''.", traceWriter.TraceRecords[1].Message);
-            Assert.AreEqual("Finished serializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path '[0]'.", traceWriter.TraceRecords[2].Message);
+            Assert.AreEqual("Started serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path ''.", traceWriter.TraceRecords[1].Message);
+            Assert.AreEqual("Finished serializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path '[0]'.", traceWriter.TraceRecords[2].Message);
             Assert.AreEqual("Finished serializing System.Collections.Generic.List`1[System.DateTime]. Path ''.", traceWriter.TraceRecords[3].Message);
         }
 
@@ -816,8 +816,8 @@ Newtonsoft.Json Error: 0 : Error!
                 });
 
             Assert.AreEqual("Started deserializing System.Collections.Generic.List`1[System.DateTime]. Path '', line 1, position 1.", traceWriter.TraceRecords[0].Message);
-            Assert.AreEqual("Started deserializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path '[0]', line 1, position 10.", traceWriter.TraceRecords[1].Message);
-            Assert.AreEqual("Finished deserializing System.DateTime with converter Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path '[0]', line 1, position 23.", traceWriter.TraceRecords[2].Message);
+            Assert.AreEqual("Started deserializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path '[0]', line 1, position 10.", traceWriter.TraceRecords[1].Message);
+            Assert.AreEqual("Finished deserializing System.DateTime with converter Autodesk.DataExchange.Newtonsoft.Json.Converters.JavaScriptDateTimeConverter. Path '[0]', line 1, position 23.", traceWriter.TraceRecords[2].Message);
             Assert.AreEqual("Finished deserializing System.Collections.Generic.List`1[System.DateTime]. Path '', line 1, position 24.", traceWriter.TraceRecords[3].Message);
         }
 
@@ -837,7 +837,7 @@ Newtonsoft.Json Error: 0 : Error!
       ""key!"": ""value!""
     },
     {
-      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld, Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
       ""Major"": 1,
       ""Minor"": 2,
       ""Build"": 3,
@@ -850,7 +850,7 @@ Newtonsoft.Json Error: 0 : Error!
 
             JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 MetadataPropertyHandling = MetadataPropertyHandling.Default,
                 TraceWriter = traceWriter
             });
@@ -860,7 +860,7 @@ Newtonsoft.Json Error: 0 : Error!
             Assert.AreEqual("Resolved type 'System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String, mscorlib]], mscorlib' to System.Collections.Generic.Dictionary`2[System.String,System.String]. Path '$values[0].$type', line 5, position 119.", traceWriter.TraceRecords[2].Message);
             Assert.AreEqual("Started deserializing System.Collections.Generic.Dictionary`2[System.String,System.String]. Path '$values[0].key!', line 6, position 13.", traceWriter.TraceRecords[3].Message);
             Assert.IsTrue(traceWriter.TraceRecords[4].Message.StartsWith("Finished deserializing System.Collections.Generic.Dictionary`2[System.String,System.String]. Path '$values[0]'"));
-            Assert.AreEqual("Resolved type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld, Newtonsoft.Json.Tests' to Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld. Path '$values[1].$type', line 9, position 84.", traceWriter.TraceRecords[5].Message);
+            Assert.AreEqual("Resolved type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld, Autodesk.DataExchange.Newtonsoft.Json.Tests' to Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld. Path '$values[1].$type', line 9, position 128.", traceWriter.TraceRecords[5].Message);
             Assert.AreEqual("Deserializing Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld using creator with parameters: Major, Minor, Build, Revision. Path '$values[1].Major', line 10, position 14.", traceWriter.TraceRecords[6].Message);
             Assert.IsTrue(traceWriter.TraceRecords[7].Message.StartsWith("Started deserializing Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld. Path '$values[1]'"));
             Assert.IsTrue(traceWriter.TraceRecords[8].Message.StartsWith("Finished deserializing Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.VersionOld. Path '$values[1]'"));
@@ -1420,4 +1420,3 @@ Newtonsoft.Json Error: 0 : Error!
         public int Integer { get; set; }
     }
 }
-

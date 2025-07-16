@@ -70,38 +70,36 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
         public class ItemWithJsonConstructor
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private ItemWithJsonConstructor(string foo)
             {
                 Foo = foo;
             }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "foo", Required = Required.Always)]
+            [JsonProperty(PropertyName = "foo", Required = Required.Always)]
             public string Foo { get; set; }
         }
 
         public class ItemWithJsonConstructorAndDefaultValue
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             public IDictionary<string, JToken> ExtensionData;
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private ItemWithJsonConstructorAndDefaultValue(string foo)
             {
                 Foo = foo;
             }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
+            [JsonProperty("foo")]
             public string Foo { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "bar", Required = Required.Default, DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.IgnoreAndPopulate)]
+            [JsonProperty(PropertyName = "bar", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
             [System.ComponentModel.DefaultValue("default")]
             public string Bar { get; set; }
         }
     }
 }
-
-

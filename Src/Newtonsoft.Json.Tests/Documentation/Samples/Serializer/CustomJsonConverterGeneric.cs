@@ -41,7 +41,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
     public class CustomJsonConverterGeneric : TestFixtureBase
     {
         #region Types
-        public class VersionConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter<Version>
+        public class VersionConverter : JsonConverter<Version>
         {
             public override void WriteJson(JsonWriter writer, Version value, JsonSerializer serializer)
             {
@@ -69,7 +69,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             #region Usage
             NuGetPackage p1 = new NuGetPackage
             {
-                PackageId = "Newtonsoft.Json",
+                PackageId = "Autodesk.DataExchange.Newtonsoft.Json",
                 Version = new Version(10, 0, 4)
             };
 
@@ -77,7 +77,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             Console.WriteLine(json);
             // {
-            //   "PackageId": "Newtonsoft.Json",
+            //   "PackageId": "Autodesk.DataExchange.Newtonsoft.Json",
             //   "Version": "10.0.4"
             // }
 

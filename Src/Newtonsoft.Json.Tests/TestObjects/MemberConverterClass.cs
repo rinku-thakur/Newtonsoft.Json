@@ -32,7 +32,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
     {
         public DateTime DefaultConverter { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime MemberConverter { get; set; }
     }
 }

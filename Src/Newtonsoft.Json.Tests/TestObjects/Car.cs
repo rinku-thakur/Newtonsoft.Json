@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -36,7 +36,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         public List<string> Features { get; set; }
 
         // ignored
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public DateTime LastModified { get; set; }
     }
 }

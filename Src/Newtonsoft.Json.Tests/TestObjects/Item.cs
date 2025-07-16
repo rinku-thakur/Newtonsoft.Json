@@ -35,8 +35,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         public double Longitude { get; set; }
         public DateTime TimeStamp { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All)]
+        [JsonProperty(TypeNameHandling = TypeNameHandling.All)]
         public object Payload { get; set; }
     }
 }
-

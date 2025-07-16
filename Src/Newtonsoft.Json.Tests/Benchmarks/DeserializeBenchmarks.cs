@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -47,7 +47,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Benchmarks
         {
             LargeJsonText = System.IO.File.ReadAllText(TestFixtureBase.ResolvePath("large.json"));
 
-            FloatArrayJson = new JArray(Enumerable.Range(0, 5000).Select(i => i * 1.1m)).ToString(Newtonsoft.Json.Formatting.None);
+            FloatArrayJson = new JArray(Enumerable.Range(0, 5000).Select(i => i * 1.1m)).ToString(Formatting.None);
         }
 
         [Benchmark]

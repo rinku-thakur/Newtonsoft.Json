@@ -35,7 +35,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             Constructor = "NonPublic";
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+        [JsonConstructor]
         public PublicConstructorOverridenByJsonConstructor(string value)
         {
             Value = value;

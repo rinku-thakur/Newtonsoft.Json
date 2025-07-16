@@ -25,7 +25,7 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.Fields)]
+    [JsonObject(MemberSerialization.Fields)]
     public class MyTuple<T1>
     {
         private readonly T1 m_Item1;

@@ -62,7 +62,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             {
                 JsonConvert.DeserializeObject<Account>(json, new JsonSerializerSettings
                 {
-                    MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error
+                    MissingMemberHandling = MissingMemberHandling.Error
                 });
             }
             catch (JsonSerializationException ex)
@@ -74,4 +74,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

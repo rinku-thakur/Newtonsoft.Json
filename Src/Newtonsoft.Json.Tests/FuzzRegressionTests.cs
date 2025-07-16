@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -86,8 +86,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
                 "[//6*/)3333/\n,[]//3", // ValidateEnd
                 "[//*/{'33/\n,33,33//3", // ReadStringIntoBuffer
                 "[//*//\n8 ,8 ", // ParseComment
-                @"[//Ã´   [ / 
-//""Ã¿ /'/*//// 
+                @"[//ô   [ / 
+//""ÿ /'/*//// 
 //[7
 // 
 //"" @'/// 
@@ -104,17 +104,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
 // 
 ,'/J ""' ", // WriteToken
                 "[2//***;****/,7*", // ReadNumberCharIntoBuffer
-                "[2///Ã¿Â¢  Â¢Â¢********/,,*		", // ParseValue
+                "[2///ÿ¢  ¢¢********/,,*		", // ParseValue
                 @"[// *//[
 7// 
-// ""JJÂ· 
+// ""JJ· 
 //',J
  
 // 
 //',o@7,7
 //',o@/ / "" ]      
 //',o@7,7
-//',o@Ã“", // ParseComment
+//',o@Ó", // ParseComment
                 "[2//*/*", // ParsePostValue
                 "[//*/{A73/\n]1.//3:{\"'\":", //  ReadUnquotedPropertyReportIfDone
             };
@@ -125,4 +125,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
         }
     }
 }
-

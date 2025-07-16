@@ -27,27 +27,27 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PrivateImplementationBClass : PrivateImplementationAClass, IPrivateImplementationB, IPrivateOverriddenImplementation
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string PropertyB { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("PropertyB")]
+        [JsonProperty("PropertyB")]
         string IPrivateImplementationB.PropertyB
         {
             get { return PropertyB; }
             set { PropertyB = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("OverriddenProperty")]
+        [JsonProperty("OverriddenProperty")]
         private string OverriddenPropertyString
         {
             get { return OverriddenProperty.ToString(); }
             set { OverriddenProperty = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public object OverriddenProperty { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         object IPrivateOverriddenImplementation.OverriddenProperty
         {
             get { return OverriddenProperty; }

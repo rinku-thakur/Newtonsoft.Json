@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -1719,8 +1719,8 @@ null//comment
         [Test]
         public void NewlinesInSingleLineComments()
         {
-            // itâ€™s not possible for this to be created by parsing JSON,
-            // but if someone gets creative with the APIâ€¦
+            // it’s not possible for this to be created by parsing JSON,
+            // but if someone gets creative with the API…
             var sw = new StringWriter();
             using (var w = new JsonTextWriter(sw))
             {
@@ -1836,4 +1836,3 @@ null//comment
         }
     }
 }
-

@@ -58,11 +58,11 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
         {
             JsonPropertyAttribute attribute = new JsonPropertyAttribute();
             Assert.AreEqual(null, attribute._nullValueHandling);
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Include, attribute.NullValueHandling);
+            Assert.AreEqual(NullValueHandling.Include, attribute.NullValueHandling);
 
-            attribute.NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore;
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore, attribute._nullValueHandling);
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore, attribute.NullValueHandling);
+            attribute.NullValueHandling = NullValueHandling.Ignore;
+            Assert.AreEqual(NullValueHandling.Ignore, attribute._nullValueHandling);
+            Assert.AreEqual(NullValueHandling.Ignore, attribute.NullValueHandling);
         }
 
         [Test]
@@ -70,12 +70,11 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests
         {
             JsonPropertyAttribute attribute = new JsonPropertyAttribute();
             Assert.AreEqual(null, attribute._defaultValueHandling);
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Include, attribute.DefaultValueHandling);
+            Assert.AreEqual(DefaultValueHandling.Include, attribute.DefaultValueHandling);
 
-            attribute.DefaultValueHandling = Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore;
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore, attribute._defaultValueHandling);
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.DefaultValueHandling.Ignore, attribute.DefaultValueHandling);
+            attribute.DefaultValueHandling = DefaultValueHandling.Ignore;
+            Assert.AreEqual(DefaultValueHandling.Ignore, attribute._defaultValueHandling);
+            Assert.AreEqual(DefaultValueHandling.Ignore, attribute.DefaultValueHandling);
         }
     }
 }
-

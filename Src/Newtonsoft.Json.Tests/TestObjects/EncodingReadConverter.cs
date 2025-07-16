@@ -29,7 +29,7 @@ using System.Text;
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-    public class EncodingReadConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class EncodingReadConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

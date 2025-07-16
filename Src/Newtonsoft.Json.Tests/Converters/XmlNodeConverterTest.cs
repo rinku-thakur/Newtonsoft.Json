@@ -514,7 +514,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
             json["Prop2"] = new MyModel().MyProperty;
 
             var xmlNodeConverter = new XmlNodeConverter { DeserializeRootElementName = "object" };
-            var jsonSerializerSettings = new JsonSerializerSettings { Converters = new Autodesk.DataExchange.Newtonsoft.Json.JsonConverter[] { xmlNodeConverter } };
+            var jsonSerializerSettings = new JsonSerializerSettings { Converters = new JsonConverter[] { xmlNodeConverter } };
             var jsonSerializer = JsonSerializer.CreateDefault(jsonSerializerSettings);
             XDocument d = json.ToObject<XDocument>(jsonSerializer);
 
@@ -2443,7 +2443,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 
             string xmlString = System.Text.Encoding.UTF8.GetString(xml.ToArray());
 
-            Assert.AreEqual(@"<?xml version=""1.0"" encoding=""utf-8""?><root booleanType=""true"" />", xmlString);
+            Assert.AreEqual(@"﻿<?xml version=""1.0"" encoding=""utf-8""?><root booleanType=""true"" />", xmlString);
         }
 
 #if !(NETSTANDARD1_0 || NETSTANDARD1_3)
@@ -2551,10 +2551,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 
         private static void JsonBodyToSoapXml(Stream json, Stream xml)
         {
-            Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings();
-            settings.Converters.Add(new Newtonsoft.Json.Converters.XmlNodeConverter());
+            Autodesk.DataExchange.Newtonsoft.Json.JsonSerializerSettings settings = new Autodesk.DataExchange.Newtonsoft.Json.JsonSerializerSettings();
+            settings.Converters.Add(new Autodesk.DataExchange.Newtonsoft.Json.Converters.XmlNodeConverter());
             Autodesk.DataExchange.Newtonsoft.Json.JsonSerializer serializer = Autodesk.DataExchange.Newtonsoft.Json.JsonSerializer.Create(settings);
-            using (Newtonsoft.Json.JsonTextReader reader = new Newtonsoft.Json.JsonTextReader(new System.IO.StreamReader(json)))
+            using (Autodesk.DataExchange.Newtonsoft.Json.JsonTextReader reader = new Autodesk.DataExchange.Newtonsoft.Json.JsonTextReader(new System.IO.StreamReader(json)))
             {
                 XmlDocument doc = (XmlDocument)serializer.Deserialize(reader, typeof(XmlDocument));
                 if (reader.Read() && reader.TokenType != JsonToken.Comment)
@@ -3414,7 +3414,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
 
             var serializer = JsonSerializer.Create(new JsonSerializerSettings
             {
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter>(new[] { new XmlNodeConverter() })
+                Converters = new List<JsonConverter>(new[] { new XmlNodeConverter() })
             });
 
             var json = new StringBuilder(1024);

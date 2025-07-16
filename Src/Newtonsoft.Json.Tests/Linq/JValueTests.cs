@@ -770,7 +770,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
         }
 #endif
 
-        public class ReadOnlyStringConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class ReadOnlyStringConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -974,4 +974,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
         }
     }
 }
-

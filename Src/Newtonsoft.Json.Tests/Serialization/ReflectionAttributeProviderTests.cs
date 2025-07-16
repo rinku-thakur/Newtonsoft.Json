@@ -49,15 +49,15 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         public class ReflectionTestObject
         {
             [DefaultValue("1")]
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public int TestProperty { get; set; }
 
             [DefaultValue("1")]
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public int TestField;
 
             public ReflectionTestObject(
-                [DefaultValue("1")] [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute] int testParameter)
+                [DefaultValue("1")] [JsonProperty] int testParameter)
             {
                 TestProperty = testParameter;
                 TestField = testParameter;
@@ -69,7 +69,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             PropertyInfo property;
 #if DNXCORE50 && !(NETSTANDARD2_0 || NET6_0_OR_GREATER)
-            property = Newtonsoft.Json.Utilities.TypeExtensions.GetProperty(typeof(ReflectionTestObject), "TestProperty");
+            property = Autodesk.DataExchange.Newtonsoft.Json.Utilities.TypeExtensions.GetProperty(typeof(ReflectionTestObject), "TestProperty");
 #else
             property = typeof(ReflectionTestObject).GetProperty("TestProperty");
 #endif
@@ -88,7 +88,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             FieldInfo field;
 #if DNXCORE50 && !(NETSTANDARD2_0 || NET6_0_OR_GREATER)
-            field = (FieldInfo)Newtonsoft.Json.Utilities.TypeExtensions.GetField(typeof(ReflectionTestObject), "TestField");
+            field = (FieldInfo)Autodesk.DataExchange.Newtonsoft.Json.Utilities.TypeExtensions.GetField(typeof(ReflectionTestObject), "TestField");
 #else
             field = typeof(ReflectionTestObject).GetField("TestField");
 #endif
@@ -119,4 +119,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-

@@ -25,7 +25,7 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemRequired = Required.DisallowNull)]
+    [JsonObject(ItemRequired = Required.DisallowNull)]
     public class DictionaryWithNoNull
     {
         public string Name { get; set; }

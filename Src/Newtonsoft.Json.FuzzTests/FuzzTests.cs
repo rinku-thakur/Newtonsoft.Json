@@ -1,8 +1,7 @@
-using Autodesk.DataExchange.Newtonsoft.Json;
 using System;
 using System.IO;
 
-namespace Newtonsoft.Json.FuzzTests
+namespace Autodesk.DataExchange.Newtonsoft.Json.FuzzTests
 {
     public static class Fuzzers
     {

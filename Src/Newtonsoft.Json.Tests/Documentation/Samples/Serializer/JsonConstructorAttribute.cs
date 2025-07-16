@@ -51,7 +51,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             {
             }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public User(string userName, bool enabled)
             {
                 UserName = userName;

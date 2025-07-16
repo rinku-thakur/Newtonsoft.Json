@@ -28,7 +28,7 @@ using System.Globalization;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public class MetroStringConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class MetroStringConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

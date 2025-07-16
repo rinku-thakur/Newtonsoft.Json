@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -51,7 +51,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Json
             #region Usage
             JArray packages = JArray.Parse(@"[
               {
-                'PackageId': 'Newtonsoft.Json',
+                'PackageId': 'Autodesk.DataExchange.Newtonsoft.Json',
                 'Version': '11.0.1',
                 'ReleaseDate': '2018-02-17T00:00:00'
               },
@@ -62,18 +62,18 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Json
               }
             ]");
 
-            // Find Autodesk.DataExchange.Newtonsoft packages
+            // Find Newtonsoft packages
             List<JToken> newtonsoftPackages = packages.SelectTokens(@"$.[?(@.PackageId =~ /^Autodesk.DataExchange.Newtonsoft\.(.*)$/)]").ToList();
 
             foreach (JToken item in newtonsoftPackages)
             {
                 Console.WriteLine((string) item["PackageId"]);
             }
-            // Newtonsoft.Json
+            // Autodesk.DataExchange.Newtonsoft.Json
             #endregion
 
             Assert.AreEqual(1, newtonsoftPackages.Count);
-            Assert.AreEqual("Newtonsoft.Json", (string)newtonsoftPackages[0]["PackageId"]);
+            Assert.AreEqual("Autodesk.DataExchange.Newtonsoft.Json", (string)newtonsoftPackages[0]["PackageId"]);
         }
     }
 }

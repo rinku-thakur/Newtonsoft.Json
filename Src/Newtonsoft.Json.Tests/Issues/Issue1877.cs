@@ -73,11 +73,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
         private class Fubar2 : Fubar
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public new Version Version { get; set; } = new Version("2.0");
 
             // ...
         }
     }
 }
-

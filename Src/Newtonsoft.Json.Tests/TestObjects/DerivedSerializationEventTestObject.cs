@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -32,7 +32,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
     {
         // This field is set to null, but populated after deserialization, only
         // in the derived class
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string Member7 { get; set; }
 
         // These empty methods exist to make sure we're not covering up the base
@@ -58,7 +58,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             Member7 = "This value was set after deserialization.";
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+        [OnError]
         internal void OnDerivedErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
         }

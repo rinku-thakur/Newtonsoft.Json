@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class FooConstructor
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "something_else")]
+        [JsonProperty(PropertyName = "something_else")]
         public readonly string Bar;
 
         public FooConstructor(string bar)

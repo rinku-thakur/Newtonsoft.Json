@@ -56,7 +56,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
-                Converters = new Autodesk.DataExchange.Newtonsoft.Json.JsonConverter[] { new IdJsonConverter() },
+                Converters = new JsonConverter[] { new IdJsonConverter() },
                 TraceWriter = new TraceWriter(),
             };
 
@@ -94,7 +94,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             }
         }
 
-        private class IdJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        private class IdJsonConverter : JsonConverter
         {
             public override bool CanConvert(Type objectType) => typeof(Id) == objectType;
 

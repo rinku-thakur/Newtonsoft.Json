@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,7 +34,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events
         public string EventName { get; set; }
         public string Venue { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+        [JsonProperty(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
         public IList<DateTime> Performances { get; set; }
     }
 }

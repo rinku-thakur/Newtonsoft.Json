@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -442,13 +442,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
 
             string json = JsonConvert.SerializeObject(test, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             });
 
             JObject o = JObject.Parse(json);
 
             JsonSerializer serializer = new JsonSerializer();
-            serializer.TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All;
+            serializer.TypeNameHandling = TypeNameHandling.All;
 
             using (JsonReader nodeReader = o.CreateReader())
             {
@@ -1006,4 +1006,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Linq
         }
     }
 }
-

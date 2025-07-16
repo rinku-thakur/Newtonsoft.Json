@@ -206,7 +206,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
                 _bars = new List<int>();
             }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private TestCollectionPrivateParameterized(IEnumerable<int> bars)
             {
                 _bars = new List<int>(bars);
@@ -242,7 +242,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class TestCollectionPrivate : List<int>
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private TestCollectionPrivate()
             {
             }
@@ -273,7 +273,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class TestCollectionMultipleParameters : List<int>
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public TestCollectionMultipleParameters(string s1, string s2)
             {
             }
@@ -289,7 +289,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class TestCollectionBadIEnumerableParameter : List<int>
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public TestCollectionBadIEnumerableParameter(List<string> l)
             {
             }
@@ -306,7 +306,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 #if !(DNXCORE50 || PORTABLE) || NETSTANDARD2_0 || NET6_0_OR_GREATER
         public class TestCollectionNonGeneric : ArrayList
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public TestCollectionNonGeneric(IEnumerable l)
                 : base(l.Cast<object>().ToList())
             {
@@ -332,7 +332,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             {
             }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private TestDictionaryPrivateParameterized(IEnumerable<KeyValuePair<string, int>> bars)
                 : base(bars.ToDictionary(k => k.Key, k => k.Value))
             {
@@ -357,7 +357,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class TestDictionaryPrivate : Dictionary<string, int>
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private TestDictionaryPrivate()
             {
             }
@@ -386,7 +386,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class TestDictionaryMultipleParameters : Dictionary<string, int>
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public TestDictionaryMultipleParameters(string s1, string s2)
             {
             }
@@ -402,7 +402,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class TestDictionaryBadIEnumerableParameter : Dictionary<string, int>
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public TestDictionaryBadIEnumerableParameter(Dictionary<string, string> l)
             {
             }
@@ -419,7 +419,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 #if !(DNXCORE50 || PORTABLE) || NETSTANDARD2_0 || NET6_0_OR_GREATER
         public class TestDictionaryNonGeneric : Hashtable
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             public TestDictionaryNonGeneric(IDictionary d)
                 : base(d)
             {
@@ -1034,7 +1034,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             JsonConvert.PopulateObject("{'ReleaseCountries':['Appended']}", p, new JsonSerializerSettings
             {
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new StringListAppenderConverter() }
+                Converters = new List<JsonConverter> { new StringListAppenderConverter() }
             });
 
             Assert.AreEqual(2, p.ReleaseCountries.Count);
@@ -1050,7 +1050,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             JsonConvert.PopulateObject("{'Name':'Appended'}", p, new JsonSerializerSettings
             {
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new StringAppenderConverter() }
+                Converters = new List<JsonConverter> { new StringAppenderConverter() }
             });
 
             Assert.AreEqual("Existing,Appended", p.Name);
@@ -1693,7 +1693,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(values1, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 Formatting = Formatting.Indented
             });
 
@@ -1701,17 +1701,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
   ""$type"": """ + ReflectionUtils.GetTypeName(typeof(List<Event1[,]>), 0, DefaultSerializationBinder.Instance) + @""",
   ""$values"": [
     {
-      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1[,], Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1[,], Autodesk.DataExchange.Newtonsoft.Json.Tests"",
       ""$values"": [
         [
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
           },
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
@@ -1719,13 +1719,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         ],
         [
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
           },
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
@@ -1734,17 +1734,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
       ]
     },
     {
-      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1[,], Newtonsoft.Json.Tests"",
+      ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1[,], Autodesk.DataExchange.Newtonsoft.Json.Tests"",
       ""$values"": [
         [
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
           },
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
@@ -1752,13 +1752,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         ],
         [
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
           },
           {
-            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Newtonsoft.Json.Tests"",
+            ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Events.Event1, Autodesk.DataExchange.Newtonsoft.Json.Tests"",
             ""EventName"": ""EventName!"",
             ""Venue"": null,
             ""Performances"": null
@@ -1771,7 +1771,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             IList<Event1[,]> values2 = (IList<Event1[,]>)JsonConvert.DeserializeObject(json, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             });
 
             Assert.AreEqual(2, values2.Count);
@@ -1904,7 +1904,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             };
 
             JsonSerializer jsonSerializer = new JsonSerializer();
-            jsonSerializer.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
             StringWriter sw = new StringWriter();
 
@@ -2081,7 +2081,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             string externalJson = @"{""$type"":""System.Collections.Hashtable, mscorlib"",""testkey"":""""}";
 
-            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All };
+            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
             JsonConvert.SerializeObject(new Hashtable { { "testkey", "" } }, settings);
             Hashtable deserializeTest2 = JsonConvert.DeserializeObject<Hashtable>(externalJson, settings);
@@ -2192,7 +2192,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             private List<string> _storage;
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+            [JsonConstructor]
             private MyClass()
             {
                 _storage = new List<string>();
@@ -2634,7 +2634,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
     {
         public string Before { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemConverterType = typeof(IntToFloatConverter))]
+        [JsonProperty(ItemConverterType = typeof(IntToFloatConverter))]
         public int[,,] Coordinates { get; set; }
 
         public string After { get; set; }
@@ -2684,7 +2684,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
     {
     }
 
-    public class StringListAppenderConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class StringListAppenderConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -2715,7 +2715,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 
-    public class StringAppenderConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class StringAppenderConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -2736,5 +2736,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-
-

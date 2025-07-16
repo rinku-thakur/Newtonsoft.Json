@@ -81,13 +81,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
             string serializedData = JsonConvert.SerializeObject(objects, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 Formatting = Formatting.Indented
             });
 
             IEnumerable<TestClass1> a = JsonConvert.DeserializeObject<IEnumerable<TestClass1>>(serializedData, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             });
 
             TestClass1 o = a.First();
@@ -108,13 +108,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
             string serializedData = JsonConvert.SerializeObject(c, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 Formatting = Formatting.Indented
             });
 
             TestClass3 a = JsonConvert.DeserializeObject<TestClass3>(serializedData, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             });
 
             Assert.AreEqual(1, a.Prop1.Count);
@@ -155,4 +155,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
     }
 }
 #endif
-

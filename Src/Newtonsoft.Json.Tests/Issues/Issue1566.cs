@@ -93,11 +93,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
         public class GitHubPullRequestReview
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("state")]
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+            [JsonProperty("state")]
+            [JsonConverter(typeof(StringEnumConverter))]
             public GitHubPullRequestReviewState State;
         }
     }
 }
 #endif
-

@@ -42,7 +42,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
     public class JsonObjectAttributeOverrideIEnumerable : TestFixtureBase
     {
         #region Types
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject]
+        [JsonObject]
         public class Directory : IEnumerable<string>
         {
             public string Name { get; set; }

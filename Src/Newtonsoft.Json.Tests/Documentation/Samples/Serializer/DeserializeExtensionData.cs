@@ -51,7 +51,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             public string UserName { get; set; }
             public string Domain { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+            [JsonExtensionData]
             private IDictionary<string, JToken> _additionalData;
 
             [OnDeserialized]

@@ -27,21 +27,21 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class AATestClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         protected int AA_field1;
 
         protected int AA_field2;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         protected int AA_property1 { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         protected int AA_property2 { get; private set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         protected int AA_property3 { private get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         private int AA_property4 { get; set; }
 
         protected int AA_property5 { get; private set; }
@@ -64,4 +64,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         }
     }
 }
-

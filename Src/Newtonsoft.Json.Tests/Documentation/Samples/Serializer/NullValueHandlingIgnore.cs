@@ -72,7 +72,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             string jsonIgnoreNullValues = JsonConvert.SerializeObject(person, Formatting.Indented, new JsonSerializerSettings
             {
-                NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore
             });
 
             Console.WriteLine(jsonIgnoreNullValues);
@@ -89,4 +89,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

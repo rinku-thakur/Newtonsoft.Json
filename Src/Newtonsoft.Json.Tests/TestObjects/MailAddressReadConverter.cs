@@ -29,7 +29,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Linq;
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(DNXCORE50) || NETSTANDARD2_0 || NET6_0_OR_GREATER
-    public class MailAddressReadConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public class MailAddressReadConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

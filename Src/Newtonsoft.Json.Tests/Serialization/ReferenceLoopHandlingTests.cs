@@ -50,11 +50,11 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             JsonPropertyAttribute attribute = new JsonPropertyAttribute();
             Assert.AreEqual(null, attribute._defaultValueHandling);
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Error, attribute.ReferenceLoopHandling);
+            Assert.AreEqual(ReferenceLoopHandling.Error, attribute.ReferenceLoopHandling);
 
-            attribute.ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, attribute._referenceLoopHandling);
-            Assert.AreEqual(Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore, attribute.ReferenceLoopHandling);
+            attribute.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            Assert.AreEqual(ReferenceLoopHandling.Ignore, attribute._referenceLoopHandling);
+            Assert.AreEqual(ReferenceLoopHandling.Ignore, attribute.ReferenceLoopHandling);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
             });
             Assert.AreEqual("{}", json);
         }
@@ -78,7 +78,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
             });
             StringAssert.AreEqual(@"{
   ""Value"": {
@@ -103,7 +103,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(a, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
             });
             Assert.AreEqual("[]", json);
         }
@@ -116,7 +116,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             string json = JsonConvert.SerializeObject(d, Formatting.Indented, new JsonSerializerSettings
             {
-                ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
             });
             Assert.AreEqual("{}", json);
         }
@@ -205,7 +205,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             main.Child = child;
 
             var settings =
-                new JsonSerializerSettings() { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore };
+                new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
 
             var c = JsonConvert.SerializeObject(main, settings);
             Assert.AreEqual(@"{""Child"":{""Name"":""Child1""}}", c);
@@ -262,7 +262,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             child.parent = parent;
             child.name = "child";
 
-            var settings = new JsonSerializerSettings { ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore };
+            var settings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
 
             var c = JsonConvert.SerializeObject(parent, settings);
             Assert.AreEqual(@"{""child"":{""name"":""child""},""name"":""parent""}", c);
@@ -350,7 +350,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public string Text { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize)]
+        [JsonProperty(ItemReferenceLoopHandling = ReferenceLoopHandling.Serialize)]
         public IList<PropertyItemReferenceLoopHandling> Data
         {
             get
@@ -371,29 +371,29 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonArray(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
+    [JsonArray(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingList : List<ReferenceLoopHandlingList>
     {
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonDictionary(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
+    [JsonDictionary(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingDictionary : Dictionary<string, ReferenceLoopHandlingDictionary>
     {
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
+    [JsonObject(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingObjectContainerAttribute
     {
         public ReferenceLoopHandlingObjectContainerAttribute Value { get; set; }
     }
 
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(ItemReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Ignore)]
+    [JsonObject(ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
     public class ReferenceLoopHandlingObjectContainerAttributeWithPropertyOverride
     {
         private ReferenceLoopHandlingObjectContainerAttributeWithPropertyOverride _value;
         private int _getCount;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ReferenceLoopHandling = Autodesk.DataExchange.Newtonsoft.Json.ReferenceLoopHandling.Serialize)]
+        [JsonProperty(ReferenceLoopHandling = ReferenceLoopHandling.Serialize)]
         public ReferenceLoopHandlingObjectContainerAttributeWithPropertyOverride Value
         {
             get
@@ -409,5 +409,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-
-

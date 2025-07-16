@@ -46,7 +46,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             public string FullName { get; set; }
             public string EmailAddress { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public string PasswordHash { get; set; }
         }
         #endregion

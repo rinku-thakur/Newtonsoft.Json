@@ -77,18 +77,18 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             string jsonTypeNameAll = JsonConvert.SerializeObject(stockholder, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             });
 
             Console.WriteLine(jsonTypeNameAll);
             // {
-            //   "$type": "Newtonsoft.Json.Samples.Stockholder, Newtonsoft.Json.Tests",
+            //   "$type": "Autodesk.DataExchange.Newtonsoft.Json.Samples.Stockholder, Autodesk.DataExchange.Newtonsoft.Json.Tests",
             //   "FullName": "Steve Stockholder",
             //   "Businesses": {
-            //     "$type": "System.Collections.Generic.List`1[[Newtonsoft.Json.Samples.Business, Newtonsoft.Json.Tests]], mscorlib",
+            //     "$type": "System.Collections.Generic.List`1[[Autodesk.DataExchange.Newtonsoft.Json.Samples.Business, Autodesk.DataExchange.Newtonsoft.Json.Tests]], mscorlib",
             //     "$values": [
             //       {
-            //         "$type": "Newtonsoft.Json.Samples.Hotel, Newtonsoft.Json.Tests",
+            //         "$type": "Autodesk.DataExchange.Newtonsoft.Json.Samples.Hotel, Autodesk.DataExchange.Newtonsoft.Json.Tests",
             //         "Stars": 4,
             //         "Name": "Hudson Hotel"
             //       }
@@ -98,7 +98,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
 
             string jsonTypeNameAuto = JsonConvert.SerializeObject(stockholder, Formatting.Indented, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
+                TypeNameHandling = TypeNameHandling.Auto
             });
 
             Console.WriteLine(jsonTypeNameAuto);
@@ -106,17 +106,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             //   "FullName": "Steve Stockholder",
             //   "Businesses": [
             //     {
-            //       "$type": "Newtonsoft.Json.Samples.Hotel, Newtonsoft.Json.Tests",
+            //       "$type": "Autodesk.DataExchange.Newtonsoft.Json.Samples.Hotel, Autodesk.DataExchange.Newtonsoft.Json.Tests",
             //       "Stars": 4,
             //       "Name": "Hudson Hotel"
             //     }
             //   ]
             // }
 
-            // for security Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling is required when deserializing
+            // for security TypeNameHandling is required when deserializing
             Stockholder newStockholder = JsonConvert.DeserializeObject<Stockholder>(jsonTypeNameAuto, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
+                TypeNameHandling = TypeNameHandling.Auto
             });
 
             Console.WriteLine(newStockholder.Businesses[0].GetType().Name);
@@ -127,4 +127,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -26,10 +26,10 @@
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
 #if !(NET35 || NET20)
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class Component
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore] // Ignore circular reference 
+        [JsonIgnore] // Ignore circular reference 
         public GameObject GameObject { get; set; }
 
         public Component()

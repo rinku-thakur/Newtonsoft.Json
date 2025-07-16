@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -34,7 +34,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 
         public string TestProperty1 { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+        [JsonProperty(Required = Required.AllowNull)]
         public int TestProperty2 { get; set; }
     }
 }

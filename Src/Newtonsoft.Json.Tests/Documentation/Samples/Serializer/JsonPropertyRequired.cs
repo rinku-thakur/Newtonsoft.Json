@@ -43,10 +43,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         #region Types
         public class Videogame
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+            [JsonProperty(Required = Required.Always)]
             public string Name { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.AllowNull)]
+            [JsonProperty(Required = Required.AllowNull)]
             public DateTime? ReleaseDate { get; set; }
         }
         #endregion
@@ -71,4 +71,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

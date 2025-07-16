@@ -46,7 +46,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             public string Name { get; set; }
             public string Class { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NullValueHandling = Autodesk.DataExchange.Newtonsoft.Json.NullValueHandling.Ignore)]
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public DateTime? LaunchDate { get; set; }
         }
         #endregion
@@ -77,5 +77,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-
-

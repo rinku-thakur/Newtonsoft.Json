@@ -150,17 +150,15 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
         private JsonSerializerSettings DeserializeSettings(int maxDepth) => new JsonSerializerSettings()
         {
-            TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.None,
+            TypeNameHandling = TypeNameHandling.None,
             MaxDepth = maxDepth
         };
 
         private JsonSerializerSettings SerializeSettings(int maxDepth) => new JsonSerializerSettings()
         {
-            TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+            TypeNameHandling = TypeNameHandling.All,
             MaxDepth = maxDepth
         };
     }
 }
 #endif
-
-

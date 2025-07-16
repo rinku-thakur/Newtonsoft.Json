@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -39,7 +39,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             set { str = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public bool ContainsListCollection
         {
             get { return false; }

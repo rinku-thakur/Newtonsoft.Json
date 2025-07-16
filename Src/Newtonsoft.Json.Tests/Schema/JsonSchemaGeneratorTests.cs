@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -266,7 +266,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Schema
             {
                 JsonSchemaGenerator generator = new JsonSchemaGenerator();
                 generator.Generate(typeof(CircularReferenceClass));
-            }, @"Unresolved circular reference for type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.CircularReferenceClass'. Explicitly define an Id for the type using a Autodesk.DataExchange.Newtonsoft.Json.JsonObject/Autodesk.DataExchange.Newtonsoft.Json.JsonArray attribute or automatically generate a type Id using the UndefinedSchemaIdHandling property.");
+            }, @"Unresolved circular reference for type 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.CircularReferenceClass'. Explicitly define an Id for the type using a JsonObject/JsonArray attribute or automatically generate a type Id using the UndefinedSchemaIdHandling property.");
         }
 
         [Test]
@@ -651,7 +651,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Schema
 }", json);
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum SortTypeFlagAsString
         {
             No = 0,
@@ -750,4 +750,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Schema
 }
 
 #pragma warning restore 618
-

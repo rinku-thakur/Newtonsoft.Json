@@ -61,7 +61,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
 
             string json = JsonConvert.SerializeObject(activities, Formatting.Indented);
             // note that this has been reverted back in 11.0.2 because it is causing compat issues
-            // https://github.com/JamesNK/Newtonsoft.Json/issues/1627
+            // https://github.com/JamesNK/Autodesk.DataExchange.Newtonsoft.Json/issues/1627
             StringAssert.AreEqual(@"[
   {
     ""Name"": ""An activity""

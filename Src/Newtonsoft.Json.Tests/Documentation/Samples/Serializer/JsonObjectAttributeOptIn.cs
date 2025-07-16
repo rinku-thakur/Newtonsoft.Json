@@ -41,17 +41,17 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
     public class JsonObjectAttributeOptIn : TestFixtureBase
     {
         #region Types
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(MemberSerialization.OptIn)]
+        [JsonObject(MemberSerialization.OptIn)]
         public class File
         {
             // excluded from serialization
             // does not have JsonPropertyAttribute
             public Guid Id { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public string Name { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+            [JsonProperty]
             public int Size { get; set; }
         }
         #endregion
@@ -83,4 +83,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

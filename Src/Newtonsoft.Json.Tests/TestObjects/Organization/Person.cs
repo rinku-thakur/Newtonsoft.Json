@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -28,24 +28,24 @@ using System.ComponentModel;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(Id = "Person", Title = "Title!", Description = "JsonObjectAttribute description!", MemberSerialization = MemberSerialization.OptIn)]
+    [JsonObject(Id = "Person", Title = "Title!", Description = "JsonObjectAttribute description!", MemberSerialization = MemberSerialization.OptIn)]
 #if !(DNXCORE50)
     [Description("DescriptionAttribute description!")]
 #endif
     public class Person
     {
         // "John Smith"
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         public string Name { get; set; }
 
         // "2000-12-15T22:11:03"
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
-        //[Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty]
+        //[JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime BirthDate { get; set; }
 
         // new Date(976918263055)
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
-        //[Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(JavaScriptDateTimeConverter))]
+        [JsonProperty]
+        //[JsonConverter(typeof(JavaScriptDateTimeConverter))]
         public DateTime LastModified { get; set; }
 
         // not serialized

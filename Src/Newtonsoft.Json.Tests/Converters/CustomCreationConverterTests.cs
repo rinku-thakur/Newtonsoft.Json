@@ -99,7 +99,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Converters
         {
             public string Value { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(MyThingConverter))]
+            [JsonConverter(typeof(MyThingConverter))]
             public IThing Thing { get; set; }
         }
 

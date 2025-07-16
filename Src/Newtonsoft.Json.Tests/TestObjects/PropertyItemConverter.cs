@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class PropertyItemConverter
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ItemConverterType = typeof(MetroStringConverter))]
+        [JsonProperty(ItemConverterType = typeof(MetroStringConverter))]
         public IList<string> Data { get; set; }
     }
 }

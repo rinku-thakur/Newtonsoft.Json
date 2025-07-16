@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -38,14 +38,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             bar = new List<Int64>() { int.MaxValue };
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("foo")]
+        [JsonProperty("foo")]
         public string Foo
         {
             get { return foo; }
             set { foo = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "bar")]
+        [JsonProperty(PropertyName = "bar")]
         public IList<long> Bar
         {
             get { return bar; }

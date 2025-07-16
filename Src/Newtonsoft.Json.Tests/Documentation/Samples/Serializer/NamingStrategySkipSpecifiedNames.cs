@@ -46,7 +46,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(PropertyName = "UPN")]
+            [JsonProperty(PropertyName = "UPN")]
             public string Upn { get; set; }
         }
         #endregion
@@ -92,4 +92,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

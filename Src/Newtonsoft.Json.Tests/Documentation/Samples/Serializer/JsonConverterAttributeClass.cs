@@ -42,7 +42,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
     public class JsonConverterAttributeClass : TestFixtureBase
     {
         #region Types
-        public class UserConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class UserConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -65,7 +65,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
             }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(UserConverter))]
+        [JsonConverter(typeof(UserConverter))]
         public class User
         {
             public string UserName { get; set; }

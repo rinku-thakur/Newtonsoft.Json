@@ -57,12 +57,12 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             string json = @"{
 	            'Name': 'James',
 	            'Password': 'Password1',
-	            '$type': 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MetadataPropertyHandlingTests+User, Newtonsoft.Json.Tests'
+	            '$type': 'Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MetadataPropertyHandlingTests+User, Autodesk.DataExchange.Newtonsoft.Json.Tests'
             }";
 
             object o = JsonConvert.DeserializeObject(json, new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 // no longer needs to be first
                 MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
             });
@@ -124,7 +124,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings()
             {
                 Formatting = Formatting.Indented,
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
                 MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
             };
             string serializedString = JsonConvert.SerializeObject(inputContext, jsonSerializerSettings);
@@ -235,10 +235,10 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             {
                 JsonConvert.DeserializeObject(json, null, new JsonSerializerSettings
                 {
-                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
+                    TypeNameHandling = TypeNameHandling.Objects,
                     MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
                 });
-            }, "Type specified in JSON 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Employee' was not resolved. Path '$type', line 3, position 55.");
+            }, "Type specified in JSON 'Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Employee' was not resolved. Path '$type', line 3, position 77.");
         }
 
         [Test]
@@ -370,9 +370,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
             List<object> values = (List<object>)JsonConvert.DeserializeObject(json, typeof(List<object>), new JsonSerializerSettings
             {
-                TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Objects,
-#pragma warning disable 618
-#pragma warning restore 618
+                TypeNameHandling = TypeNameHandling.Objects,
                 MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead
             });
 
@@ -438,19 +436,19 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
         public class MetadataPropertyDisabledTestClass
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("$id")]
+            [JsonProperty("$id")]
             public string Id { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("$ref")]
+            [JsonProperty("$ref")]
             public string Ref { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("$value")]
+            [JsonProperty("$value")]
             public string Value { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("$values")]
+            [JsonProperty("$values")]
             public string Values { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute("$type")]
+            [JsonProperty("$type")]
             public string Type { get; set; }
         }
 
@@ -557,12 +555,12 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
   ""Payload1"": 1,
   ""Payload2"": {'prop1':1,'prop2':[2]},
   ""Payload3"": [1],
-  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MetadataPropertyHandlingTests+ItemWithJTokens, Newtonsoft.Json.Tests""
+  ""$type"": ""Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization.MetadataPropertyHandlingTests+ItemWithJTokens, Autodesk.DataExchange.Newtonsoft.Json.Tests""
 }",
                 new JsonSerializerSettings
                 {
                     MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
-                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.All
+                    TypeNameHandling = TypeNameHandling.All
                 });
 
             Assert.AreEqual(JTokenType.Integer, actual.Payload1.Type);
@@ -609,7 +607,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 }",
                 new JsonSerializerSettings
                 {
-                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto
+                    TypeNameHandling = TypeNameHandling.Auto
                 });
 
             Assert.AreEqual(5f, actual.Payload);
@@ -622,7 +620,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 }",
                 new JsonSerializerSettings
                 {
-                    TypeNameHandling = Autodesk.DataExchange.Newtonsoft.Json.TypeNameHandling.Auto,
+                    TypeNameHandling = TypeNameHandling.Auto,
                     MetadataPropertyHandling = MetadataPropertyHandling.Ignore
                 });
 
@@ -649,5 +647,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-
-

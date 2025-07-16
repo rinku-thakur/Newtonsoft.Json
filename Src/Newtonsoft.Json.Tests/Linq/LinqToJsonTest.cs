@@ -1418,7 +1418,7 @@ keyword such as type of business.""
 #endif
 
 #if !(NET20)
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum FooBar
         {
             [EnumMember(Value = "SOME_VALUE")]

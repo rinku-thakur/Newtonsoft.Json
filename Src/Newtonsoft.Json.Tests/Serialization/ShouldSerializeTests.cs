@@ -315,7 +315,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             public string Name { get; set; }
             public int NumberOfChildren { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+            [JsonIgnore]
             public bool NumberOfChildrenSpecified { get; set; }
         }
 
@@ -488,24 +488,24 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         public int FavoriteNumber { get; set; }
 
         // dummy. should never be used because it isn't of type bool
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public long AgeSpecified { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public bool NameSpecified
         {
             get { return _nameSpecified; }
             set { _nameSpecified = value; }
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public bool WeightSpecified;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         [System.Xml.Serialization.XmlIgnoreAttribute]
         public bool HeightSpecified;
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public bool FavoriteNumberSpecified
         {
             // get only example
@@ -544,7 +544,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
     public class Bar2
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public bool ShouldSerializemyBazCalled { get; set; }
 
         private Baz1[] myBazField;
@@ -641,7 +641,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
 
     public class ShouldDeserializeTestClass
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonExtensionData]
+        [JsonExtensionData]
         public IDictionary<string, JToken> ExtensionData { get; set; }
 
         public bool HasName { get; set; }
@@ -653,4 +653,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         }
     }
 }
-

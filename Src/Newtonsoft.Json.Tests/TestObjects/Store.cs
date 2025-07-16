@@ -38,13 +38,13 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         public bool Open = false;
         public char Symbol = '@';
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<string> Mottos = new List<string>();
 
         public decimal Cost = 100980.1M;
         public string Escape = "\r\n\t\f\b?{\\r\\n\"\'";
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(ObjectCreationHandling = ObjectCreationHandling.Replace)]
+        [JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
         public List<Product> product = new List<Product>();
 
         public Store()

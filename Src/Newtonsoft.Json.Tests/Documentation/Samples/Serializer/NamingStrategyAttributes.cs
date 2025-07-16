@@ -42,12 +42,12 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
     public class NamingStrategyAttributes : TestFixtureBase
     {
         #region Types
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
+        [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
         public class User
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+            [JsonProperty(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
             public int SnakeRating { get; set; }
         }
         #endregion
@@ -81,4 +81,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Documentation.Samples.Seri
         }
     }
 }
-

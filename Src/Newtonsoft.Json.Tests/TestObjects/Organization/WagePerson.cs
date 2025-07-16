@@ -27,7 +27,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects.Organization
 {
     public class WagePerson : Person
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute]
+        [JsonProperty]
         public decimal HourlyWage { get; set; }
     }
 }

@@ -25,7 +25,7 @@
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(WidgetIdJsonConverter))]
+    [JsonConverter(typeof(WidgetIdJsonConverter))]
     public struct WidgetId1
     {
         public long Value { get; set; }

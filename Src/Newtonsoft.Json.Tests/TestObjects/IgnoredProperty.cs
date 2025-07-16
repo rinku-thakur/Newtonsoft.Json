@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -27,11 +27,11 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
     public class IgnoredProperty
     {
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonPropertyAttribute(Required = Required.Always)]
+        [JsonIgnore]
+        [JsonProperty(Required = Required.Always)]
         public string StringProp1 { get; set; }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string StringProp2 { get; set; }
     }
 }

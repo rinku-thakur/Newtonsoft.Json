@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -40,14 +40,14 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 
         // This field is not serialized. The OnDeserializedAttribute 
         // is used to set the member value after serialization.
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string Member3 { get; set; }
 
         // This field is set to null, but populated after deserialization.
         public string Member4 { get; set; }
 
         // This field is set to null, but populated after error.
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonIgnore]
+        [JsonIgnore]
         public string Member5 { get; set; }
 
         // Getting or setting this field will throw an error.
@@ -89,7 +89,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
             Member4 = "This value was set after deserialization.";
         }
 
-        [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
+        [OnError]
         internal void OnErrorMethod(StreamingContext context, ErrorContext errorContext)
         {
             Member5 = "Error message for member " + errorContext.Member + " = " + errorContext.Error.Message;

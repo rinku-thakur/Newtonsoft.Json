@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -36,7 +36,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
         private readonly int _Build = -1; // Do not rename (binary serialization)
         private readonly int _Revision = -1; // Do not rename (binary serialization)
 
-        [Autodesk.DataExchange.Newtonsoft.Json.JsonConstructor]
+        [JsonConstructor]
         public VersionOld(int major, int minor, int build, int revision)
         {
             _Major = major;

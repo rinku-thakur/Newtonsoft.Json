@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -1999,7 +1999,7 @@ Parameter name: arrayIndex",
             Assert.IsFalse(a.TryGetValue(null, StringComparison.Ordinal, out v));
         }
 
-        public class FooJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        public class FooJsonConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
@@ -2045,7 +2045,7 @@ Parameter name: arrayIndex",
 
             var settings = new JsonSerializerSettings
             {
-                Converters = new List<Autodesk.DataExchange.Newtonsoft.Json.JsonConverter> { new FooJsonConverter() },
+                Converters = new List<JsonConverter> { new FooJsonConverter() },
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 

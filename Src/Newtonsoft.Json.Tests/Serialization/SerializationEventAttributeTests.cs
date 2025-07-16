@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 // Copyright (c) 2007 James Newton-King
 //
 // Permission is hereby granted, free of charge, to any person
@@ -316,7 +316,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
             {
                 // If I don't specify Error here, the callback isn't called
                 // either, but no exception is thrown.
-                MissingMemberHandling = Autodesk.DataExchange.Newtonsoft.Json.MissingMemberHandling.Error,
+                MissingMemberHandling = MissingMemberHandling.Error,
             });
 
             // This throws with missing member exception, rather than calling my callback.
@@ -331,8 +331,8 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Serialization
         {
             public int Identifier { get; set; }
 
-            [Autodesk.DataExchange.Newtonsoft.Json.Serialization.OnError]
-            void OnError(StreamingContext context, ErrorContext error)
+            [OnError]
+            private void OnError(StreamingContext context, ErrorContext error)
             {
                 Identifier = 25;
 
@@ -554,4 +554,3 @@ OnSerialized_Derived_Derived", string.Join(Environment.NewLine, e.ToArray()));
         }
     }
 }
-

@@ -30,7 +30,7 @@ using Autodesk.DataExchange.Newtonsoft.Json.Utilities;
 
 namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.TestObjects
 {
-    public abstract class ConverterPrecedenceClassConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+    public abstract class ConverterPrecedenceClassConverter : JsonConverter
     {
         public abstract string ConverterType { get; }
 

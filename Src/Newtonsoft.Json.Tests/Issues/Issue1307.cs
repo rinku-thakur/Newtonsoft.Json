@@ -44,7 +44,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
     {
         public class MyOtherClass
         {
-            [Autodesk.DataExchange.Newtonsoft.Json.JsonConverter(typeof(MyJsonConverter))]
+            [JsonConverter(typeof(MyJsonConverter))]
             public MyClass2 InstanceOfMyClass { get; set; }
         }
 
@@ -53,7 +53,7 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
             public int[] Dummy { get; set; }
         }
 
-        internal class MyJsonConverter : Autodesk.DataExchange.Newtonsoft.Json.JsonConverter
+        internal class MyJsonConverter : JsonConverter
         {
             static private readonly JsonLoadSettings _jsonLoadSettings = new JsonLoadSettings { CommentHandling = CommentHandling.Ignore };
 
@@ -110,4 +110,3 @@ namespace Autodesk.DataExchange.Newtonsoft.Json.Tests.Issues
         }
     }
 }
-
